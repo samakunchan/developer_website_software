@@ -33,6 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  Future<void> _onLogoutPressed() async {
+    await _authSignals.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MacosScaffold(
@@ -171,9 +175,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             const Center(
                               child: ProgressCircle(),
                             )
+                          else if (user != null)
+                            PushButton(
+                              controlSize: .large,
+                              onPressed: _onLogoutPressed,
+                              child: const Text('Sign Out'),
+                            )
                           else
                             PushButton(
-                              controlSize: ControlSize.large,
+                              controlSize: .large,
                               onPressed: _onLoginPressed,
                               child: const Text('Sign In'),
                             ),
