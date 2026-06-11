@@ -1,5 +1,5 @@
 import 'package:developer_website_software/core/network/api_service.dart';
-import 'package:developer_website_software/features/authentication/data/datasources/auth_local_data_source.dart';
+import 'package:developer_website_software/features/authentication/data/datasources/auth_cache_data_source.dart';
 import 'package:developer_website_software/features/authentication/data/datasources/auth_remote_data_source.dart';
 import 'package:developer_website_software/features/authentication/data/repositories/auth_repository_impl.dart';
 import 'package:developer_website_software/features/authentication/domain/repositories/auth_repository.dart';
@@ -22,13 +22,13 @@ Future<void> initDependencyInjection() async {
     /// Core Services
     ..registerLazySingleton<ApiService>(ApiService.new)
     /// Features - Authentication - Data Sources
-    ..registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSourceImpl(kGetIt()))
+    ..registerLazySingleton<AuthCacheDataSource>(() => AuthCacheDataSourceImpl(kGetIt()))
     ..registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(kGetIt()))
     /// Features - Authentication - Repository
     ..registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
         remoteDataSource: kGetIt(),
-        localDataSource: kGetIt(),
+        cacheDataSource: kGetIt(),
       ),
     )
     /// Features - Authentication - Use Cases
