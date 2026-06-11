@@ -1,3 +1,6 @@
+import 'package:dartz/dartz.dart';
+import 'package:developer_website_software/core/errors/failures.dart';
+import 'package:developer_website_software/features/authentication/domain/entities/session_entity.dart';
 import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/domain/usecases/get_session_use_case.dart';
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_in_use_case.dart';
@@ -15,7 +18,7 @@ class AuthSignals {
   final SignOutUseCase signOutUseCase;
   final GetSessionUseCase getSessionUseCase;
 
-  // Reactive State Signals
+  /// Reactive State Signals
   final Signal<UserEntity?> currentUser = signal<UserEntity?>(null);
   final Signal<bool> isLoading = signal<bool>(false);
   final Signal<String?> authError = signal<String?>(null);
@@ -24,17 +27,16 @@ class AuthSignals {
     isLoading.value = true;
     authError.value = null;
 
-    final result = await signInUseCase(SignInParams(
-      email: email,
-      password: password,
-    ));
+    final Either<Failure, SessionEntity> result = await signInUseCase(
+      SignInParams(email: email, password: password),
+    );
 
     result.fold(
-      (failure) {
+      (Failure failure) {
         authError.value = failure.message;
         currentUser.value = null;
       },
-      (session) {
+      (SessionEntity session) {
         currentUser.value = session.user;
         authError.value = null;
       },
@@ -47,10 +49,10 @@ class AuthSignals {
     isLoading.value = true;
     authError.value = null;
 
-    final result = await signOutUseCase();
+    final Either<Failure, Unit> result = await signOutUseCase();
 
     result.fold(
-      (failure) {
+      (Failure failure) {
         currentUser.value = null;
         authError.value = failure.message;
       },
@@ -66,15 +68,11 @@ class AuthSignals {
   Future<void> checkSession() async {
     isLoading.value = true;
 
-    final result = await getSessionUseCase();
+    final Either<Failure, UserEntity> result = await getSessionUseCase();
 
     result.fold(
-      (failure) {
-        currentUser.value = null;
-      },
-      (user) {
-        currentUser.value = user;
-      },
+      (Failure failure) => currentUser.value = null,
+      (UserEntity user) => currentUser.value = user,
     );
 
     isLoading.value = false;

@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -14,7 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final AuthSignals _authSignals = sl<AuthSignals>();
+  final AuthSignals _authSignals = kGetIt<AuthSignals>();
 
   @override
   void dispose() {
@@ -26,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _onLoginPressed() async {
     final String email = _emailController.text.trim();
     final String password = _passwordController.text;
-    
+
     if (email.isNotEmpty && password.isNotEmpty) {
       await _authSignals.signIn(email, password);
     }
@@ -40,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       children: [
         ContentArea(
-          builder: (context, scrollController) {
+          builder: (BuildContext context, ScrollController scrollController) {
             return Center(
               child: SizedBox(
                 width: 380,
@@ -48,38 +49,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: scrollController,
                   padding: const EdgeInsets.all(24),
                   child: SignalBuilder(
-                    builder: (context) {
+                    builder: (BuildContext context) {
                       final bool loading = _authSignals.isLoading.value;
                       final String? error = _authSignals.authError.value;
-                      final user = _authSignals.currentUser.value;
+                      final UserEntity? user = _authSignals.currentUser.value;
 
                       return Column(
                         mainAxisAlignment: .center,
                         crossAxisAlignment: .stretch,
                         children: [
-                          const Icon(
-                            CupertinoIcons.lock_shield,
-                            size: 64,
-                            color: CupertinoColors.activeBlue,
-                          ),
+                          const Icon(CupertinoIcons.lock_shield, size: 64, color: CupertinoColors.activeBlue),
                           const SizedBox(height: 16),
                           Text(
                             'Welcome Back',
                             textAlign: .center,
-                            style: MacosTheme.of(context).typography.title1.copyWith(
-                              fontWeight: .bold,
-                            ),
+                            style: MacosTheme.of(context).typography.title1.copyWith(fontWeight: .bold),
                           ),
                           const SizedBox(height: 8),
                           Text(
                             'Authenticate to manage your developer portfolio',
                             textAlign: .center,
-                            style: MacosTheme.of(context).typography.headline.copyWith(
-                              color: CupertinoColors.secondaryLabel,
-                            ),
+                            style: MacosTheme.of(context).typography.headline.copyWith(color: CupertinoColors.secondaryLabel),
                           ),
                           const SizedBox(height: 32),
-                          
+
                           // Email Field
                           const Text('Email Address'),
                           const SizedBox(height: 6),
@@ -97,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           const SizedBox(height: 16),
-                          
+
                           // Password Field
                           const Text('Password'),
                           const SizedBox(height: 6),
@@ -172,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             const SizedBox(height: 16),
                           ],
-                          
+
                           // Actions
                           if (loading)
                             const Center(

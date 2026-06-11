@@ -10,38 +10,37 @@ import 'package:developer_website_software/features/authentication/presentation/
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final GetIt sl = GetIt.instance;
+final GetIt kGetIt = GetIt.instance;
 
 Future<void> initDependencyInjection() async {
-  // Core External
+  /// Core External
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  
-  // Register with cascades to avoid receiver duplication warnings
-  sl
+
+  /// Register with cascades to avoid receiver duplication warnings
+  kGetIt
     ..registerSingleton<SharedPreferences>(sharedPreferences)
-    
-    // Core Services
+    /// Core Services
     ..registerLazySingleton<ApiService>(ApiService.new)
-
-    // Features - Authentication - Data Sources
-    ..registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSourceImpl(sl()))
-    ..registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(sl()))
-
-    // Features - Authentication - Repository
-    ..registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
-          remoteDataSource: sl(),
-          localDataSource: sl(),
-        ))
-
-    // Features - Authentication - Use Cases
-    ..registerLazySingleton<SignInUseCase>(() => SignInUseCase(sl()))
-    ..registerLazySingleton<SignOutUseCase>(() => SignOutUseCase(sl()))
-    ..registerLazySingleton<GetSessionUseCase>(() => GetSessionUseCase(sl()))
-
-    // Features - Authentication - Presentation State
-    ..registerLazySingleton<AuthSignals>(() => AuthSignals(
-          signInUseCase: sl(),
-          signOutUseCase: sl(),
-          getSessionUseCase: sl(),
-        ));
+    /// Features - Authentication - Data Sources
+    ..registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSourceImpl(kGetIt()))
+    ..registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(kGetIt()))
+    /// Features - Authentication - Repository
+    ..registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(
+        remoteDataSource: kGetIt(),
+        localDataSource: kGetIt(),
+      ),
+    )
+    /// Features - Authentication - Use Cases
+    ..registerLazySingleton<SignInUseCase>(() => SignInUseCase(kGetIt()))
+    ..registerLazySingleton<SignOutUseCase>(() => SignOutUseCase(kGetIt()))
+    ..registerLazySingleton<GetSessionUseCase>(() => GetSessionUseCase(kGetIt()))
+    /// Features - Authentication - Presentation State
+    ..registerLazySingleton<AuthSignals>(
+      () => AuthSignals(
+        signInUseCase: kGetIt(),
+        signOutUseCase: kGetIt(),
+        getSessionUseCase: kGetIt(),
+      ),
+    );
 }
