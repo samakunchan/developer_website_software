@@ -12,5 +12,5 @@ This is the core business logic layer for the Authentication feature. It is writ
 
 - **Sign In**: Takes email and password credentials, performs validation, calls repository to authenticate, and returns the active session.
 - **Sign Out**: Signs out the current user and invalidates the session.
-- **Get Session**: Retrieves current user session state if a token is present locally.
+- **Get Session**: Retrieves current user session state if a token is present in cache.
 - **Forgot Password / Reset Password**: Request and complete password reset links.

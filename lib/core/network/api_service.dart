@@ -4,7 +4,7 @@ import 'package:developer_website_software/core/network/exception_model.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class ApiImplementation {
+abstract class _ApiImplementation {
   Future<Either<ExceptionModel, T>> get<T>({
     required String path,
     Map<String, dynamic>? queryParameters,
@@ -37,7 +37,7 @@ abstract class ApiImplementation {
   });
 }
 
-class ApiService extends BaseService implements ApiImplementation {
+class ApiService extends BaseService implements _ApiImplementation {
   ApiService() : super() {
     client.interceptors.add(
       InterceptorsWrapper(
@@ -47,7 +47,7 @@ class ApiService extends BaseService implements ApiImplementation {
           if (token != null && token.isNotEmpty) {
             options.headers['Authorization'] = 'Bearer $token';
           }
-          
+
           return handler.next(options);
         },
       ),
@@ -68,7 +68,7 @@ class ApiService extends BaseService implements ApiImplementation {
         options: options,
         cancelToken: cancelToken,
       );
-      
+
       return response.data as T;
     });
   }
@@ -89,7 +89,7 @@ class ApiService extends BaseService implements ApiImplementation {
         options: options,
         cancelToken: cancelToken,
       );
-      
+
       return response.data as T;
     });
   }
@@ -110,7 +110,7 @@ class ApiService extends BaseService implements ApiImplementation {
         options: options,
         cancelToken: cancelToken,
       );
-      
+
       return response.data as T;
     });
   }
@@ -131,7 +131,7 @@ class ApiService extends BaseService implements ApiImplementation {
         options: options,
         cancelToken: cancelToken,
       );
-      
+
       return response.data as T;
     });
   }

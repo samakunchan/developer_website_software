@@ -4,10 +4,7 @@ import 'package:developer_website_software/features/authentication/domain/entiti
 import 'package:developer_website_software/features/authentication/domain/repositories/auth_repository.dart';
 
 class SignInParams {
-  const SignInParams({
-    required this.email,
-    required this.password,
-  });
+  const SignInParams({required this.email, required this.password});
 
   final String email;
   final String password;
@@ -19,9 +16,6 @@ class SignInUseCase {
   final AuthRepository repository;
 
   Future<Either<Failure, SessionEntity>> call(SignInParams params) {
-    return repository.signIn(
-      email: params.email,
-      password: params.password,
-    );
+    return repository.signIn(email: params.email, password: params.password);
   }
 }
