@@ -6,10 +6,13 @@ import 'package:window_manager/window_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Initialize dependency injection
   await di.initDependencyInjection();
-  
+
+  // Initialize macos_window_utils for transparency & vibrancy effects
+  await WindowManipulator.initialize(enableWindowDelegate: true);
+
   // Initialize Window Manager for desktop integration
   await windowManager.ensureInitialized();
   const WindowOptions windowOptions = WindowOptions(
@@ -18,9 +21,9 @@ void main() async {
     center: true,
     backgroundColor: Colors.transparent,
     skipTaskbar: false,
-    titleBarStyle: TitleBarStyle.hidden,
+    titleBarStyle: .hidden,
   );
-  
+
   await windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
     await windowManager.focus();

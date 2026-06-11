@@ -16,10 +16,5 @@ abstract class SessionModel with _$SessionModel {
 
   factory SessionModel.fromJson(Map<String, dynamic> json) => _$SessionModelFromJson(json);
 
-  SessionEntity toEntity() {
-    return SessionEntity(
-      token: token,
-      user: user.toEntity(),
-    );
-  }
+  SessionEntity toEntity() => SessionEntity(token: token, user: user.toEntity());
 }

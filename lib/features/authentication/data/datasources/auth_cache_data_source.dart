@@ -1,13 +1,13 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class AuthLocalDataSource {
+abstract class AuthCacheDataSource {
   Future<void> saveToken(String token);
   Future<String?> getToken();
   Future<void> clearToken();
 }
 
-class AuthLocalDataSourceImpl implements AuthLocalDataSource {
-  AuthLocalDataSourceImpl(this.sharedPreferences);
+class AuthCacheDataSourceImpl implements AuthCacheDataSource {
+  AuthCacheDataSourceImpl(this.sharedPreferences);
 
   final SharedPreferences sharedPreferences;
   static const String _tokenKey = 'auth_token';

@@ -50,6 +50,7 @@ linter:
     public_member_api_docs: false
     sort_pub_dependencies: false
     avoid_annotating_with_dynamic: true
+    avoid_types_on_closure_parameters: false # Pour avoir le typage
 formatter:
   page_width: 130
   trailing_commas: preserve
