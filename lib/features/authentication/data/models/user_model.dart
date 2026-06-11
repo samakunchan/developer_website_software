@@ -11,22 +11,11 @@ abstract class UserModel with _$UserModel {
     required String name,
     required String email,
     required String role,
-    required DateTime createdAt,
-    required DateTime updatedAt,
   }) = _UserModel;
 
   const UserModel._();
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
-  UserEntity toEntity() {
-    return UserEntity(
-      id: id,
-      name: name,
-      email: email,
-      role: role,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-    );
-  }
+  UserEntity toEntity() => UserEntity(id: id, name: name, email: email, role: role);
 }
