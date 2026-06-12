@@ -39,9 +39,11 @@ dependencies:
   flutter_dotenv: ^6.0.1
 
   # Macos stuff
-  macos_ui: ^2.2.2
   macos_window_utils: ^1.9.1
   window_manager: ^0.5.1
+
+  # Windows stuff
+  fluent_ui: ^4.15.1
 
   # Code generation for model
   json_annotation: ^4.12.0
