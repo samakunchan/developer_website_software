@@ -1,5 +1,24 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.2.0+2 - 12/06/2026
+
+*Note: Only tested for the Cupertino platform.*
+
+### Added
+- Custom `FluentScaffoldPage`, `CupertinoScaffoldPage`, and `MaterialScaffoldPage` widgets to standardize page layouts.
+- Reusable core widgets: `DWSTextField` and `NotificationMessage`.
+- New cross-platform UI helpers: `PlatformWidget` and `PlatformStatefulWidget` to build adaptive layouts across platforms.
+- Modular theme system in `lib/core/themes/` supporting Cupertino, Material, and Fluent platforms (with dark/light dynamic colors).
+
+### Changed
+- Removed `macos_ui` dependency and replaced with standard `Cupertino` widgets.
+- Refactored `LoginScreen` to extend `PlatformStatefulWidget` with native renderers.
+- Removed redundant `theme_constants.dart` file.
+
+### Fixed
+
+- N/A
+
 ## 🚀 0.1.0+1 - 11/06/2026
 
 ### Added
