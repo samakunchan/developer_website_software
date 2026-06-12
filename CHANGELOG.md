@@ -9,6 +9,7 @@
 - Reusable core widgets: `DWSTextField` and `NotificationMessage`.
 - New cross-platform UI helpers: `PlatformWidget` and `PlatformStatefulWidget` to build adaptive layouts across platforms.
 - Modular theme system in `lib/core/themes/` supporting Cupertino, Material, and Fluent platforms (with dark/light dynamic colors).
+- Added fonts `Inter` with static files.
 
 ### Changed
 - Removed `macos_ui` dependency and replaced with standard `Cupertino` widgets.
