@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:developer_website_software/core/network/api_service.dart';
+import 'package:developer_website_software/core/network/api_config.dart';
+import 'package:developer_website_software/core/network/api_service_impl.dart';
 import 'package:developer_website_software/core/network/exception_model.dart';
 import 'package:developer_website_software/features/authentication/data/models/session_model.dart';
 import 'package:developer_website_software/features/authentication/data/models/user_model.dart';
@@ -20,7 +21,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<SessionModel> signIn({required String email, required String password}) async {
     final Either<ExceptionModel, Map<String, dynamic>> result = await apiService.post<Map<String, dynamic>>(
-      path: '/auth/api/sign-in',
+      path: ApiConfig.postSignIn,
       data: <String, dynamic>{
         'email': email,
         'password': password,
@@ -36,7 +37,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> signOut() async {
     final Either<ExceptionModel, Map<String, dynamic>> result = await apiService.post<Map<String, dynamic>>(
-      path: '/auth/api/sign-out',
+      path: ApiConfig.postSignOut,
     );
 
     result.fold(
@@ -48,7 +49,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserModel> getSession() async {
     final Either<ExceptionModel, Map<String, dynamic>> result = await apiService.get<Map<String, dynamic>>(
-      path: '/auth/api/session',
+      path: ApiConfig.getSession,
     );
 
     return result.fold(

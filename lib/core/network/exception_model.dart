@@ -3,20 +3,20 @@ import 'package:dio/dio.dart';
 class ExceptionModel implements Exception {
   const ExceptionModel({
     required this.message,
-    required this.exception,
+    required this.exceptionName,
     required this.statusCode,
   });
 
   factory ExceptionModel.fromJson(Map<String, dynamic> json) {
     final dynamic msg = json['message'] ?? json['exceptionName'] ?? 'Unknown error occurred';
     final String parsedMessage = msg is List ? msg.join(', ') : msg.toString();
-    
-    final String exceptionName = (json['exceptionName'] ?? json['error'] ?? 'EXCEPTION_UNKNOWN').toString();
-    final int status = (json['statusCode'] as num?)?.toInt() ?? 500;
+
+    final String parsedExceptionName = (json['exceptionName'] ?? json['error'] ?? 'EXCEPTION_UNKNOWN').toString();
+    final int status = int.tryParse(json['statusCode']?.toString() ?? '') ?? 500;
 
     return ExceptionModel(
       message: parsedMessage,
-      exception: exceptionName,
+      exceptionName: parsedExceptionName,
       statusCode: status,
     );
   }
@@ -25,71 +25,71 @@ class ExceptionModel implements Exception {
     if (e.response != null && e.response?.data is Map<String, dynamic>) {
       try {
         return ExceptionModel.fromJson(e.response!.data as Map<String, dynamic>);
-      } on Exception catch (_) {
+      } on Object catch (_) {
         return ExceptionModel(
           message: e.response?.statusMessage ?? 'Response error',
-          exception: 'DIO_RESPONSE_ERROR',
+          exceptionName: 'DIO_RESPONSE_ERROR',
           statusCode: e.response?.statusCode ?? 500,
         );
       }
     }
-    
+
     switch (e.type) {
       case DioExceptionType.connectionTimeout:
         return const ExceptionModel(
           message: 'Connection timeout',
-          exception: 'CONNECTION_TIMEOUT',
+          exceptionName: 'CONNECTION_TIMEOUT',
           statusCode: 408,
         );
       case DioExceptionType.receiveTimeout:
         return const ExceptionModel(
           message: 'Receive timeout',
-          exception: 'RECEIVE_TIMEOUT',
+          exceptionName: 'RECEIVE_TIMEOUT',
           statusCode: 408,
         );
       case DioExceptionType.sendTimeout:
         return const ExceptionModel(
           message: 'Send timeout',
-          exception: 'SEND_TIMEOUT',
+          exceptionName: 'SEND_TIMEOUT',
           statusCode: 408,
         );
       case DioExceptionType.cancel:
         return const ExceptionModel(
           message: 'Request cancelled',
-          exception: 'REQUEST_CANCELLED',
+          exceptionName: 'REQUEST_CANCELLED',
           statusCode: 499,
         );
       case DioExceptionType.connectionError:
         return const ExceptionModel(
           message: 'No internet connection',
-          exception: 'CONNECTION_ERROR',
+          exceptionName: 'CONNECTION_ERROR',
           statusCode: 503,
         );
       case DioExceptionType.badCertificate:
         return ExceptionModel(
           message: e.message ?? 'Bad certificate',
-          exception: 'BAD_CERTIFICATE',
+          exceptionName: 'BAD_CERTIFICATE',
           statusCode: 500,
         );
       case DioExceptionType.badResponse:
         return ExceptionModel(
           message: e.message ?? 'Bad response',
-          exception: 'BAD_RESPONSE',
+          exceptionName: 'BAD_RESPONSE',
           statusCode: e.response?.statusCode ?? 500,
         );
       case DioExceptionType.unknown:
         return ExceptionModel(
           message: e.message ?? 'Unknown network error',
-          exception: 'NETWORK_ERROR',
+          exceptionName: 'NETWORK_ERROR',
           statusCode: 500,
         );
     }
   }
 
   final String message;
-  final String exception;
+  final String exceptionName;
   final int statusCode;
 
   @override
-  String toString() => 'ExceptionModel(message: $message, exception: $exception, statusCode: $statusCode)';
+  String toString() => 'ExceptionModel(message: $message, exceptionName: $exceptionName, statusCode: $statusCode)';
 }

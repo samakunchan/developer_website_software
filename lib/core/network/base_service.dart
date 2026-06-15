@@ -27,7 +27,7 @@ abstract class BaseService {
   Future<Either<ExceptionModel, T>> apiCall<T>(Future<T> Function() call) async {
     try {
       final T result = await call();
-      
+
       return Right(result);
     } on DioException catch (e) {
       return Left(ExceptionModel.fromDioException(e));
@@ -35,7 +35,7 @@ abstract class BaseService {
       return Left(
         ExceptionModel(
           message: e.toString(),
-          exception: 'UNKNOWN_EXCEPTION',
+          exceptionName: 'UNKNOWN_EXCEPTION',
           statusCode: 500,
         ),
       );
