@@ -1,9 +1,9 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
-import 'package:developer_website_software/core/themes/constantes.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/settings/presentation/signals/settings_signals.dart';
 import 'package:developer_website_software/features/settings/presentation/widgets/account_tab.dart';
 import 'package:developer_website_software/features/settings/presentation/widgets/general_tab.dart';
+import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 

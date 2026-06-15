@@ -1,8 +1,8 @@
-import 'package:developer_website_software/core/themes/constantes.dart';
 import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/settings/presentation/widgets/info_row.dart';
 import 'package:developer_website_software/features/settings/presentation/widgets/settings_divider.dart';
+import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:flutter/cupertino.dart';
 
 class AccountTab extends StatelessWidget {

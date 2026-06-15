@@ -1,7 +1,7 @@
-import 'package:developer_website_software/core/themes/constantes.dart';
-import 'package:developer_website_software/core/themes/dark_theme_constants.dart';
-import 'package:developer_website_software/core/themes/light_theme_constants.dart';
-import 'package:developer_website_software/core/themes/text_theme.dart';
+import 'package:developer_website_software/features/themes/presentation/constantes.dart';
+import 'package:developer_website_software/features/themes/presentation/dark_theme_constants.dart';
+import 'package:developer_website_software/features/themes/presentation/light_theme_constants.dart';
+import 'package:developer_website_software/features/themes/presentation/text_theme.dart';
 import 'package:fluent_ui/fluent_ui.dart' as fluent;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' as material;
