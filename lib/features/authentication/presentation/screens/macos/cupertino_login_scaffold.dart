@@ -1,8 +1,8 @@
-import 'package:developer_website_software/core/themes/constantes.dart';
 import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/d_w_s_text_field.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/notification_message.dart';
+import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 

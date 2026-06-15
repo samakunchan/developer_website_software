@@ -1,5 +1,5 @@
-import 'package:developer_website_software/core/themes/dark_theme_constants.dart';
-import 'package:developer_website_software/core/themes/light_theme_constants.dart';
+import 'package:developer_website_software/features/themes/presentation/dark_theme_constants.dart';
+import 'package:developer_website_software/features/themes/presentation/light_theme_constants.dart';
 import 'package:flutter/cupertino.dart';
 
 const Color kInputBgColor = CupertinoDynamicColor.withBrightness(
