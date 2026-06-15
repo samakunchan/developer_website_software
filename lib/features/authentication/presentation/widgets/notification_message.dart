@@ -21,12 +21,12 @@ class NotificationMessage extends PlatformWidget {
         notificationColor = CupertinoColors.activeGreen;
     }
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const .all(12),
       decoration: BoxDecoration(
         color: CupertinoTheme.of(context).brightness == .dark
             ? notificationColor.withValues(alpha: .5)
             : notificationColor.withValues(alpha: .1),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: .circular(8),
         border: Border.all(color: notificationColor),
       ),
       child: Row(
@@ -75,12 +75,12 @@ class NotificationMessage extends PlatformWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const .all(12),
       decoration: BoxDecoration(
         color: Theme.of(context).brightness == .dark
             ? notificationColor.withValues(alpha: .5)
             : notificationColor.withValues(alpha: .1),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: .circular(8),
         border: Border.all(color: notificationColor),
       ),
       child: Row(

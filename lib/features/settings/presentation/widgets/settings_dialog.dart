@@ -28,7 +28,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
         child: Container(
           width: 450,
           height: 380,
-          padding: const EdgeInsets.all(20),
+          padding: const .all(20),
           color: isDark ? kCardDarkBgColor : CupertinoColors.systemBackground,
           child: Column(
             crossAxisAlignment: .stretch,
@@ -56,7 +56,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                 groupValue: _activeTab,
                 children: const {
                   0: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                    padding: .symmetric(horizontal: 16, vertical: 6),
                     child: Row(
                       mainAxisSize: .min,
                       spacing: 6,
@@ -67,7 +67,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
                     ),
                   ),
                   1: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                    padding: .symmetric(horizontal: 16, vertical: 6),
                     child: Row(
                       mainAxisSize: .min,
                       spacing: 6,

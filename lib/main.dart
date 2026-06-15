@@ -65,7 +65,7 @@ class MyApp extends PlatformWidget {
 
     final Brightness brightness = themeMode == ThemeMode.system
         ? PlatformDispatcher.instance.platformBrightness
-        : (themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light);
+        : (themeMode == ThemeMode.dark ? .dark : .light);
 
     final CupertinoThemeData dynamicTheme = AppTheme.getCupertinoTheme(
       brightness,
@@ -88,10 +88,10 @@ class MyApp extends PlatformWidget {
 
     final Brightness brightness = themeMode == ThemeMode.system
         ? PlatformDispatcher.instance.platformBrightness
-        : (themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light);
+        : (themeMode == ThemeMode.dark ? .dark : .light);
 
     // Dynamic Fluent theme or simple toggle
-    final fluentTheme = brightness == Brightness.dark ? AppTheme.fluentDarkTheme : AppTheme.fluentLightTheme;
+    final fluentTheme = brightness == .dark ? AppTheme.fluentDarkTheme : AppTheme.fluentLightTheme;
 
     return FluentApp(
       debugShowCheckedModeBanner: false,
@@ -111,8 +111,8 @@ class MyApp extends PlatformWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Developer Website Sofware',
-      theme: AppTheme.getMaterialTheme(Brightness.light, fontFamily.value, fontSize.multiplier),
-      darkTheme: AppTheme.getMaterialTheme(Brightness.dark, fontFamily.value, fontSize.multiplier),
+      theme: AppTheme.getMaterialTheme(.light, fontFamily.value, fontSize.multiplier),
+      darkTheme: AppTheme.getMaterialTheme(.dark, fontFamily.value, fontSize.multiplier),
       themeMode: themeMode,
       home: const LoginScreen(),
     );

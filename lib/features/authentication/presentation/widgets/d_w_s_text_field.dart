@@ -37,9 +37,9 @@ class DWSTextField extends PlatformWidget {
           keyboardType: keyboardType,
           decoration: kCupertinoInputDecoration,
           obscureText: obscureText,
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+          padding: const .symmetric(vertical: 12, horizontal: 10),
           prefix: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const .symmetric(horizontal: 8),
             child: childForIcon,
           ),
         ),
@@ -65,7 +65,7 @@ class DWSTextField extends PlatformWidget {
             keyboardType: keyboardType,
             obscureText: obscureText,
             prefix: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
+              padding: const .symmetric(horizontal: 8),
               child: childForIcon,
             ),
           ),

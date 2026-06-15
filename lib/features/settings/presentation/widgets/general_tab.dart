@@ -23,15 +23,15 @@ class GeneralTab extends StatelessWidget {
             groupValue: currentTheme,
             children: const {
               ThemeMode.system: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: .symmetric(horizontal: 8, vertical: 4),
                 child: Text('System'),
               ),
               ThemeMode.light: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: .symmetric(horizontal: 8, vertical: 4),
                 child: Text('Light'),
               ),
               ThemeMode.dark: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: .symmetric(horizontal: 8, vertical: 4),
                 child: Text('Dark'),
               ),
             },
@@ -51,15 +51,15 @@ class GeneralTab extends StatelessWidget {
             groupValue: currentSize,
             children: {
               AppFontSize.small: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const .symmetric(horizontal: 8, vertical: 4),
                 child: Text(AppFontSize.small.value),
               ),
               AppFontSize.medium: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const .symmetric(horizontal: 8, vertical: 4),
                 child: Text(AppFontSize.medium.value),
               ),
               AppFontSize.large: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const .symmetric(horizontal: 8, vertical: 4),
                 child: Text(AppFontSize.large.value),
               ),
             },
@@ -79,11 +79,11 @@ class GeneralTab extends StatelessWidget {
             groupValue: currentFont,
             children: const {
               AppFontFamily.system: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding: .symmetric(horizontal: 12, vertical: 4),
                 child: Text('System'),
               ),
               AppFontFamily.inter: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding: .symmetric(horizontal: 12, vertical: 4),
                 child: Text('Inter'),
               ),
             },

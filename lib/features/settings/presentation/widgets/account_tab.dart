@@ -12,7 +12,7 @@ class AccountTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserEntity? user = authSignals.currentUser.value;
-    final bool isDark = CupertinoTheme.brightnessOf(context) == Brightness.dark;
+    final bool isDark = CupertinoTheme.brightnessOf(context) == .dark;
 
     if (user == null) {
       return Center(
@@ -44,18 +44,18 @@ class AccountTab extends StatelessWidget {
     final Color cardBgColor = isDark ? kCardSecondaryDarkBgColor : CupertinoColors.extraLightBackgroundGray;
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const .all(16),
       decoration: BoxDecoration(
         color: cardBgColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: .circular(12),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: .stretch,
         children: [
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const .all(12),
                 decoration: const BoxDecoration(color: CupertinoColors.activeBlue, shape: .circle),
                 child: const Icon(CupertinoIcons.person, color: CupertinoColors.white, size: 28),
               ),

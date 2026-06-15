@@ -19,10 +19,10 @@ class PlatformMacosMenuWrapper extends StatelessWidget {
         builder: (BuildContext context) => CupertinoAlertDialog(
           title: const Text('About Developer Website Sofware'),
           content: const Padding(
-            padding: EdgeInsets.only(top: 8),
+            padding: .only(top: 8),
             child: Text(
               'Developer Website Sofware v0.3.0\n\nManage your developer portfolio locally with ease.',
-              textAlign: TextAlign.center,
+              textAlign: .center,
             ),
           ),
           actions: <CupertinoDialogAction>[
