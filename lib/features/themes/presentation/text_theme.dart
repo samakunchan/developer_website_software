@@ -1,4 +1,4 @@
-import 'package:developer_website_software/core/themes/constantes.dart';
+import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:flutter/cupertino.dart';
 
 const CupertinoTextThemeData kCupertinoTextTheme = CupertinoTextThemeData(

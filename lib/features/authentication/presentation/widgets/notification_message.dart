@@ -1,5 +1,5 @@
 import 'package:developer_website_software/core/cross_platform/platform_widget.dart';
-import 'package:developer_website_software/core/themes/constantes.dart';
+import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Colors;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
