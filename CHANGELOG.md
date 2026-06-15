@@ -1,5 +1,19 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.3.0+3 - 15/06/2026
+
+### Added
+- Automatic session restoration/check on application startup.
+
+### Changed
+- Refactored `ExceptionModel` and `ServerFailure` to parse and map the API's new `message` property.
+- Renamed the `exception` property to `exceptionName` in `ExceptionModel` for naming consistency with the backend API.
+
+### Fixed
+- Prevented a `TypeError` crash in `ExceptionModel.fromJson` by parsing `statusCode` safely via `int.tryParse`.
+- Fixed token cleanup by automatically clearing the cached token when the API returns an authentication exception.
+- Cleaned up a static analysis warning (extra semicolon/dead code) in `cupertino_login_scaffold.dart`.
+
 ## 🚀 0.2.0+2 - 12/06/2026
 
 *Note: Only tested for the Cupertino platform.*
