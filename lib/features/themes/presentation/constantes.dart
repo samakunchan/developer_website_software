@@ -52,23 +52,21 @@ const Color kSuccessColor = CupertinoDynamicColor.withBrightness(
 );
 
 const Color kShadowColor = CupertinoDynamicColor.withBrightness(
-  color: Color(0xff3c83f6), // Soft shadow for light mode
-  // color: CupertinoColors.systemPurple, // Soft shadow for light mode
-  darkColor: Color(0xFF25f4f4), // Darker shadow for dark mode
-  // darkColor: CupertinoColors.destructiveRed, // Darker shadow for dark mode
+  color: LightThemeConstants.glassBg,
+  darkColor: DarkThemeConstants.primary,
 );
 
 const Color kCardDarkBgColor = Color(0xFF1C1C1E);
 const Color kCardSecondaryDarkBgColor = Color(0xFF2C2C2E);
 
-const Color kSidebarLinkColor = Color(0xFF94A3B8); // --color-slate-400 for both modes
+const Color kSidebarLinkColor = Color(0xFF94A3B8);
 
 const Color kSidebarBackgroundColor = CupertinoDynamicColor.withBrightness(
-  color: LightThemeConstants.glassBg, // rgba(60, 131, 246, 0.05)
-  darkColor: DarkThemeConstants.background, // Color(0xFF102222)
+  color: LightThemeConstants.glassBg,
+  darkColor: DarkThemeConstants.background,
 );
 
 const Color kSidebarBorderColor = CupertinoDynamicColor.withBrightness(
-  color: LightThemeConstants.glassBorder, // rgba(60, 131, 246, 0.1)
-  darkColor: Color(0xFF1E293B), // --color-slate-800
+  color: LightThemeConstants.glassBorder,
+  darkColor: Color(0xFF1E293B),
 );
