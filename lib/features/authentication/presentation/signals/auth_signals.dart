@@ -67,12 +67,21 @@ class AuthSignals {
 
   Future<void> checkSession() async {
     isLoading.value = true;
+    authError.value = null;
 
     final Either<Failure, UserEntity> result = await getSessionUseCase();
 
     result.fold(
-      (Failure failure) => currentUser.value = null,
-      (UserEntity user) => currentUser.value = user,
+      (Failure failure) {
+        currentUser.value = null;
+        if (failure is ServerFailure) {
+          authError.value = failure.message;
+        }
+      },
+      (UserEntity user) {
+        currentUser.value = user;
+        authError.value = null;
+      },
     );
 
     isLoading.value = false;

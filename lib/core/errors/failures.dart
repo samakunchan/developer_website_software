@@ -20,7 +20,7 @@ class ServerFailure extends Failure {
     return ServerFailure(
       message: model.message,
       statusCode: model.statusCode,
-      exceptionName: model.exception,
+      exceptionName: model.exceptionName,
     );
   }
 
