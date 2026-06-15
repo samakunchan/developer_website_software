@@ -60,4 +60,74 @@ class AppTheme {
     }),
     scaffoldBackgroundColor: DarkThemeConstants.background,
   );
+
+  /// Dynamic Cupertino Theme Data generator
+  static CupertinoThemeData getCupertinoTheme(
+    Brightness brightness,
+    String fontFamily,
+    double fontSizeMultiplier,
+  ) {
+    final String? resolvedFontFamily = fontFamily == 'System' ? null : fontFamily;
+    final bool isDark = brightness == Brightness.dark;
+
+    return CupertinoThemeData(
+      brightness: brightness,
+      primaryColor: kPrimaryColor,
+      primaryContrastingColor: kTextContrastColor,
+      barBackgroundColor: isDark ? const Color(0xFF1E1E1E) : kSecondaryBackgroundColor,
+      scaffoldBackgroundColor: isDark ? const Color(0xFF121212) : kBackgroundColor,
+      selectionHandleColor: kPrimaryColor,
+      textTheme: CupertinoTextThemeData(
+        textStyle: TextStyle(
+          fontFamily: resolvedFontFamily,
+          color: isDark ? CupertinoColors.white : kTextColor,
+          fontSize: 16 * fontSizeMultiplier,
+        ),
+        navTitleTextStyle: TextStyle(
+          fontFamily: resolvedFontFamily,
+          color: isDark ? CupertinoColors.white : kTextColor,
+          fontSize: 18 * fontSizeMultiplier,
+          fontWeight: FontWeight.bold,
+        ),
+        navLargeTitleTextStyle: TextStyle(
+          fontFamily: resolvedFontFamily,
+          color: isDark ? CupertinoColors.white : kTextColor,
+          fontSize: 34 * fontSizeMultiplier,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  /// Dynamic Material Theme Data generator
+  static material.ThemeData getMaterialTheme(
+    Brightness brightness,
+    String fontFamily,
+    double fontSizeMultiplier,
+  ) {
+    final String? resolvedFontFamily = fontFamily == 'System' ? null : fontFamily;
+    final bool isDark = brightness == Brightness.dark;
+    final material.ThemeData baseTheme = isDark ? materialDarkTheme : materialLightTheme;
+
+    return baseTheme.copyWith(
+      textTheme: baseTheme.textTheme.apply(
+        fontFamily: resolvedFontFamily,
+        fontSizeFactor: fontSizeMultiplier,
+      ),
+    );
+  }
+
+  /// Dynamic Fluent Theme Data generator
+  static fluent.FluentThemeData getFluentTheme(
+    Brightness brightness,
+    String fontFamily,
+    double fontSizeMultiplier,
+  ) {
+    final bool isDark = brightness == Brightness.dark;
+    final fluent.FluentThemeData baseTheme = isDark ? fluentDarkTheme : fluentLightTheme;
+
+    return baseTheme.copyWith(
+      // Fluent UI doesn't have an easy textTheme.apply, but custom configurations can be added if needed
+    );
+  }
 }

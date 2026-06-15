@@ -57,3 +57,6 @@ const Color kShadowColor = CupertinoDynamicColor.withBrightness(
   darkColor: Color(0xFF25f4f4), // Darker shadow for dark mode
   // darkColor: CupertinoColors.destructiveRed, // Darker shadow for dark mode
 );
+
+const Color kCardDarkBgColor = Color(0xFF1C1C1E);
+const Color kCardSecondaryDarkBgColor = Color(0xFF2C2C2E);
