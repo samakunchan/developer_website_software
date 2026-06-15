@@ -134,6 +134,5 @@ class CupertinoLoginScaffold extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

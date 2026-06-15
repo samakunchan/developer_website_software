@@ -4,6 +4,7 @@ import 'package:developer_website_software/core/network/exception_model.dart';
 import 'package:developer_website_software/features/authentication/data/datasources/auth_cache_data_source.dart';
 import 'package:developer_website_software/features/authentication/data/datasources/auth_remote_data_source.dart';
 import 'package:developer_website_software/features/authentication/data/models/session_model.dart';
+import 'package:developer_website_software/features/authentication/data/models/user_model.dart';
 import 'package:developer_website_software/features/authentication/domain/entities/session_entity.dart';
 import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/domain/repositories/auth_repository.dart';
@@ -64,15 +65,16 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, UserEntity>> getSession() async {
     try {
-      final token = await cacheDataSource.getToken();
+      final String? token = await cacheDataSource.getToken();
       if (token == null || token.isEmpty) {
         return const Left(CacheFailure('No authenticated session found in cache'));
       }
 
-      final userModel = await remoteDataSource.getSession();
+      final UserModel userModel = await remoteDataSource.getSession();
 
       return Right(userModel.toEntity());
     } on ExceptionModel catch (e) {
+      await cacheDataSource.clearToken();
       return Left(ServerFailure.fromException(e));
     } on Object catch (e) {
       return Left(

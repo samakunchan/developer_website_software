@@ -2,6 +2,7 @@ import 'package:developer_website_software/core/cross_platform/platform_widget.d
 import 'package:developer_website_software/core/di/injection_container.dart' as di;
 import 'package:developer_website_software/core/themes/theme.dart';
 import 'package:developer_website_software/features/authentication/presentation/screens/login_screen.dart';
+import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,9 @@ void main() async {
 
   /// Initialize dependency injection
   await di.initDependencyInjection();
+
+  /// Check session on startup
+  await di.kGetIt<AuthSignals>().checkSession();
 
   /// Initialize macos_window_utils for transparency & vibrancy effects
   await WindowManipulator.initialize(enableWindowDelegate: true);

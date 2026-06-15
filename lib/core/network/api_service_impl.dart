@@ -4,7 +4,7 @@ import 'package:developer_website_software/core/network/exception_model.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class _ApiImplementation {
+abstract interface class ApiService {
   Future<Either<ExceptionModel, T>> get<T>({
     required String path,
     Map<String, dynamic>? queryParameters,
@@ -37,8 +37,8 @@ abstract class _ApiImplementation {
   });
 }
 
-class ApiService extends BaseService implements _ApiImplementation {
-  ApiService() : super() {
+class ApiServiceImpl extends BaseService implements ApiService {
+  ApiServiceImpl() : super() {
     client.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
