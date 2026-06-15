@@ -17,7 +17,7 @@ final BoxDecoration kCupertinoCardDecoration = BoxDecoration(
   border: Border.all(
     color: kCardBorderColor,
   ),
-  borderRadius: const BorderRadius.all(Radius.circular(12)),
+  borderRadius: const BorderRadius.all(.circular(12)),
 );
 
 // Dynamic card and CTA gradients using CupertinoDynamicColor
@@ -32,8 +32,8 @@ const LinearGradient kCardPopularGradient = LinearGradient(
       darkColor: Color(0xFF20E0E0),
     ),
   ],
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
+  begin: .topLeft,
+  end: .bottomRight,
 );
 
 const LinearGradient kCtaGradient = LinearGradient(
@@ -47,6 +47,6 @@ const LinearGradient kCtaGradient = LinearGradient(
       darkColor: Color(0x0D25F4F4),
     ),
   ],
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
+  begin: .topLeft,
+  end: .bottomRight,
 );

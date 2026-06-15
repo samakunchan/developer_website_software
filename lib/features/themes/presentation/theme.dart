@@ -62,13 +62,10 @@ class AppTheme {
   );
 
   /// Dynamic Cupertino Theme Data generator
-  static CupertinoThemeData getCupertinoTheme(
-    Brightness brightness,
-    String fontFamily,
-    double fontSizeMultiplier,
-  ) {
+  /// This method is useful, because it updates dynamically the app by opening the menu CMD + ",".
+  static CupertinoThemeData getCupertinoTheme(Brightness brightness, String fontFamily, double fontSizeMultiplier) {
     final String? resolvedFontFamily = fontFamily == 'System' ? null : fontFamily;
-    final bool isDark = brightness == Brightness.dark;
+    final bool isDark = brightness == .dark;
 
     return CupertinoThemeData(
       brightness: brightness,
@@ -87,13 +84,25 @@ class AppTheme {
           fontFamily: resolvedFontFamily,
           color: isDark ? CupertinoColors.white : kTextColor,
           fontSize: 18 * fontSizeMultiplier,
-          fontWeight: FontWeight.bold,
+          fontWeight: .bold,
         ),
         navLargeTitleTextStyle: TextStyle(
           fontFamily: resolvedFontFamily,
           color: isDark ? CupertinoColors.white : kTextColor,
           fontSize: 34 * fontSizeMultiplier,
-          fontWeight: FontWeight.bold,
+          fontWeight: .bold,
+        ),
+        actionTextStyle: TextStyle(
+          fontFamily: resolvedFontFamily,
+          color: kSidebarLinkColor,
+          fontSize: 16 * fontSizeMultiplier,
+          fontWeight: .w500,
+        ),
+        actionSmallTextStyle: TextStyle(
+          fontFamily: resolvedFontFamily,
+          color: kSidebarLinkColor,
+          fontSize: 14 * fontSizeMultiplier,
+          fontWeight: .w500,
         ),
       ),
     );
@@ -106,7 +115,7 @@ class AppTheme {
     double fontSizeMultiplier,
   ) {
     final String? resolvedFontFamily = fontFamily == 'System' ? null : fontFamily;
-    final bool isDark = brightness == Brightness.dark;
+    final bool isDark = brightness == .dark;
     final material.ThemeData baseTheme = isDark ? materialDarkTheme : materialLightTheme;
 
     return baseTheme.copyWith(
@@ -123,7 +132,7 @@ class AppTheme {
     String fontFamily,
     double fontSizeMultiplier,
   ) {
-    final bool isDark = brightness == Brightness.dark;
+    final bool isDark = brightness == .dark;
     final fluent.FluentThemeData baseTheme = isDark ? fluentDarkTheme : fluentLightTheme;
 
     return baseTheme.copyWith(

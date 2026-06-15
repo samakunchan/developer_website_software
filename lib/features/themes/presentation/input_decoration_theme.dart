@@ -17,5 +17,5 @@ final BoxDecoration kCupertinoInputDecoration = BoxDecoration(
   border: Border.all(
     color: kInputBorderColor,
   ),
-  borderRadius: const BorderRadius.all(Radius.circular(8)),
+  borderRadius: const BorderRadius.all(.circular(8)),
 );

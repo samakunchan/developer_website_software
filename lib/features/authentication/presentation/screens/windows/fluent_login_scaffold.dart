@@ -30,7 +30,7 @@ class FluentLoginScaffold extends StatelessWidget {
         child: SizedBox(
           width: 380,
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+            padding: const .all(24),
             child: SignalBuilder(
               builder: (BuildContext context) {
                 final bool loading = authSignals.isLoading.value;

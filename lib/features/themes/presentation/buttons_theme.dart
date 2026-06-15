@@ -12,4 +12,4 @@ const Color kButtonSecondaryColor = CupertinoDynamicColor.withBrightness(
 
 const double kButtonBorderRadius = 8;
 
-const EdgeInsets kButtonPadding = EdgeInsets.symmetric(horizontal: 24, vertical: 12);
+const EdgeInsets kButtonPadding = .symmetric(horizontal: 24, vertical: 12);

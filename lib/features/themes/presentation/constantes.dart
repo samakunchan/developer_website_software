@@ -60,3 +60,15 @@ const Color kShadowColor = CupertinoDynamicColor.withBrightness(
 
 const Color kCardDarkBgColor = Color(0xFF1C1C1E);
 const Color kCardSecondaryDarkBgColor = Color(0xFF2C2C2E);
+
+const Color kSidebarLinkColor = Color(0xFF94A3B8); // --color-slate-400 for both modes
+
+const Color kSidebarBackgroundColor = CupertinoDynamicColor.withBrightness(
+  color: LightThemeConstants.glassBg, // rgba(60, 131, 246, 0.05)
+  darkColor: DarkThemeConstants.background, // Color(0xFF102222)
+);
+
+const Color kSidebarBorderColor = CupertinoDynamicColor.withBrightness(
+  color: LightThemeConstants.glassBorder, // rgba(60, 131, 246, 0.1)
+  darkColor: Color(0xFF1E293B), // --color-slate-800
+);

@@ -19,4 +19,16 @@ const CupertinoTextThemeData kCupertinoTextTheme = CupertinoTextThemeData(
     fontSize: 34,
     fontWeight: .bold,
   ),
+  actionTextStyle: TextStyle(
+    fontFamily: kFontFamily,
+    color: kSidebarLinkColor,
+    fontSize: 16,
+    fontWeight: .w500,
+  ),
+  actionSmallTextStyle: TextStyle(
+    fontFamily: kFontFamily,
+    color: kSidebarLinkColor,
+    fontSize: 14,
+    fontWeight: .w500,
+  ),
 );
