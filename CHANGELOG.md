@@ -1,5 +1,24 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.4.0+4 - 15/06/2026
+
+### Added
+- Native macOS Menu Bar integration (`PlatformMenuBar` / `PlatformMenu`) with standard shortcuts like `Cmd + ,` for Preferences.
+- Dynamic theme and appearance setting controls (Light, Dark, System Theme).
+- Custom font family configurations (`System`, `Inter` via new `AppFontFamily` enum) and dynamic font scaling (`small`, `medium`, `large` via `AppFontSize` enum).
+- Local SharedPreferences persistence for user preference settings.
+- Segmented settings preferences page (`SettingsDialog`) with a local tab control for **General** preferences and **Account Info**.
+- Extracted clean, modular widget classes: `GeneralTab`, `AccountTab`, `SettingRow`, `InfoRow`, and `SettingsDivider` for cleaner, decoupled widget layouts.
+
+### Changed
+- Renamed the macOS application menu header to **DevSuite**.
+- Reorganized directory structure: moved Settings signals into `features/settings/presentation/signals/settings_signals.dart` to follow clean architecture feature folder guidelines.
+- Reorganized themes directory: migrated the entire `core/themes` folder into the presentation layer under `features/themes/presentation/`.
+- Updated all dependency injections and import statements alphabetically.
+
+### Fixed
+- N/A
+
 ## 🚀 0.3.0+3 - 15/06/2026
 
 ### Added
