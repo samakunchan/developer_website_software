@@ -43,14 +43,14 @@ class FluentAdminSidebar extends StatelessWidget {
                       Icon(FluentIcons.command_prompt, size: 20, color: primaryColor),
                       Text(
                         'PapangueSoft',
-                        style: TextStyle(fontSize: 16, fontWeight: .bold, color: isDark ? Colors.white : Colors.black)
-                      )
-                    ]
+                        style: TextStyle(fontSize: 16, fontWeight: .bold, color: isDark ? Colors.white : Colors.black),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 4),
-                  const Text('V 0.4.0 - Dev', style: TextStyle(fontSize: 10, color: Colors.grey))
-                ]
-              )
+                  const Text('V 0.5.0 - Dev', style: TextStyle(fontSize: 10, color: Colors.grey)),
+                ],
+              ),
             ),
 
             /// Navigation Items
@@ -69,7 +69,7 @@ class FluentAdminSidebar extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: isSelected ? glassBg : Colors.transparent,
                         borderRadius: isSelected ? const .only(topLeft: .circular(8), bottomLeft: .circular(8)) : .circular(8),
-                        border: isSelected ? Border(right: BorderSide(color: primaryColor, width: 2.5)) : null
+                        border: isSelected ? Border(right: BorderSide(color: primaryColor, width: 2.5)) : null,
                       ),
                       child: Row(
                         spacing: 12,
@@ -79,15 +79,15 @@ class FluentAdminSidebar extends StatelessWidget {
                             item['label'] as String,
                             style: TextStyle(
                               fontWeight: isSelected ? .bold : .w500,
-                              color: isSelected ? primaryColor : sidebarLinkColor
-                            )
-                          )
-                        ]
-                      )
-                    )
+                              color: isSelected ? primaryColor : sidebarLinkColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   );
-                }
-              )
+                },
+              ),
             ),
 
             /// Footer (Logout)
@@ -101,15 +101,15 @@ class FluentAdminSidebar extends StatelessWidget {
                   child: Center(
                     child: Text(
                       'Logout',
-                      style: TextStyle(color: textContrastColor, fontWeight: .bold)
-                    )
-                  )
-                )
-              )
-            )
-          ]
-        )
-      )
+                      style: TextStyle(color: textContrastColor, fontWeight: .bold),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

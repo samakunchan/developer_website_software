@@ -1,5 +1,24 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.5.0+5 - 16/06/2026
+
+### Added
+- **Reactive Authentication Gate (`AuthGate`)**: Introduced a central `AuthGate` widget that listens to `AuthSignals.currentUser` state changes to reactively and seamlessly redirect users between the `LoginScreen` and the `AdminScreen` based on active session status.
+- **Unified Component Wrappers**: Created `PlatformWidget`-based `AdminSidebar`, `AdminToolbar`, and `AdminMainContentArea` wrappers to handle cross-platform widget layout selection.
+- **Platform-Specific Sub-Widgets**: Added folder-based native implementations for sidebar, toolbar, and content area widgets (`macos/`, `windows/`, and `others/`) organized under the `/widgets` folder.
+- **Multi-Platform Scaffolding**: Added unified `DashboardScreen` and `SettingsAppScreen` entry points with Cupertino, Fluent, and Material layout scaffolds.
+- **Persistent Screen Navigation**: Integrated `IndexedStack` across all platform admin layouts to preserve state and scroll positions when navigating between sidebar menus.
+- **Persistent Global Toolbar**: Relocated the toolbar component to the parent platform scaffolds, rendering it globally across all selected views instead of only on the main dashboard.
+
+### Changed
+- **Admin Presentation Restructuring (Option 1)**: Reorganized the entire `lib/features/admin/presentation` folder to enforce clear semantic separation, reserving `/screens` exclusively for top-level layout scaffolds and moving all sub-components, wrappers, and platform-specific implementations into `/widgets`.
+- **Formatting Guidelines**: Updated code style parameters in `SKILL.md` and `cleaning_code.md` to format Dart code to 130-character lines and strictly prohibit trailing commas.
+- **Sidebar Hardcoded Versions**: Upgraded version tags across all native sidebars to version `0.5.0`.
+
+### Fixed
+- **Dashboard setState Crash**: Added unmounted safeguards (`if (!mounted) return;`) after asynchronous session checking operations (`checkSession` and `getToken`) inside `DashboardScreen` to prevent `setState()` after dispose exceptions.
+- **AuthGate Linter Warning**: Added `const` to the `CupertinoActivityIndicator` widget builder in `AuthGate`.
+
 ## 🚀 0.4.0+4 - 15/06/2026
 
 ### Added

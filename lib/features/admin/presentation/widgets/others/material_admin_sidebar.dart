@@ -41,13 +41,13 @@ class MaterialAdminSidebar extends StatelessWidget {
                     spacing: 8,
                     children: [
                       Icon(Icons.terminal, size: 24, color: primaryColor),
-                      Text('PapangueSoft', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: .bold))
-                    ]
+                      Text('PapangueSoft', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: .bold)),
+                    ],
                   ),
                   const SizedBox(height: 4),
-                  Text('V 0.4.0 - Dev', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey))
-                ]
-              )
+                  Text('V 0.5.0 - Dev', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey)),
+                ],
+              ),
             ),
 
             /// Navigation Items
@@ -66,7 +66,7 @@ class MaterialAdminSidebar extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: isSelected ? glassBg : Colors.transparent,
                         borderRadius: isSelected ? const .only(topLeft: .circular(8), bottomLeft: .circular(8)) : .circular(8),
-                        border: isSelected ? Border(right: BorderSide(color: primaryColor, width: 2.5)) : null
+                        border: isSelected ? Border(right: BorderSide(color: primaryColor, width: 2.5)) : null,
                       ),
                       child: Row(
                         spacing: 12,
@@ -76,15 +76,15 @@ class MaterialAdminSidebar extends StatelessWidget {
                             item['label'] as String,
                             style: TextStyle(
                               fontWeight: isSelected ? .bold : .w500,
-                              color: isSelected ? primaryColor : sidebarLinkColor
-                            )
-                          )
-                        ]
-                      )
-                    )
+                              color: isSelected ? primaryColor : sidebarLinkColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   );
-                }
-              )
+                },
+              ),
             ),
 
             /// Footer (Logout)
@@ -96,14 +96,14 @@ class MaterialAdminSidebar extends StatelessWidget {
                   backgroundColor: primaryColor,
                   foregroundColor: textContrastColor,
                   elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: .circular(8))
+                  shape: RoundedRectangleBorder(borderRadius: .circular(8)),
                 ),
-                child: const Text('Logout', style: TextStyle(fontWeight: .bold))
-              )
-            )
-          ]
-        )
-      )
+                child: const Text('Logout', style: TextStyle(fontWeight: .bold)),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

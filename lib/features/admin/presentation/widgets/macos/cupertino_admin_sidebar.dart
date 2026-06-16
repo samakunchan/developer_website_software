@@ -32,12 +32,12 @@ class CupertinoAdminSidebar extends StatelessWidget {
                     spacing: 8,
                     children: [
                       const Icon(CupertinoIcons.desktopcomputer, color: kPrimaryColor),
-                      Text('PapangueSoft', style: CupertinoTheme.of(context).textTheme.navTitleTextStyle)
-                    ]
+                      Text('PapangueSoft', style: CupertinoTheme.of(context).textTheme.navTitleTextStyle),
+                    ],
                   ),
-                  Text('V 0.4.0 - Dev', style: CupertinoTheme.of(context).textTheme.tabLabelTextStyle)
-                ]
-              )
+                  Text('V 0.5.0 - Dev', style: CupertinoTheme.of(context).textTheme.tabLabelTextStyle),
+                ],
+              ),
             ),
 
             /// Navigation Items
@@ -62,7 +62,7 @@ class CupertinoAdminSidebar extends StatelessWidget {
                               : .circular(0),
                           border: isSelected
                               ? Border(right: BorderSide(color: CupertinoTheme.of(context).selectionHandleColor, width: 2.5))
-                              : null
+                              : null,
                         ),
                         child: Row(
                           spacing: 10,
@@ -70,33 +70,33 @@ class CupertinoAdminSidebar extends StatelessWidget {
                             Icon(
                               item['icon'] as IconData,
                               size: 18,
-                              color: isSelected ? null : CupertinoTheme.of(context).textTheme.actionTextStyle.color
+                              color: isSelected ? null : CupertinoTheme.of(context).textTheme.actionTextStyle.color,
                             ),
                             Text(
                               item['label'] as String,
                               style: isSelected
                                   ? CupertinoTheme.of(
-                                      context
+                                      context,
                                     ).textTheme.actionTextStyle.copyWith(color: CupertinoTheme.of(context).selectionHandleColor)
-                                  : CupertinoTheme.of(context).textTheme.actionTextStyle
-                            )
-                          ]
-                        )
-                      )
-                    )
+                                  : CupertinoTheme.of(context).textTheme.actionTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   );
-                }
-              )
+                },
+              ),
             ),
 
             /// Footer (Logout)
             Padding(
               padding: const .all(16),
-              child: CupertinoAppButton(textButton: 'Logout', onPressed: kGetIt<AuthSignals>().signOut)
-            )
-          ]
-        )
-      )
+              child: CupertinoAppButton(textButton: 'Logout', onPressed: kGetIt<AuthSignals>().signOut),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
