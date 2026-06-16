@@ -18,14 +18,14 @@ abstract class LightThemeConstants {
   static const LinearGradient cardPopularGradient = LinearGradient(
     colors: <Color>[primary, Color(0xFF60A5FA)],
     begin: .topLeft,
-    end: .bottomRight,
+    end: .bottomRight
   );
 
   /// CTA
   static const LinearGradient ctaGradient = LinearGradient(
     colors: <Color>[Color(0x260660F2), Color(0x0D0660F2)],
     begin: .topLeft,
-    end: .bottomRight,
+    end: .bottomRight
   );
 
   /// Input / Form colors

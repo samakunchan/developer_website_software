@@ -18,14 +18,14 @@ abstract class DarkThemeConstants {
   static const LinearGradient cardGradient = LinearGradient(
     colors: <Color>[primary, Color(0xFF20E0E0)],
     begin: .topLeft,
-    end: .bottomRight,
+    end: .bottomRight
   );
 
   /// CTA
   static const LinearGradient ctaGradient = LinearGradient(
     colors: <Color>[Color(0x2625F4F4), glassBg],
     begin: .topLeft,
-    end: .bottomRight,
+    end: .bottomRight
   );
 
   /// Input / Form colors
