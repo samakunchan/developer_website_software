@@ -1,7 +1,7 @@
 import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
-import 'package:developer_website_software/features/authentication/presentation/widgets/d_w_s_text_field.dart';
-import 'package:developer_website_software/features/authentication/presentation/widgets/notification_message.dart';
+import 'package:developer_website_software/features/authentication/presentation/widgets/authentication_notification_message.dart';
+import 'package:developer_website_software/features/authentication/presentation/widgets/authentication_text_field.dart';
 import 'package:developer_website_software/features/themes/presentation/buttons_theme.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:flutter/cupertino.dart';
@@ -60,39 +60,39 @@ class CupertinoLoginScaffold extends StatelessWidget {
                       const SizedBox(height: 32),
 
                       /// Email Field
-                      DWSTextField(
+                      AuthenticationTextField(
                         title: 'Email Address',
                         controller: emailController,
                         placeholder: 'name@example.com',
                         keyboardType: .emailAddress,
-                        childForIcon: const Icon(CupertinoIcons.mail, size: 16),
+                        childForIcon: const Icon(CupertinoIcons.mail, size: 16)
                       ),
                       const SizedBox(height: 16),
 
                       /// Password Field
-                      DWSTextField(
+                      AuthenticationTextField(
                         title: 'Password',
                         controller: passwordController,
                         placeholder: '••••••••',
                         obscureText: true,
-                        childForIcon: const Icon(CupertinoIcons.lock, size: 16),
+                        childForIcon: const Icon(CupertinoIcons.lock, size: 16)
                       ),
                       const SizedBox(height: 24),
 
                       /// Error message if any
                       if (error != null) ...[
-                        NotificationMessage(message: error),
-                        const SizedBox(height: 16),
+                        AuthenticationNotificationMessage(message: error),
+                        const SizedBox(height: 16)
                       ],
 
                       /// Success User Information
                       if (user != null) ...[
-                        NotificationMessage(
+                        AuthenticationNotificationMessage(
                           message: 'Authenticated as: ${user.name} (${user.role})',
-                          status: NotificationStatus.success,
+                          status: NotificationStatus.success
                         ),
 
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 16)
                       ],
 
                       /// Actions
