@@ -77,7 +77,7 @@ class MyApp extends PlatformWidget {
       debugShowCheckedModeBanner: false,
       title: 'Developer Website Sofware',
       theme: dynamicTheme,
-      home: const PlatformMacosMenuWrapper(child: LoginScreen()),
+      home: const PlatformMacosMenuWrapper(child: AuthGate()),
     );
   }
 
@@ -97,7 +97,7 @@ class MyApp extends PlatformWidget {
       debugShowCheckedModeBanner: false,
       title: 'Developer Website Sofware',
       theme: fluentTheme,
-      home: const LoginScreen(),
+      home: const AuthGate(),
     );
   }
 
@@ -114,7 +114,7 @@ class MyApp extends PlatformWidget {
       theme: AppTheme.getMaterialTheme(.light, fontFamily.value, fontSize.multiplier),
       darkTheme: AppTheme.getMaterialTheme(.dark, fontFamily.value, fontSize.multiplier),
       themeMode: themeMode,
-      home: const LoginScreen(),
+      home: const AuthGate(),
     );
   }
 }
