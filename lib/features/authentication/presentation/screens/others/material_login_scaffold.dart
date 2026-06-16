@@ -1,6 +1,6 @@
 import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
-import 'package:developer_website_software/features/authentication/presentation/widgets/d_w_s_text_field.dart';
+import 'package:developer_website_software/features/authentication/presentation/widgets/authentication_text_field.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Colors;
 import 'package:flutter/material.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -62,22 +62,22 @@ class MaterialLoginScaffold extends StatelessWidget {
                       const SizedBox(height: 32),
 
                       /// Email Field
-                      DWSTextField(
+                      AuthenticationTextField(
                         title: 'Email Address',
                         controller: emailController,
                         placeholder: 'name@example.com',
                         keyboardType: .emailAddress,
-                        childForIcon: const Icon(FluentIcons.mail_options, size: 16),
+                        childForIcon: const Icon(FluentIcons.mail_options, size: 16)
                       ),
                       const SizedBox(height: 16),
 
                       /// Password Field
-                      DWSTextField(
+                      AuthenticationTextField(
                         title: 'Password',
                         controller: passwordController,
                         placeholder: '••••••••',
                         obscureText: true,
-                        childForIcon: const Icon(FluentIcons.lock, size: 16),
+                        childForIcon: const Icon(FluentIcons.lock, size: 16)
                       ),
                       const SizedBox(height: 24),
 
