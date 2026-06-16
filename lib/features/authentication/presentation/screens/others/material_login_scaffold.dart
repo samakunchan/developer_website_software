@@ -31,7 +31,7 @@ class MaterialLoginScaffold extends StatelessWidget {
           child: SizedBox(
             width: 380,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: const .all(24),
               child: SignalBuilder(
                 builder: (BuildContext context) {
                   final bool loading = authSignals.isLoading.value;
@@ -84,10 +84,10 @@ class MaterialLoginScaffold extends StatelessWidget {
                       // Error message if any
                       if (error != null) ...[
                         Container(
-                          padding: const EdgeInsets.all(12),
+                          padding: const .all(12),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.errorContainer,
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: .circular(8),
                           ),
                           child: Row(
                             children: [
@@ -108,10 +108,10 @@ class MaterialLoginScaffold extends StatelessWidget {
                       // Success User Information
                       if (user != null) ...[
                         Container(
-                          padding: const EdgeInsets.all(12),
+                          padding: const .all(12),
                           decoration: BoxDecoration(
                             color: Colors.green.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: .circular(8),
                             border: Border.all(color: Colors.green),
                           ),
                           child: Text(

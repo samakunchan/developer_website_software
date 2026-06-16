@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:developer_website_software/core/di/injection_container.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
-import 'package:developer_website_software/features/settings/presentation/widgets/settings_dialog.dart';
+import 'package:developer_website_software/features/settings_soft/presentation/widgets/settings_soft_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -19,10 +19,10 @@ class PlatformMacosMenuWrapper extends StatelessWidget {
         builder: (BuildContext context) => CupertinoAlertDialog(
           title: const Text('About Developer Website Sofware'),
           content: const Padding(
-            padding: EdgeInsets.only(top: 8),
+            padding: .only(top: 8),
             child: Text(
               'Developer Website Sofware v0.3.0\n\nManage your developer portfolio locally with ease.',
-              textAlign: TextAlign.center,
+              textAlign: .center,
             ),
           ),
           actions: <CupertinoDialogAction>[
@@ -36,12 +36,12 @@ class PlatformMacosMenuWrapper extends StatelessWidget {
     );
   }
 
-  void _showSettingsDialog(BuildContext context) {
+  void _showSettingsSoftDialog(BuildContext context) {
     unawaited(
       showCupertinoDialog<void>(
         context: context,
         barrierDismissible: true,
-        builder: (BuildContext context) => const SettingsDialog(),
+        builder: (BuildContext context) => const SettingsSoftDialog(),
       ),
     );
   }
@@ -76,7 +76,7 @@ class PlatformMacosMenuWrapper extends StatelessWidget {
                     PlatformMenuItem(
                       label: 'Settings...',
                       shortcut: const SingleActivator(LogicalKeyboardKey.comma, meta: true),
-                      onSelected: () => _showSettingsDialog(context),
+                      onSelected: () => _showSettingsSoftDialog(context),
                     ),
                   ],
                 ),

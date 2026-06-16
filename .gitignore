@@ -46,3 +46,4 @@ app.*.map.json
 todo.md
 devtools_options.yaml
 refresh.sh
+cleaning_code.md

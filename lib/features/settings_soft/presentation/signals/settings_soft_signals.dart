@@ -31,8 +31,8 @@ enum AppFontFamily {
   final String value;
 }
 
-class SettingsSignals {
-  SettingsSignals(this._prefs) {
+class SettingsSoftSignals {
+  SettingsSoftSignals(this._prefs) {
     _loadSettings();
   }
   final SharedPreferences _prefs;
@@ -48,10 +48,7 @@ class SettingsSignals {
   void _loadSettings() {
     final String? savedTheme = _prefs.getString(_themeKey);
     if (savedTheme != null) {
-      themeMode.value = ThemeMode.values.firstWhere(
-        (ThemeMode e) => e.name == savedTheme,
-        orElse: () => ThemeMode.system,
-      );
+      themeMode.value = ThemeMode.values.firstWhere((ThemeMode e) => e.name == savedTheme, orElse: () => ThemeMode.system);
     }
 
     final String? savedFontSize = _prefs.getString(_fontSizeKey);
