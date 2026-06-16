@@ -1,11 +1,11 @@
-import 'package:developer_website_software/features/settings/presentation/signals/settings_signals.dart';
-import 'package:developer_website_software/features/settings/presentation/widgets/setting_row.dart';
+import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
+import 'package:developer_website_software/features/settings_soft/presentation/widgets/setting_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' show ThemeMode;
 
 class GeneralTab extends StatelessWidget {
   const GeneralTab({required this.settings, super.key});
-  final SettingsSignals settings;
+  final SettingsSoftSignals settings;
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +22,9 @@ class GeneralTab extends StatelessWidget {
           child: CupertinoSlidingSegmentedControl<ThemeMode>(
             groupValue: currentTheme,
             children: const {
-              ThemeMode.system: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                child: Text('System'),
-              ),
-              ThemeMode.light: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                child: Text('Light'),
-              ),
-              ThemeMode.dark: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                child: Text('Dark'),
-              ),
+              ThemeMode.system: Padding(padding: .symmetric(horizontal: 8, vertical: 4), child: Text('System')),
+              ThemeMode.light: Padding(padding: .symmetric(horizontal: 8, vertical: 4), child: Text('Light')),
+              ThemeMode.dark: Padding(padding: .symmetric(horizontal: 8, vertical: 4), child: Text('Dark')),
             },
             onValueChanged: (ThemeMode? val) {
               if (val != null) {
@@ -51,15 +42,15 @@ class GeneralTab extends StatelessWidget {
             groupValue: currentSize,
             children: {
               AppFontSize.small: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const .symmetric(horizontal: 8, vertical: 4),
                 child: Text(AppFontSize.small.value),
               ),
               AppFontSize.medium: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const .symmetric(horizontal: 8, vertical: 4),
                 child: Text(AppFontSize.medium.value),
               ),
               AppFontSize.large: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const .symmetric(horizontal: 8, vertical: 4),
                 child: Text(AppFontSize.large.value),
               ),
             },
@@ -78,14 +69,8 @@ class GeneralTab extends StatelessWidget {
           child: CupertinoSlidingSegmentedControl<AppFontFamily>(
             groupValue: currentFont,
             children: const {
-              AppFontFamily.system: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                child: Text('System'),
-              ),
-              AppFontFamily.inter: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                child: Text('Inter'),
-              ),
+              AppFontFamily.system: Padding(padding: .symmetric(horizontal: 12, vertical: 4), child: Text('System')),
+              AppFontFamily.inter: Padding(padding: .symmetric(horizontal: 12, vertical: 4), child: Text('Inter')),
             },
             onValueChanged: (AppFontFamily? val) {
               if (val != null) {

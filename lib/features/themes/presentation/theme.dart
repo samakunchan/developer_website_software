@@ -47,28 +47,21 @@ class AppTheme {
   /// Fluent Themes (Windows)
   static final fluent.FluentThemeData fluentLightTheme = fluent.FluentThemeData(
     brightness: .light,
-    accentColor: fluent.AccentColor.swatch(const {
-      'normal': LightThemeConstants.primary,
-    }),
+    accentColor: fluent.AccentColor.swatch(const {'normal': LightThemeConstants.primary}),
     scaffoldBackgroundColor: LightThemeConstants.background,
   );
 
   static final fluent.FluentThemeData fluentDarkTheme = fluent.FluentThemeData(
     brightness: .dark,
-    accentColor: fluent.AccentColor.swatch(const {
-      'normal': DarkThemeConstants.primary,
-    }),
+    accentColor: fluent.AccentColor.swatch(const {'normal': DarkThemeConstants.primary}),
     scaffoldBackgroundColor: DarkThemeConstants.background,
   );
 
   /// Dynamic Cupertino Theme Data generator
-  static CupertinoThemeData getCupertinoTheme(
-    Brightness brightness,
-    String fontFamily,
-    double fontSizeMultiplier,
-  ) {
+  /// This method is useful, because it updates dynamically the app by opening the menu CMD + ",".
+  static CupertinoThemeData getCupertinoTheme(Brightness brightness, String fontFamily, double fontSizeMultiplier) {
     final String? resolvedFontFamily = fontFamily == 'System' ? null : fontFamily;
-    final bool isDark = brightness == Brightness.dark;
+    final bool isDark = brightness == .dark;
 
     return CupertinoThemeData(
       brightness: brightness,
@@ -87,43 +80,44 @@ class AppTheme {
           fontFamily: resolvedFontFamily,
           color: isDark ? CupertinoColors.white : kTextColor,
           fontSize: 18 * fontSizeMultiplier,
-          fontWeight: FontWeight.bold,
+          fontWeight: .bold,
         ),
         navLargeTitleTextStyle: TextStyle(
           fontFamily: resolvedFontFamily,
           color: isDark ? CupertinoColors.white : kTextColor,
           fontSize: 34 * fontSizeMultiplier,
-          fontWeight: FontWeight.bold,
+          fontWeight: .bold,
+        ),
+        actionTextStyle: TextStyle(
+          fontFamily: resolvedFontFamily,
+          color: kSidebarLinkColor,
+          fontSize: 16 * fontSizeMultiplier,
+          fontWeight: .w500,
+        ),
+        actionSmallTextStyle: TextStyle(
+          fontFamily: resolvedFontFamily,
+          color: kSidebarLinkColor,
+          fontSize: 14 * fontSizeMultiplier,
+          fontWeight: .w500,
         ),
       ),
     );
   }
 
   /// Dynamic Material Theme Data generator
-  static material.ThemeData getMaterialTheme(
-    Brightness brightness,
-    String fontFamily,
-    double fontSizeMultiplier,
-  ) {
+  static material.ThemeData getMaterialTheme(Brightness brightness, String fontFamily, double fontSizeMultiplier) {
     final String? resolvedFontFamily = fontFamily == 'System' ? null : fontFamily;
-    final bool isDark = brightness == Brightness.dark;
+    final bool isDark = brightness == .dark;
     final material.ThemeData baseTheme = isDark ? materialDarkTheme : materialLightTheme;
 
     return baseTheme.copyWith(
-      textTheme: baseTheme.textTheme.apply(
-        fontFamily: resolvedFontFamily,
-        fontSizeFactor: fontSizeMultiplier,
-      ),
+      textTheme: baseTheme.textTheme.apply(fontFamily: resolvedFontFamily, fontSizeFactor: fontSizeMultiplier),
     );
   }
 
   /// Dynamic Fluent Theme Data generator
-  static fluent.FluentThemeData getFluentTheme(
-    Brightness brightness,
-    String fontFamily,
-    double fontSizeMultiplier,
-  ) {
-    final bool isDark = brightness == Brightness.dark;
+  static fluent.FluentThemeData getFluentTheme(Brightness brightness, String fontFamily, double fontSizeMultiplier) {
+    final bool isDark = brightness == .dark;
     final fluent.FluentThemeData baseTheme = isDark ? fluentDarkTheme : fluentLightTheme;
 
     return baseTheme.copyWith(

@@ -1,7 +1,7 @@
 import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
-import 'package:developer_website_software/features/settings/presentation/widgets/info_row.dart';
-import 'package:developer_website_software/features/settings/presentation/widgets/settings_divider.dart';
+import 'package:developer_website_software/features/settings_soft/presentation/widgets/info_row.dart';
+import 'package:developer_website_software/features/settings_soft/presentation/widgets/settings_soft_divider.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -12,7 +12,7 @@ class AccountTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserEntity? user = authSignals.currentUser.value;
-    final bool isDark = CupertinoTheme.brightnessOf(context) == Brightness.dark;
+    final bool isDark = CupertinoTheme.brightnessOf(context) == .dark;
 
     if (user == null) {
       return Center(
@@ -31,10 +31,7 @@ class AccountTab extends StatelessWidget {
             Text(
               'Please sign in to the application to view your developer account details.',
               textAlign: .center,
-              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                color: CupertinoColors.systemGrey,
-                fontSize: 13,
-              ),
+              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(color: CupertinoColors.systemGrey, fontSize: 13),
             ),
           ],
         ),
@@ -44,18 +41,15 @@ class AccountTab extends StatelessWidget {
     final Color cardBgColor = isDark ? kCardSecondaryDarkBgColor : CupertinoColors.extraLightBackgroundGray;
 
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: cardBgColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
+      padding: const .all(16),
+      decoration: BoxDecoration(color: cardBgColor, borderRadius: .circular(12)),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: .stretch,
         children: [
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const .all(12),
                 decoration: const BoxDecoration(color: CupertinoColors.activeBlue, shape: .circle),
                 child: const Icon(CupertinoIcons.person, color: CupertinoColors.white, size: 28),
               ),
@@ -71,11 +65,9 @@ class AccountTab extends StatelessWidget {
                     ),
                     Text(
                       user.role.toUpperCase(),
-                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                        fontSize: 11,
-                        color: CupertinoColors.activeBlue,
-                        fontWeight: .w600,
-                      ),
+                      style: CupertinoTheme.of(
+                        context,
+                      ).textTheme.textStyle.copyWith(fontSize: 11, color: CupertinoColors.activeBlue, fontWeight: .w600),
                     ),
                   ],
                 ),
@@ -83,7 +75,7 @@ class AccountTab extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          const SettingsDivider(color: CupertinoColors.separator),
+          const SettingsSoftDivider(color: CupertinoColors.separator),
           const SizedBox(height: 16),
           InfoRow(label: 'Account ID', value: '#${user.id}'),
           const SizedBox(height: 12),

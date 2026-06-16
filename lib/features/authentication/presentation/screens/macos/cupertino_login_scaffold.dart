@@ -2,6 +2,7 @@ import 'package:developer_website_software/features/authentication/domain/entiti
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/d_w_s_text_field.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/notification_message.dart';
+import 'package:developer_website_software/features/themes/presentation/buttons_theme.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -32,7 +33,7 @@ class CupertinoLoginScaffold extends StatelessWidget {
           child: SizedBox(
             width: 380,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: const .all(24),
               child: SignalBuilder(
                 builder: (BuildContext context) {
                   final bool loading = authSignals.isLoading.value;
@@ -48,10 +49,7 @@ class CupertinoLoginScaffold extends StatelessWidget {
                       Text(
                         'Welcome Back',
                         textAlign: .center,
-                        style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(
-                          fontSize: 28,
-                          fontWeight: .bold,
-                        ),
+                        style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 28, fontWeight: .bold),
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -101,14 +99,16 @@ class CupertinoLoginScaffold extends StatelessWidget {
                       if (loading)
                         const Center(child: CupertinoActivityIndicator())
                       else if (user != null)
-                        CupertinoButton.filled(
+                        CupertinoButton(
+                          color: kButtonPrimaryColor,
+                          borderRadius: .circular(kButtonBorderRadius),
                           onPressed: onLogoutPressed,
-                          child: const Text('Sign Out'),
+                          child: const Text('Sign Out', style: TextStyle(color: kTextContrastColor)),
                         )
                       else
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: .circular(kButtonBorderRadius),
                             boxShadow: [
                               BoxShadow(
                                 color: CupertinoTheme.of(context).brightness == .dark
@@ -120,9 +120,11 @@ class CupertinoLoginScaffold extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: CupertinoButton.filled(
+                          child: CupertinoButton(
+                            color: kButtonPrimaryColor,
+                            borderRadius: .circular(kButtonBorderRadius),
                             onPressed: onLoginPressed,
-                            child: const Text('Sign In'),
+                            child: const Text('Sign In', style: TextStyle(color: kTextContrastColor)),
                           ),
                         ),
                     ],

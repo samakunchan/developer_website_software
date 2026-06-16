@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:developer_website_software/core/cross_platform/platform_macos_menu_wrapper.dart';
 import 'package:developer_website_software/core/cross_platform/platform_widget.dart';
 import 'package:developer_website_software/core/di/injection_container.dart' as di;
-import 'package:developer_website_software/features/authentication/presentation/screens/login_screen.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
-import 'package:developer_website_software/features/settings/presentation/signals/settings_signals.dart';
+import 'package:developer_website_software/features/authentication/presentation/widgets/auth_gate.dart';
+import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:developer_website_software/features/themes/presentation/theme.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Colors;
 import 'package:flutter/cupertino.dart';
@@ -58,14 +58,14 @@ class MyApp extends PlatformWidget {
 
   @override
   Widget buildCupertino(BuildContext context) {
-    final SettingsSignals settings = di.kGetIt<SettingsSignals>();
+    final SettingsSoftSignals settings = di.kGetIt<SettingsSoftSignals>();
     final ThemeMode themeMode = settings.themeMode.value;
     final AppFontSize fontSize = settings.fontSize.value;
     final AppFontFamily fontFamily = settings.fontFamily.value;
 
     final Brightness brightness = themeMode == ThemeMode.system
         ? PlatformDispatcher.instance.platformBrightness
-        : (themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light);
+        : (themeMode == ThemeMode.dark ? .dark : .light);
 
     final CupertinoThemeData dynamicTheme = AppTheme.getCupertinoTheme(
       brightness,
@@ -77,33 +77,33 @@ class MyApp extends PlatformWidget {
       debugShowCheckedModeBanner: false,
       title: 'Developer Website Sofware',
       theme: dynamicTheme,
-      home: const PlatformMacosMenuWrapper(child: LoginScreen()),
+      home: const PlatformMacosMenuWrapper(child: AuthGate()),
     );
   }
 
   @override
   Widget buildFluent(BuildContext context) {
-    final SettingsSignals settings = di.kGetIt<SettingsSignals>();
+    final SettingsSoftSignals settings = di.kGetIt<SettingsSoftSignals>();
     final ThemeMode themeMode = settings.themeMode.value;
 
     final Brightness brightness = themeMode == ThemeMode.system
         ? PlatformDispatcher.instance.platformBrightness
-        : (themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light);
+        : (themeMode == ThemeMode.dark ? .dark : .light);
 
     // Dynamic Fluent theme or simple toggle
-    final fluentTheme = brightness == Brightness.dark ? AppTheme.fluentDarkTheme : AppTheme.fluentLightTheme;
+    final fluentTheme = brightness == .dark ? AppTheme.fluentDarkTheme : AppTheme.fluentLightTheme;
 
     return FluentApp(
       debugShowCheckedModeBanner: false,
       title: 'Developer Website Sofware',
       theme: fluentTheme,
-      home: const LoginScreen(),
+      home: const AuthGate(),
     );
   }
 
   @override
   Widget buildMaterial(BuildContext context) {
-    final SettingsSignals settings = di.kGetIt<SettingsSignals>();
+    final SettingsSoftSignals settings = di.kGetIt<SettingsSoftSignals>();
     final ThemeMode themeMode = settings.themeMode.value;
     final AppFontSize fontSize = settings.fontSize.value;
     final AppFontFamily fontFamily = settings.fontFamily.value;
@@ -111,10 +111,10 @@ class MyApp extends PlatformWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Developer Website Sofware',
-      theme: AppTheme.getMaterialTheme(Brightness.light, fontFamily.value, fontSize.multiplier),
-      darkTheme: AppTheme.getMaterialTheme(Brightness.dark, fontFamily.value, fontSize.multiplier),
+      theme: AppTheme.getMaterialTheme(.light, fontFamily.value, fontSize.multiplier),
+      darkTheme: AppTheme.getMaterialTheme(.dark, fontFamily.value, fontSize.multiplier),
       themeMode: themeMode,
-      home: const LoginScreen(),
+      home: const AuthGate(),
     );
   }
 }
