@@ -18,7 +18,7 @@ class AdminSidebar extends PlatformWidget {
       selectedNavIndex: selectedNavIndex,
       navItems: navItems,
       width: width,
-      onSelectMenu: onSelectMenu
+      onSelectMenu: onSelectMenu,
     );
   }
 

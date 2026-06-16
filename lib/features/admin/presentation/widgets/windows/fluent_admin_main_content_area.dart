@@ -17,8 +17,8 @@ class FluentAdminMainContentArea extends StatelessWidget {
         Placeholder(), // Profiles
         Placeholder(), // Projects
         Placeholder(), // Analytics
-        SettingsAppScreen()
-      ]
+        SettingsAppScreen(),
+      ],
     );
   }
 }

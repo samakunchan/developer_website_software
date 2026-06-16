@@ -23,7 +23,7 @@ class _CupertinoAdminScaffoldState extends State<CupertinoAdminScaffold> {
     {'label': 'Profiles', 'icon': CupertinoIcons.person_crop_circle},
     {'label': 'Projects', 'icon': CupertinoIcons.folder},
     {'label': 'Analytics', 'icon': CupertinoIcons.graph_square},
-    {'label': 'Settings', 'icon': CupertinoIcons.settings}
+    {'label': 'Settings', 'icon': CupertinoIcons.settings},
   ];
 
   @override
@@ -39,7 +39,7 @@ class _CupertinoAdminScaffoldState extends State<CupertinoAdminScaffold> {
               width: widget.sidebarWidth,
               selectedNavIndex: _selectedNavIndex,
               navItems: _navItems,
-              onSelectMenu: (int index) => setState(() => _selectedNavIndex = index)
+              onSelectMenu: (int index) => setState(() => _selectedNavIndex = index),
             ),
 
             /// 2. Drag Handle
@@ -52,9 +52,9 @@ class _CupertinoAdminScaffoldState extends State<CupertinoAdminScaffold> {
                 cursor: SystemMouseCursors.resizeLeftRight,
                 child: ColoredBox(
                   color: kSidebarBorderColor,
-                  child: SizedBox(width: 4, height: .infinity)
-                )
-              )
+                  child: SizedBox(width: 4, height: .infinity),
+                ),
+              ),
             ),
 
             /// 3. Main Content Area
@@ -68,14 +68,14 @@ class _CupertinoAdminScaffoldState extends State<CupertinoAdminScaffold> {
                     const AdminToolbar(),
 
                     /// Screen Content
-                    Expanded(child: AdminMainContentArea(selectedNavIndex: _selectedNavIndex))
-                  ]
-                )
-              )
-            )
-          ]
-        )
-      )
+                    Expanded(child: AdminMainContentArea(selectedNavIndex: _selectedNavIndex)),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

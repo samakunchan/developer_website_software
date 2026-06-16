@@ -55,7 +55,7 @@ class SettingsSoftSignals {
     if (savedFontSize != null) {
       fontSize.value = AppFontSize.values.firstWhere(
         (AppFontSize e) => e.name == savedFontSize,
-        orElse: () => AppFontSize.medium
+        orElse: () => AppFontSize.medium,
       );
     }
 
@@ -63,7 +63,7 @@ class SettingsSoftSignals {
     if (savedFontFamily != null) {
       fontFamily.value = AppFontFamily.values.firstWhere(
         (AppFontFamily e) => e.name == savedFontFamily,
-        orElse: () => AppFontFamily.system
+        orElse: () => AppFontFamily.system,
       );
     }
   }

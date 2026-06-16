@@ -13,10 +13,10 @@ class InfoRow extends StatelessWidget {
       children: [
         Text(
           label,
-          style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(color: CupertinoColors.systemGrey, fontSize: 14)
+          style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(color: CupertinoColors.systemGrey, fontSize: 14),
         ),
-        Text(value, style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(fontWeight: .w500, fontSize: 14))
-      ]
+        Text(value, style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(fontWeight: .w500, fontSize: 14)),
+      ],
     );
   }
 }

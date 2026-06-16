@@ -14,7 +14,7 @@ class AppTheme {
     textTheme: kCupertinoTextTheme,
     barBackgroundColor: kSecondaryBackgroundColor,
     scaffoldBackgroundColor: kBackgroundColor,
-    selectionHandleColor: kPrimaryColor
+    selectionHandleColor: kPrimaryColor,
   );
 
   /// Material Themes
@@ -27,8 +27,8 @@ class AppTheme {
       primary: LightThemeConstants.primary,
       secondary: LightThemeConstants.secondary,
       surface: LightThemeConstants.background,
-      onSurface: LightThemeConstants.text
-    )
+      onSurface: LightThemeConstants.text,
+    ),
   );
 
   static final material.ThemeData materialDarkTheme = material.ThemeData(
@@ -40,21 +40,21 @@ class AppTheme {
       primary: DarkThemeConstants.primary,
       secondary: DarkThemeConstants.secondary,
       surface: DarkThemeConstants.background,
-      onSurface: DarkThemeConstants.text
-    )
+      onSurface: DarkThemeConstants.text,
+    ),
   );
 
   /// Fluent Themes (Windows)
   static final fluent.FluentThemeData fluentLightTheme = fluent.FluentThemeData(
     brightness: .light,
     accentColor: fluent.AccentColor.swatch(const {'normal': LightThemeConstants.primary}),
-    scaffoldBackgroundColor: LightThemeConstants.background
+    scaffoldBackgroundColor: LightThemeConstants.background,
   );
 
   static final fluent.FluentThemeData fluentDarkTheme = fluent.FluentThemeData(
     brightness: .dark,
     accentColor: fluent.AccentColor.swatch(const {'normal': DarkThemeConstants.primary}),
-    scaffoldBackgroundColor: DarkThemeConstants.background
+    scaffoldBackgroundColor: DarkThemeConstants.background,
   );
 
   /// Dynamic Cupertino Theme Data generator
@@ -74,33 +74,33 @@ class AppTheme {
         textStyle: TextStyle(
           fontFamily: resolvedFontFamily,
           color: isDark ? CupertinoColors.white : kTextColor,
-          fontSize: 16 * fontSizeMultiplier
+          fontSize: 16 * fontSizeMultiplier,
         ),
         navTitleTextStyle: TextStyle(
           fontFamily: resolvedFontFamily,
           color: isDark ? CupertinoColors.white : kTextColor,
           fontSize: 18 * fontSizeMultiplier,
-          fontWeight: .bold
+          fontWeight: .bold,
         ),
         navLargeTitleTextStyle: TextStyle(
           fontFamily: resolvedFontFamily,
           color: isDark ? CupertinoColors.white : kTextColor,
           fontSize: 34 * fontSizeMultiplier,
-          fontWeight: .bold
+          fontWeight: .bold,
         ),
         actionTextStyle: TextStyle(
           fontFamily: resolvedFontFamily,
           color: kSidebarLinkColor,
           fontSize: 16 * fontSizeMultiplier,
-          fontWeight: .w500
+          fontWeight: .w500,
         ),
         actionSmallTextStyle: TextStyle(
           fontFamily: resolvedFontFamily,
           color: kSidebarLinkColor,
           fontSize: 14 * fontSizeMultiplier,
-          fontWeight: .w500
-        )
-      )
+          fontWeight: .w500,
+        ),
+      ),
     );
   }
 
@@ -111,7 +111,7 @@ class AppTheme {
     final material.ThemeData baseTheme = isDark ? materialDarkTheme : materialLightTheme;
 
     return baseTheme.copyWith(
-      textTheme: baseTheme.textTheme.apply(fontFamily: resolvedFontFamily, fontSizeFactor: fontSizeMultiplier)
+      textTheme: baseTheme.textTheme.apply(fontFamily: resolvedFontFamily, fontSizeFactor: fontSizeMultiplier),
     );
   }
 

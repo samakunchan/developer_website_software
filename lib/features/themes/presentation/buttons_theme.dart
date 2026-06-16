@@ -7,7 +7,7 @@ const Color kButtonPrimaryColor = kPrimaryColor;
 
 const Color kButtonSecondaryColor = CupertinoDynamicColor.withBrightness(
   color: LightThemeConstants.buttonSecondary,
-  darkColor: DarkThemeConstants.buttonSecondary
+  darkColor: DarkThemeConstants.buttonSecondary,
 );
 
 const double kButtonBorderRadius = 8;

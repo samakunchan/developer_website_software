@@ -24,17 +24,17 @@ class AccountTab extends StatelessWidget {
             Text(
               'Not Authenticated',
               style: CupertinoTheme.of(
-                context
-              ).textTheme.textStyle.copyWith(fontWeight: .bold, color: CupertinoColors.systemGrey)
+                context,
+              ).textTheme.textStyle.copyWith(fontWeight: .bold, color: CupertinoColors.systemGrey),
             ),
             const SizedBox(height: 6),
             Text(
               'Please sign in to the application to view your developer account details.',
               textAlign: .center,
-              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(color: CupertinoColors.systemGrey, fontSize: 13)
-            )
-          ]
-        )
+              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(color: CupertinoColors.systemGrey, fontSize: 13),
+            ),
+          ],
+        ),
       );
     }
 
@@ -51,7 +51,7 @@ class AccountTab extends StatelessWidget {
               Container(
                 padding: const .all(12),
                 decoration: const BoxDecoration(color: CupertinoColors.activeBlue, shape: .circle),
-                child: const Icon(CupertinoIcons.person, color: CupertinoColors.white, size: 28)
+                child: const Icon(CupertinoIcons.person, color: CupertinoColors.white, size: 28),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -61,27 +61,27 @@ class AccountTab extends StatelessWidget {
                   children: [
                     Text(
                       user.name,
-                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(fontWeight: .bold, fontSize: 18)
+                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(fontWeight: .bold, fontSize: 18),
                     ),
                     Text(
                       user.role.toUpperCase(),
                       style: CupertinoTheme.of(
-                        context
-                      ).textTheme.textStyle.copyWith(fontSize: 11, color: CupertinoColors.activeBlue, fontWeight: .w600)
-                    )
-                  ]
-                )
-              )
-            ]
+                        context,
+                      ).textTheme.textStyle.copyWith(fontSize: 11, color: CupertinoColors.activeBlue, fontWeight: .w600),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 20),
           const SettingsSoftDivider(color: CupertinoColors.separator),
           const SizedBox(height: 16),
           InfoRow(label: 'Account ID', value: '#${user.id}'),
           const SizedBox(height: 12),
-          InfoRow(label: 'Email Address', value: user.email)
-        ]
-      )
+          InfoRow(label: 'Email Address', value: user.email),
+        ],
+      ),
     );
   }
 }

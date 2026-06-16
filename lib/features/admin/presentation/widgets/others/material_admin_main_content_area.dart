@@ -17,8 +17,8 @@ class MaterialAdminMainContentArea extends StatelessWidget {
         Placeholder(), // Profiles
         Placeholder(), // Projects
         Placeholder(), // Analytics
-        SettingsAppScreen()
-      ]
+        SettingsAppScreen(),
+      ],
     );
   }
 }

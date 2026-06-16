@@ -10,7 +10,7 @@ class MaterialDashboardScaffold extends StatelessWidget {
     required this.authSignals,
     this.onPressed,
     this.sessionStatus,
-    super.key
+    super.key,
   });
 
   final String? sessionStatus;
@@ -34,7 +34,7 @@ class MaterialDashboardScaffold extends StatelessWidget {
             color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
             borderRadius: .circular(12),
             border: .all(color: isDark ? const Color(0xFF2D2D2D) : Colors.grey.shade300),
-            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4))]
+            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4))],
           ),
           child: Column(
             mainAxisSize: .min,
@@ -45,7 +45,7 @@ class MaterialDashboardScaffold extends StatelessWidget {
               Text(
                 'Security Control',
                 textAlign: .center,
-                style: theme.textTheme.titleLarge?.copyWith(fontWeight: .bold)
+                style: theme.textTheme.titleLarge?.copyWith(fontWeight: .bold),
               ),
               const SizedBox(height: 8),
               const Text('Verify your active user session directly with the API backend.', textAlign: .center),
@@ -66,11 +66,11 @@ class MaterialDashboardScaffold extends StatelessWidget {
                       backgroundColor: primaryColor,
                       foregroundColor: textContrastColor,
                       elevation: 0,
-                      shape: RoundedRectangleBorder(borderRadius: .circular(8))
+                      shape: RoundedRectangleBorder(borderRadius: .circular(8)),
                     ),
-                    child: const Text('Check Session', style: TextStyle(fontWeight: .bold))
+                    child: const Text('Check Session', style: TextStyle(fontWeight: .bold)),
                   );
-                }
+                },
               ),
 
               /// Session Status Message
@@ -81,23 +81,23 @@ class MaterialDashboardScaffold extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.green.withValues(alpha: 0.1),
                     borderRadius: .circular(8),
-                    border: Border.all(color: Colors.green.withValues(alpha: 0.3))
+                    border: Border.all(color: Colors.green.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     spacing: 8,
                     children: [
                       const Icon(Icons.check_circle_outline, color: Colors.green, size: 18),
                       Expanded(
-                        child: Text(sessionStatus!, style: const TextStyle(color: Colors.green, fontSize: 13))
-                      )
-                    ]
-                  )
-                )
-              ]
-            ]
-          )
-        )
-      )
+                        child: Text(sessionStatus!, style: const TextStyle(color: Colors.green, fontSize: 13)),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

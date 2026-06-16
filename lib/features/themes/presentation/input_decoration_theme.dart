@@ -4,16 +4,16 @@ import 'package:flutter/cupertino.dart';
 
 const Color kInputBgColor = CupertinoDynamicColor.withBrightness(
   color: LightThemeConstants.inputBg,
-  darkColor: DarkThemeConstants.inputBg
+  darkColor: DarkThemeConstants.inputBg,
 );
 
 const Color kInputBorderColor = CupertinoDynamicColor.withBrightness(
   color: LightThemeConstants.inputBorder,
-  darkColor: DarkThemeConstants.inputBorder
+  darkColor: DarkThemeConstants.inputBorder,
 );
 
 final BoxDecoration kCupertinoInputDecoration = BoxDecoration(
   color: kInputBgColor,
   border: Border.all(color: kInputBorderColor),
-  borderRadius: const BorderRadius.all(.circular(8))
+  borderRadius: const BorderRadius.all(.circular(8)),
 );

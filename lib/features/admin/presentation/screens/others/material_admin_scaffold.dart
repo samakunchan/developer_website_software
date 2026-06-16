@@ -23,7 +23,7 @@ class _MaterialAdminScaffoldState extends State<MaterialAdminScaffold> {
     {'label': 'Profiles', 'icon': Icons.account_circle_outlined},
     {'label': 'Projects', 'icon': Icons.folder_special_outlined},
     {'label': 'Analytics', 'icon': Icons.analytics_outlined},
-    {'label': 'Settings', 'icon': Icons.settings_outlined}
+    {'label': 'Settings', 'icon': Icons.settings_outlined},
   ];
 
   @override
@@ -42,7 +42,7 @@ class _MaterialAdminScaffoldState extends State<MaterialAdminScaffold> {
               width: widget.sidebarWidth,
               selectedNavIndex: _selectedNavIndex,
               navItems: _navItems,
-              onSelectMenu: (int index) => setState(() => _selectedNavIndex = index)
+              onSelectMenu: (int index) => setState(() => _selectedNavIndex = index),
             ),
 
             /// 2. Drag Handle
@@ -55,9 +55,9 @@ class _MaterialAdminScaffoldState extends State<MaterialAdminScaffold> {
                 cursor: SystemMouseCursors.resizeLeftRight,
                 child: ColoredBox(
                   color: sidebarBorder,
-                  child: const SizedBox(width: 4, height: .infinity)
-                )
-              )
+                  child: const SizedBox(width: 4, height: .infinity),
+                ),
+              ),
             ),
 
             /// 3. Main Content Area
@@ -71,14 +71,14 @@ class _MaterialAdminScaffoldState extends State<MaterialAdminScaffold> {
                     const AdminToolbar(),
 
                     /// Screen Content
-                    Expanded(child: AdminMainContentArea(selectedNavIndex: _selectedNavIndex))
-                  ]
-                )
-              )
-            )
-          ]
-        )
-      )
+                    Expanded(child: AdminMainContentArea(selectedNavIndex: _selectedNavIndex)),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

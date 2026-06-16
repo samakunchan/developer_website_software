@@ -16,7 +16,7 @@ class CupertinoAppButton extends StatelessWidget {
       foregroundColor: isDark ? DarkThemeConstants.background : kButtonSecondaryColor,
       borderRadius: .circular(kButtonBorderRadius),
       onPressed: onPressed,
-      child: Text(textButton)
+      child: Text(textButton),
     );
   }
 }

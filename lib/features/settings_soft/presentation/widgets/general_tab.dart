@@ -24,14 +24,14 @@ class GeneralTab extends StatelessWidget {
             children: const {
               ThemeMode.system: Padding(padding: .symmetric(horizontal: 8, vertical: 4), child: Text('System')),
               ThemeMode.light: Padding(padding: .symmetric(horizontal: 8, vertical: 4), child: Text('Light')),
-              ThemeMode.dark: Padding(padding: .symmetric(horizontal: 8, vertical: 4), child: Text('Dark'))
+              ThemeMode.dark: Padding(padding: .symmetric(horizontal: 8, vertical: 4), child: Text('Dark')),
             },
             onValueChanged: (ThemeMode? val) {
               if (val != null) {
                 settings.setThemeMode(val);
               }
-            }
-          )
+            },
+          ),
         ),
         const SizedBox(height: 16),
 
@@ -43,23 +43,23 @@ class GeneralTab extends StatelessWidget {
             children: {
               AppFontSize.small: Padding(
                 padding: const .symmetric(horizontal: 8, vertical: 4),
-                child: Text(AppFontSize.small.value)
+                child: Text(AppFontSize.small.value),
               ),
               AppFontSize.medium: Padding(
                 padding: const .symmetric(horizontal: 8, vertical: 4),
-                child: Text(AppFontSize.medium.value)
+                child: Text(AppFontSize.medium.value),
               ),
               AppFontSize.large: Padding(
                 padding: const .symmetric(horizontal: 8, vertical: 4),
-                child: Text(AppFontSize.large.value)
-              )
+                child: Text(AppFontSize.large.value),
+              ),
             },
             onValueChanged: (AppFontSize? val) {
               if (val != null) {
                 settings.setFontSize(val);
               }
-            }
-          )
+            },
+          ),
         ),
         const SizedBox(height: 16),
 
@@ -70,16 +70,16 @@ class GeneralTab extends StatelessWidget {
             groupValue: currentFont,
             children: const {
               AppFontFamily.system: Padding(padding: .symmetric(horizontal: 12, vertical: 4), child: Text('System')),
-              AppFontFamily.inter: Padding(padding: .symmetric(horizontal: 12, vertical: 4), child: Text('Inter'))
+              AppFontFamily.inter: Padding(padding: .symmetric(horizontal: 12, vertical: 4), child: Text('Inter')),
             },
             onValueChanged: (AppFontFamily? val) {
               if (val != null) {
                 settings.setFontFamily(val);
               }
-            }
-          )
-        )
-      ]
+            },
+          ),
+        ),
+      ],
     );
   }
 }

@@ -20,7 +20,7 @@ class MaterialAdminToolbar extends StatelessWidget {
     return Container(
       padding: const .symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: sidebarBorder))
+        border: Border(bottom: BorderSide(color: sidebarBorder)),
       ),
       child: Row(
         mainAxisAlignment: .spaceBetween,
@@ -34,9 +34,9 @@ class MaterialAdminToolbar extends StatelessWidget {
                 hintText: 'Search...',
                 prefixIcon: const Icon(Icons.search, size: 20),
                 border: OutlineInputBorder(borderRadius: .circular(8)),
-                contentPadding: .zero
-              )
-            )
+                contentPadding: .zero,
+              ),
+            ),
           ),
 
           /// Actions
@@ -64,17 +64,17 @@ class MaterialAdminToolbar extends StatelessWidget {
                         backgroundColor: primaryColor,
                         child: Text(
                           initial,
-                          style: const TextStyle(color: Colors.white, fontWeight: .bold, fontSize: 12)
-                        )
-                      )
-                    ]
+                          style: const TextStyle(color: Colors.white, fontWeight: .bold, fontSize: 12),
+                        ),
+                      ),
+                    ],
                   );
-                }
-              )
-            ]
-          )
-        ]
-      )
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

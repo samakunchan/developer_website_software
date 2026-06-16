@@ -20,7 +20,7 @@ class FluentAdminToolbar extends StatelessWidget {
     return Container(
       padding: const .symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: sidebarBorder))
+        border: Border(bottom: BorderSide(color: sidebarBorder)),
       ),
       child: Row(
         mainAxisAlignment: .spaceBetween,
@@ -30,8 +30,8 @@ class FluentAdminToolbar extends StatelessWidget {
             width: 240,
             child: TextBox(
               placeholder: 'Search...',
-              prefix: Padding(padding: .only(left: 8), child: Icon(FluentIcons.search, size: 14))
-            )
+              prefix: Padding(padding: .only(left: 8), child: Icon(FluentIcons.search, size: 14)),
+            ),
           ),
 
           /// Actions
@@ -55,7 +55,7 @@ class FluentAdminToolbar extends StatelessWidget {
                     children: [
                       Text(
                         name,
-                        style: TextStyle(fontWeight: .w500, color: isDark ? Colors.white : Colors.black)
+                        style: TextStyle(fontWeight: .w500, color: isDark ? Colors.white : Colors.black),
                       ),
                       Container(
                         width: 28,
@@ -64,18 +64,18 @@ class FluentAdminToolbar extends StatelessWidget {
                         child: Center(
                           child: Text(
                             initial,
-                            style: const TextStyle(color: Colors.white, fontWeight: .bold, fontSize: 12)
-                          )
-                        )
-                      )
-                    ]
+                            style: const TextStyle(color: Colors.white, fontWeight: .bold, fontSize: 12),
+                          ),
+                        ),
+                      ),
+                    ],
                   );
-                }
-              )
-            ]
-          )
-        ]
-      )
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

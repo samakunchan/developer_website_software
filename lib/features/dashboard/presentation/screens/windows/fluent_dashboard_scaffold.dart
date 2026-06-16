@@ -24,7 +24,7 @@ class FluentDashboardScaffold extends StatelessWidget {
           decoration: BoxDecoration(
             color: isDark ? const Color(0xFF202020) : const Color(0xFFFAFAFA),
             borderRadius: .circular(8),
-            border: Border.all(color: isDark ? const Color(0xFF2D2D2D) : const Color(0xFFE5E5E5))
+            border: Border.all(color: isDark ? const Color(0xFF2D2D2D) : const Color(0xFFE5E5E5)),
           ),
           child: Column(
             mainAxisSize: .min,
@@ -35,13 +35,13 @@ class FluentDashboardScaffold extends StatelessWidget {
               Text(
                 'Security Control',
                 textAlign: .center,
-                style: TextStyle(fontSize: 20, fontWeight: .bold, color: isDark ? Colors.white : Colors.black)
+                style: TextStyle(fontSize: 20, fontWeight: .bold, color: isDark ? Colors.white : Colors.black),
               ),
               const SizedBox(height: 8),
               const Text(
                 'Verify your active user session directly with the API backend.',
                 textAlign: .center,
-                style: TextStyle(fontSize: 13, color: Colors.grey)
+                style: TextStyle(fontSize: 13, color: Colors.grey),
               ),
               const SizedBox(height: 24),
 
@@ -55,7 +55,7 @@ class FluentDashboardScaffold extends StatelessWidget {
                   }
 
                   return FilledButton(onPressed: onPressed, child: const Text('Check Session'));
-                }
+                },
               ),
 
               /// Session Status Message
@@ -66,23 +66,23 @@ class FluentDashboardScaffold extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.green.withValues(alpha: 0.1),
                     borderRadius: .circular(4),
-                    border: Border.all(color: Colors.green.withValues(alpha: 0.3))
+                    border: Border.all(color: Colors.green.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     children: [
                       const Icon(FluentIcons.completed, color: Color(0xFF4CAF50), size: 16),
                       const SizedBox(width: 8),
                       Expanded(
-                        child: Text(sessionStatus!, style: const TextStyle(color: Color(0xFF4CAF50), fontSize: 12))
-                      )
-                    ]
-                  )
-                )
-              ]
-            ]
-          )
-        )
-      )
+                        child: Text(sessionStatus!, style: const TextStyle(color: Color(0xFF4CAF50), fontSize: 12)),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

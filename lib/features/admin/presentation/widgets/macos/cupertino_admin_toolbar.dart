@@ -15,7 +15,7 @@ class CupertinoAdminToolbar extends StatelessWidget {
     return Container(
       padding: const .symmetric(horizontal: 20, vertical: 12),
       decoration: const BoxDecoration(
-        border: Border(bottom: BorderSide(color: kSidebarBorderColor))
+        border: Border(bottom: BorderSide(color: kSidebarBorderColor)),
       ),
       child: Row(
         mainAxisAlignment: .spaceBetween,
@@ -50,18 +50,18 @@ class CupertinoAdminToolbar extends StatelessWidget {
                         child: Center(
                           child: Text(
                             initial,
-                            style: const TextStyle(color: CupertinoColors.white, fontWeight: .bold, fontSize: 14)
-                          )
-                        )
-                      )
-                    ]
+                            style: const TextStyle(color: CupertinoColors.white, fontWeight: .bold, fontSize: 14),
+                          ),
+                        ),
+                      ),
+                    ],
                   );
-                }
-              )
-            ]
-          )
-        ]
-      )
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

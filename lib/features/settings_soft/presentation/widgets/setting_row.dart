@@ -12,8 +12,8 @@ class SettingRow extends StatelessWidget {
       mainAxisAlignment: .spaceBetween,
       children: [
         Text(label, style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(fontWeight: .w500)),
-        child
-      ]
+        child,
+      ],
     );
   }
 }

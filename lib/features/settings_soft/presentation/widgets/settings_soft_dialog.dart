@@ -40,15 +40,15 @@ class _SettingsSoftDialogState extends State<SettingsSoftDialog> {
                 children: [
                   Text(
                     'Preferences',
-                    style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 18, fontWeight: .bold)
+                    style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 18, fontWeight: .bold),
                   ),
                   CupertinoButton(
                     padding: .zero,
                     minimumSize: .zero,
                     child: const Icon(CupertinoIcons.xmark_circle_fill, color: CupertinoColors.systemGrey),
-                    onPressed: () => Navigator.of(context).pop()
-                  )
-                ]
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
               ),
 
               /// Tabs Selector
@@ -60,17 +60,17 @@ class _SettingsSoftDialogState extends State<SettingsSoftDialog> {
                     child: Row(
                       mainAxisSize: .min,
                       spacing: 6,
-                      children: [Icon(CupertinoIcons.gear_alt, size: 16), Text('General')]
-                    )
+                      children: [Icon(CupertinoIcons.gear_alt, size: 16), Text('General')],
+                    ),
                   ),
                   1: Padding(
                     padding: .symmetric(horizontal: 16, vertical: 6),
                     child: Row(
                       mainAxisSize: .min,
                       spacing: 6,
-                      children: [Icon(CupertinoIcons.person_crop_circle, size: 16), Text('Account Info')]
-                    )
-                  )
+                      children: [Icon(CupertinoIcons.person_crop_circle, size: 16), Text('Account Info')],
+                    ),
+                  ),
                 },
                 onValueChanged: (int? val) {
                   if (val != null) {
@@ -78,7 +78,7 @@ class _SettingsSoftDialogState extends State<SettingsSoftDialog> {
                       _activeTab = val;
                     });
                   }
-                }
+                },
               ),
 
               /// Active Tab Body
@@ -90,13 +90,13 @@ class _SettingsSoftDialogState extends State<SettingsSoftDialog> {
                     } else {
                       return AccountTab(authSignals: authSignals);
                     }
-                  }
-                )
-              )
-            ]
-          )
-        )
-      )
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

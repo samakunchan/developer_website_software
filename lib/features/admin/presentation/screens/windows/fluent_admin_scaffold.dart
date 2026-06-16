@@ -23,7 +23,7 @@ class _FluentAdminScaffoldState extends State<FluentAdminScaffold> {
     {'label': 'Profiles', 'icon': FluentIcons.contact},
     {'label': 'Projects', 'icon': FluentIcons.project_collection},
     {'label': 'Analytics', 'icon': FluentIcons.equalizer},
-    {'label': 'Settings', 'icon': FluentIcons.settings}
+    {'label': 'Settings', 'icon': FluentIcons.settings},
   ];
 
   @override
@@ -42,7 +42,7 @@ class _FluentAdminScaffoldState extends State<FluentAdminScaffold> {
             width: widget.sidebarWidth,
             selectedNavIndex: _selectedNavIndex,
             navItems: _navItems,
-            onSelectMenu: (int index) => setState(() => _selectedNavIndex = index)
+            onSelectMenu: (int index) => setState(() => _selectedNavIndex = index),
           ),
 
           /// 2. Drag Handle
@@ -55,9 +55,9 @@ class _FluentAdminScaffoldState extends State<FluentAdminScaffold> {
               cursor: SystemMouseCursors.resizeLeftRight,
               child: ColoredBox(
                 color: sidebarBorder,
-                child: const SizedBox(width: 4, height: .infinity)
-              )
-            )
+                child: const SizedBox(width: 4, height: .infinity),
+              ),
+            ),
           ),
 
           /// 3. Main Content Area
@@ -71,13 +71,13 @@ class _FluentAdminScaffoldState extends State<FluentAdminScaffold> {
                   const AdminToolbar(),
 
                   /// Screen Content
-                  Expanded(child: AdminMainContentArea(selectedNavIndex: _selectedNavIndex))
-                ]
-              )
-            )
-          )
-        ]
-      )
+                  Expanded(child: AdminMainContentArea(selectedNavIndex: _selectedNavIndex)),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
