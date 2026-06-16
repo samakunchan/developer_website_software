@@ -28,17 +28,31 @@ void main() async {
 
   /// Initialize Window Manager for desktop integration
   await windowManager.ensureInitialized();
-  const WindowOptions windowOptions = WindowOptions(
-    size: Size(900, 650),
-    minimumSize: Size(800, 600),
+  final bool isLoggedIn = di.kGetIt<AuthSignals>().currentUser.value != null;
+  final Size initialSize = isLoggedIn ? const Size(1280, 1024) : const Size(900, 650);
+
+  final WindowOptions windowOptions = WindowOptions(
+    size: initialSize,
+    minimumSize: const Size(800, 600),
     center: true,
     skipTaskbar: false,
-    titleBarStyle: .hidden,
+    titleBarStyle: .hidden
   );
 
   await windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
     await windowManager.focus();
+
+    effect(() async {
+      final user = di.kGetIt<AuthSignals>().currentUser.value;
+      if (user != null) {
+        await windowManager.setSize(const Size(1280, 1024));
+        await windowManager.center();
+      } else {
+        await windowManager.setSize(const Size(900, 650));
+        await windowManager.center();
+      }
+    });
   });
 
   runApp(const MyApp());
