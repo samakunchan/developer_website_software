@@ -47,17 +47,13 @@ class AppTheme {
   /// Fluent Themes (Windows)
   static final fluent.FluentThemeData fluentLightTheme = fluent.FluentThemeData(
     brightness: .light,
-    accentColor: fluent.AccentColor.swatch(const {
-      'normal': LightThemeConstants.primary,
-    }),
+    accentColor: fluent.AccentColor.swatch(const {'normal': LightThemeConstants.primary}),
     scaffoldBackgroundColor: LightThemeConstants.background,
   );
 
   static final fluent.FluentThemeData fluentDarkTheme = fluent.FluentThemeData(
     brightness: .dark,
-    accentColor: fluent.AccentColor.swatch(const {
-      'normal': DarkThemeConstants.primary,
-    }),
+    accentColor: fluent.AccentColor.swatch(const {'normal': DarkThemeConstants.primary}),
     scaffoldBackgroundColor: DarkThemeConstants.background,
   );
 
@@ -109,29 +105,18 @@ class AppTheme {
   }
 
   /// Dynamic Material Theme Data generator
-  static material.ThemeData getMaterialTheme(
-    Brightness brightness,
-    String fontFamily,
-    double fontSizeMultiplier,
-  ) {
+  static material.ThemeData getMaterialTheme(Brightness brightness, String fontFamily, double fontSizeMultiplier) {
     final String? resolvedFontFamily = fontFamily == 'System' ? null : fontFamily;
     final bool isDark = brightness == .dark;
     final material.ThemeData baseTheme = isDark ? materialDarkTheme : materialLightTheme;
 
     return baseTheme.copyWith(
-      textTheme: baseTheme.textTheme.apply(
-        fontFamily: resolvedFontFamily,
-        fontSizeFactor: fontSizeMultiplier,
-      ),
+      textTheme: baseTheme.textTheme.apply(fontFamily: resolvedFontFamily, fontSizeFactor: fontSizeMultiplier),
     );
   }
 
   /// Dynamic Fluent Theme Data generator
-  static fluent.FluentThemeData getFluentTheme(
-    Brightness brightness,
-    String fontFamily,
-    double fontSizeMultiplier,
-  ) {
+  static fluent.FluentThemeData getFluentTheme(Brightness brightness, String fontFamily, double fontSizeMultiplier) {
     final bool isDark = brightness == .dark;
     final fluent.FluentThemeData baseTheme = isDark ? fluentDarkTheme : fluentLightTheme;
 

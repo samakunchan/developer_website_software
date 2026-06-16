@@ -7,7 +7,7 @@ import 'package:developer_website_software/features/authentication/domain/usecas
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_in_use_case.dart';
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_out_use_case.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
-import 'package:developer_website_software/features/settings/presentation/signals/settings_signals.dart';
+import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,7 +45,7 @@ Future<void> initDependencyInjection() async {
       ),
     )
     /// Core Settings
-    ..registerSingleton<SettingsSignals>(
-      SettingsSignals(kGetIt<SharedPreferences>()),
+    ..registerSingleton<SettingsSoftSignals>(
+      SettingsSoftSignals(kGetIt<SharedPreferences>()),
     );
 }

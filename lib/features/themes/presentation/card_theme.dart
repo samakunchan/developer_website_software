@@ -14,23 +14,15 @@ const Color kCardBorderColor = CupertinoDynamicColor.withBrightness(
 
 final BoxDecoration kCupertinoCardDecoration = BoxDecoration(
   color: kCardBgColor,
-  border: Border.all(
-    color: kCardBorderColor,
-  ),
+  border: Border.all(color: kCardBorderColor),
   borderRadius: const BorderRadius.all(.circular(12)),
 );
 
 // Dynamic card and CTA gradients using CupertinoDynamicColor
 const LinearGradient kCardPopularGradient = LinearGradient(
   colors: <Color>[
-    CupertinoDynamicColor.withBrightness(
-      color: LightThemeConstants.primary,
-      darkColor: DarkThemeConstants.primary,
-    ),
-    CupertinoDynamicColor.withBrightness(
-      color: Color(0xFF60A5FA),
-      darkColor: Color(0xFF20E0E0),
-    ),
+    CupertinoDynamicColor.withBrightness(color: LightThemeConstants.primary, darkColor: DarkThemeConstants.primary),
+    CupertinoDynamicColor.withBrightness(color: Color(0xFF60A5FA), darkColor: Color(0xFF20E0E0)),
   ],
   begin: .topLeft,
   end: .bottomRight,
@@ -38,14 +30,8 @@ const LinearGradient kCardPopularGradient = LinearGradient(
 
 const LinearGradient kCtaGradient = LinearGradient(
   colors: <Color>[
-    CupertinoDynamicColor.withBrightness(
-      color: Color(0x260660F2),
-      darkColor: Color(0x2625F4F4),
-    ),
-    CupertinoDynamicColor.withBrightness(
-      color: Color(0x0D0660F2),
-      darkColor: Color(0x0D25F4F4),
-    ),
+    CupertinoDynamicColor.withBrightness(color: Color(0x260660F2), darkColor: Color(0x2625F4F4)),
+    CupertinoDynamicColor.withBrightness(color: Color(0x0D0660F2), darkColor: Color(0x0D25F4F4)),
   ],
   begin: .topLeft,
   end: .bottomRight,
