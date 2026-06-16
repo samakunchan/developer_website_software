@@ -3,6 +3,7 @@ import 'package:developer_website_software/features/authentication/presentation/
 import 'package:developer_website_software/features/themes/presentation/dark_theme_constants.dart';
 import 'package:developer_website_software/features/themes/presentation/light_theme_constants.dart';
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class FluentAdminSidebar extends StatelessWidget {
   const FluentAdminSidebar({required this.selectedNavIndex, required this.navItems, this.width, super.key, this.onSelectMenu});
@@ -15,6 +16,7 @@ class FluentAdminSidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthSignals authSignals = kGetIt<AuthSignals>();
+    final PackageInfo packageInfo = kGetIt<PackageInfo>();
     final FluentThemeData theme = FluentTheme.of(context);
     final bool isDark = theme.brightness == .dark;
 
@@ -48,7 +50,7 @@ class FluentAdminSidebar extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 4),
-                  const Text('V 0.5.0 - Dev', style: TextStyle(fontSize: 10, color: Colors.grey)),
+                  Text('V ${packageInfo.version} - Dev', style: const TextStyle(fontSize: 10, color: Colors.grey))
                 ],
               ),
             ),

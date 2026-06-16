@@ -3,6 +3,7 @@ import 'package:developer_website_software/features/authentication/presentation/
 import 'package:developer_website_software/features/themes/presentation/dark_theme_constants.dart';
 import 'package:developer_website_software/features/themes/presentation/light_theme_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class MaterialAdminSidebar extends StatelessWidget {
   const MaterialAdminSidebar({required this.selectedNavIndex, required this.navItems, this.width, super.key, this.onSelectMenu});
@@ -15,6 +16,7 @@ class MaterialAdminSidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthSignals authSignals = kGetIt<AuthSignals>();
+    final PackageInfo packageInfo = kGetIt<PackageInfo>();
     final ThemeData theme = Theme.of(context);
     final bool isDark = theme.brightness == .dark;
 
@@ -45,7 +47,7 @@ class MaterialAdminSidebar extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 4),
-                  Text('V 0.5.0 - Dev', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey)),
+                  Text('V ${packageInfo.version} - Dev', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey))
                 ],
               ),
             ),

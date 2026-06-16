@@ -1,5 +1,21 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.6.0+6 - 16/06/2026
+
+### Added
+- **Platform-Specific Settings Content Areas**: Created `MaterialSettingsMainContentArea` and `FluentSettingsMainContentArea` to manage policy document layouts adaptively.
+- **Adaptive Settings Widgets**: Introduced clean `SettingsSidebar` and `SettingsMainContentArea` widgets that mirror the architecture of the admin feature.
+- **Refactored Settings Scaffolds**: Refactored `CupertinoSettingsAppScaffold`, `MaterialSettingsAppScaffold`, and `FluentSettingsAppScaffold` to compose the new widgets.
+- **Settings Presentation Readme**: Created `lib/features/settings_app/presentation/README.md` to document the new directory structure, adaptive widgets, and the Pros/Cons of the Conditional Rendering pattern.
+
+### Changed
+- **Authentication Presentation Restructuring**: Renamed `DWSTextField` to `AuthenticationTextField` and `NotificationMessage` to `AuthenticationNotificationMessage`, refactoring them to use the adaptive wrapper pattern with platform-specific implementations under `widgets/macos/`, `widgets/others/`, and `widgets/windows/`.
+- **Auth Scaffolds Refactoring**: Refactored the authentication scaffolds/screens (`cupertino_login_scaffold.dart`, `material_login_scaffold.dart`, `fluent_login_scaffold.dart`) to consume the renamed `AuthenticationTextField` and `AuthenticationNotificationMessage` widgets.
+- **Dynamic Version Display**: Integrated `package_info_plus` in the dependency injection container and sidebars to dynamically display the active version instead of using hardcoded version strings.
+
+### Fixed
+- **Scaffold End-Of-File Lints**: Fixed trailing linter warnings (missing end-of-file newlines) on the refactored scaffold files.
+
 ## 🚀 0.5.0+5 - 16/06/2026
 
 ### Added

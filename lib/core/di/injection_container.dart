@@ -9,6 +9,7 @@ import 'package:developer_website_software/features/authentication/domain/usecas
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:get_it/get_it.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final GetIt kGetIt = GetIt.instance;
@@ -16,10 +17,12 @@ final GetIt kGetIt = GetIt.instance;
 Future<void> initDependencyInjection() async {
   /// Core External
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
   /// Register with cascades to avoid receiver duplication warnings
   kGetIt
     ..registerSingleton<SharedPreferences>(sharedPreferences)
+    ..registerSingleton<PackageInfo>(packageInfo)
     /// Core Services
     ..registerLazySingleton<ApiService>(ApiServiceImpl.new)
     /// Features - Authentication - Data Sources

@@ -3,6 +3,7 @@ import 'package:developer_website_software/features/authentication/presentation/
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:developer_website_software/features/themes/widgets/cupertino_app_button.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class CupertinoAdminSidebar extends StatelessWidget {
   const CupertinoAdminSidebar({required this.selectedNavIndex, required this.navItems, this.width, super.key, this.onSelectMenu});
@@ -14,6 +15,8 @@ class CupertinoAdminSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final PackageInfo packageInfo = kGetIt<PackageInfo>();
+
     return SizedBox(
       width: width,
       child: ColoredBox(
@@ -35,7 +38,7 @@ class CupertinoAdminSidebar extends StatelessWidget {
                       Text('PapangueSoft', style: CupertinoTheme.of(context).textTheme.navTitleTextStyle),
                     ],
                   ),
-                  Text('V 0.5.0 - Dev', style: CupertinoTheme.of(context).textTheme.tabLabelTextStyle),
+                  Text('V ${packageInfo.version} - Dev', style: CupertinoTheme.of(context).textTheme.tabLabelTextStyle)
                 ],
               ),
             ),
