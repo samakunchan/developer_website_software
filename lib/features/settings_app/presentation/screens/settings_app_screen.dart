@@ -5,20 +5,22 @@ import 'package:developer_website_software/features/settings_app/presentation/sc
 import 'package:flutter/widgets.dart';
 
 class SettingsAppScreen extends PlatformWidget {
-  const SettingsAppScreen({super.key});
+  const SettingsAppScreen({this.isActive = false, super.key});
+
+  final bool isActive;
 
   @override
   Widget buildCupertino(BuildContext context) {
-    return const CupertinoSettingsAppScaffold();
+    return CupertinoSettingsAppScaffold(isActive: isActive);
   }
 
   @override
   Widget buildFluent(BuildContext context) {
-    return const FluentSettingsAppScaffold();
+    return FluentSettingsAppScaffold(isActive: isActive);
   }
 
   @override
   Widget buildMaterial(BuildContext context) {
-    return const MaterialSettingsAppScaffold();
+    return MaterialSettingsAppScaffold(isActive: isActive);
   }
 }

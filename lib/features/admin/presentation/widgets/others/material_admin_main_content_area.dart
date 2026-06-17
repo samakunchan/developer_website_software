@@ -11,13 +11,13 @@ class MaterialAdminMainContentArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return IndexedStack(
       index: selectedNavIndex,
-      children: const [
-        DashboardScreen(),
-        Placeholder(), // Messages
-        Placeholder(), // Profiles
-        Placeholder(), // Projects
-        Placeholder(), // Analytics
-        SettingsAppScreen(),
+      children: [
+        const DashboardScreen(),
+        const Placeholder(), // Messages
+        const Placeholder(), // Profiles
+        const Placeholder(), // Projects
+        const Placeholder(), // Analytics
+        SettingsAppScreen(isActive: selectedNavIndex == 5)
       ],
     );
   }

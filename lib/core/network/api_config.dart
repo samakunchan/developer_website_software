@@ -10,4 +10,10 @@ class ApiConfig {
 
   /// [End point] '/auth/api/session'
   static const String getSession = '/auth/api/session';
+
+  /// [End point] '/settings/theme'
+  static const String getTheme = '/settings/theme';
+
+  /// [End point] '/settings/theme'
+  static const String putTheme = '/settings/theme';
 }

@@ -1,12 +1,46 @@
+import 'dart:async';
+import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
+import 'package:developer_website_software/features/settings_app/presentation/widgets/others/components/material_policy_content.dart';
+import 'package:developer_website_software/features/settings_app/presentation/widgets/others/components/material_theme_content.dart';
 import 'package:flutter/material.dart';
 
-class MaterialSettingsMainContentArea extends StatelessWidget {
+class MaterialSettingsMainContentArea extends StatefulWidget {
   const MaterialSettingsMainContentArea({
     required this.selectedSectionIndex,
+    this.isActive = false,
     super.key
   });
 
   final int selectedSectionIndex;
+  final bool isActive;
+
+  @override
+  State<MaterialSettingsMainContentArea> createState() => _MaterialSettingsMainContentAreaState();
+}
+
+class _MaterialSettingsMainContentAreaState extends State<MaterialSettingsMainContentArea> {
+  late final SettingsAppSignals _signals;
+
+  @override
+  void initState() {
+    super.initState();
+    _signals = kGetIt<SettingsAppSignals>();
+    if (widget.isActive && widget.selectedSectionIndex == 0) {
+      unawaited(_signals.fetchTheme());
+    }
+  }
+
+  @override
+  void didUpdateWidget(MaterialSettingsMainContentArea oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final bool becameActive = widget.isActive && !oldWidget.isActive;
+    final bool sectionChangedToThemes = widget.selectedSectionIndex == 0 && oldWidget.selectedSectionIndex != 0;
+
+    if ((becameActive && widget.selectedSectionIndex == 0) || (widget.isActive && sectionChangedToThemes)) {
+      unawaited(_signals.fetchTheme());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,99 +48,31 @@ class MaterialSettingsMainContentArea extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    switch (selectedSectionIndex) {
+    switch (widget.selectedSectionIndex) {
       case 0:
-        return _buildThemesContent(context);
+        return MaterialThemeContent(signals: _signals);
       case 1:
-        return _buildLegalMentionsContent(context);
+        return const MaterialPolicyContent(
+          title: 'Legal Mentions',
+          description: 'Legal Mentions outline the ownership, hosting, and contact details of our platform. Under local laws, we specify the publishing entity (PapangueSoft), registered address, hosting provider, and intellectual property rights details here.'
+        );
       case 2:
-        return _buildCGUContent(context);
+        return const MaterialPolicyContent(
+          title: "Conditions Générales d'Utilisation (CGU)",
+          description: 'The CGU governs the access and usage terms of this developer website software. By using the system, users agree to comply with standards of acceptable conduct, intellectual property protection, account security responsibilities, and liability limitations.'
+        );
       case 3:
-        return _buildPrivacyPolicyContent(context);
+        return const MaterialPolicyContent(
+          title: 'Privacy Policy',
+          description: 'The Privacy Policy details how we collect, process, store, and secure user data. We only gather essential metrics required to run developer features. We respect personal data rights under GDPR and CCPA, providing settings to export or erase history.'
+        );
       case 4:
-        return _buildCookiePolicyContent(context);
+        return const MaterialPolicyContent(
+          title: 'Cookie Policy',
+          description: 'The Cookie Policy details how we utilize cookies and local storage tokens to persist user preferences (such as light/dark mode selection and session authorization). We only use functional and performance-essential cookies.'
+        );
       default:
         return const SizedBox.shrink();
     }
-  }
-
-  Widget _buildThemesContent(BuildContext context) {
-    return Column(
-      crossAxisAlignment: .start,
-      spacing: 20,
-      children: [
-        Text(
-          'Themes & Appearance',
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: .bold)
-        ),
-        const Text(
-          'Choose the interface appearance, font size, and typography that you prefer.'
-        ),
-        const SizedBox(height: 10),
-        const Expanded(
-          child: Center(
-            child: Placeholder()
-          )
-        )
-      ]
-    );
-  }
-
-  Widget _buildLegalMentionsContent(BuildContext context) {
-    return _buildPolicyTemplate(
-      context,
-      'Legal Mentions',
-      'Legal Mentions outline the ownership, hosting, and contact details of our platform. Under local laws, we specify the publishing entity (PapangueSoft), registered address, hosting provider, and intellectual property rights details here.'
-    );
-  }
-
-  Widget _buildCGUContent(BuildContext context) {
-    return _buildPolicyTemplate(
-      context,
-      "Conditions Générales d'Utilisation (CGU)",
-      'The CGU governs the access and usage terms of this developer website software. By using the system, users agree to comply with standards of acceptable conduct, intellectual property protection, account security responsibilities, and liability limitations.'
-    );
-  }
-
-  Widget _buildPrivacyPolicyContent(BuildContext context) {
-    return _buildPolicyTemplate(
-      context,
-      'Privacy Policy',
-      'The Privacy Policy details how we collect, process, store, and secure user data. We only gather essential metrics required to run developer features. We respect personal data rights under GDPR and CCPA, providing settings to export or erase history.'
-    );
-  }
-
-  Widget _buildCookiePolicyContent(BuildContext context) {
-    return _buildPolicyTemplate(
-      context,
-      'Cookie Policy',
-      'The Cookie Policy details how we utilize cookies and local storage tokens to persist user preferences (such as light/dark mode selection and session authorization). We only use functional and performance-essential cookies.'
-    );
-  }
-
-  Widget _buildPolicyTemplate(BuildContext context, String title, String description) {
-    return Column(
-      crossAxisAlignment: .start,
-      spacing: 16,
-      children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: .bold)
-        ),
-        Text(
-          'Last updated: June 2026',
-          style: Theme.of(context).textTheme.bodySmall
-        ),
-        const SizedBox(height: 10),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Text(
-              description,
-              style: const TextStyle(fontSize: 16, height: 1.5)
-            )
-          )
-        )
-      ]
-    );
   }
 }
