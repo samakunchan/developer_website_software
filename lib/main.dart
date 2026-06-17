@@ -38,10 +38,10 @@ void main() async {
 
   final WindowOptions windowOptions = WindowOptions(
     size: initialSize,
-    minimumSize: const Size(800, 600),
+    minimumSize: const Size(900, 800),
     center: true,
     skipTaskbar: false,
-    titleBarStyle: .hidden
+    titleBarStyle: .hidden,
   );
 
   await windowManager.waitUntilReadyToShow(windowOptions, () async {
