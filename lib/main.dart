@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:developer_website_software/core/cross_platform/platform_macos_menu_wrapper.dart';
@@ -5,6 +6,7 @@ import 'package:developer_website_software/core/cross_platform/platform_widget.d
 import 'package:developer_website_software/core/di/injection_container.dart' as di;
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/auth_gate.dart';
+import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:developer_website_software/features/themes/presentation/theme.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Colors;
@@ -22,6 +24,9 @@ void main() async {
 
   /// Check session on startup
   await di.kGetIt<AuthSignals>().checkSession();
+
+  /// Fetch theme on startup (non-blocking)
+  unawaited(di.kGetIt<SettingsAppSignals>().fetchTheme());
 
   /// Initialize macos_window_utils for transparency & vibrancy effects
   await WindowManipulator.initialize(enableWindowDelegate: true);
