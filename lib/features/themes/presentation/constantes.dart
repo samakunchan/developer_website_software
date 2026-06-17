@@ -56,6 +56,7 @@ const Color kShadowColor = CupertinoDynamicColor.withBrightness(
   darkColor: DarkThemeConstants.primary,
 );
 
+const Color kScaffoldBackgroundColor = Color(0xFF121212);
 const Color kCardDarkBgColor = Color(0xFF1C1C1E);
 const Color kCardSecondaryDarkBgColor = Color(0xFF2C2C2E);
 
@@ -70,3 +71,25 @@ const Color kSidebarBorderColor = CupertinoDynamicColor.withBrightness(
   color: LightThemeConstants.glassBorder,
   darkColor: Color(0xFF1E293B),
 );
+
+// Theme Options Preview Colors
+const Color kDarkPrimaryColor = Color(0xFF25F4F4);
+const Color kDarkSecondaryColor = Color(0xFF102222);
+
+const Color kLightPrimaryColor = Color(0xFF0660F2);
+const Color kLightSecondaryColor = Color(0xFFFFFFFF);
+
+const Color kForestPrimaryColor = Color(0xFF006D36);
+const Color kForestSecondaryColor = Color(0xFFF8F8F8);
+
+const Color kOceanPrimaryColor = Color(0xFF0B1326);
+const Color kOceanSecondaryColor = Color(0xFF8ED5FF);
+
+const Color kDesertPrimaryColor = Color(0xFF974225);
+const Color kDesertSecondaryColor = Color(0xFFFCF9F4);
+
+const Color kGuardianPrimaryColor = Color(0xFFE01A4F);
+const Color kGuardianSecondaryColor = Color(0xFF1D1E2C);
+
+const Color kAegisPrimaryColor = Color(0xFFF15152);
+const Color kAegisSecondaryColor = Color(0xFF3C3744);

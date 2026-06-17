@@ -6,7 +6,7 @@ class CupertinoSettingsSidebar extends StatelessWidget {
     required this.selectedSectionIndex,
     required this.sections,
     required this.onSelectSection,
-    super.key
+    super.key,
   });
 
   final int selectedSectionIndex;
@@ -30,9 +30,9 @@ class CupertinoSettingsSidebar extends StatelessWidget {
               style: CupertinoTheme.of(context).textTheme.actionSmallTextStyle.copyWith(
                 fontWeight: .bold,
                 fontSize: 11,
-                color: isDark ? CupertinoColors.systemGrey : CupertinoColors.systemGrey2
-              )
-            )
+                color: isDark ? CupertinoColors.systemGrey : CupertinoColors.systemGrey2,
+              ),
+            ),
           ),
 
           /// Section List
@@ -52,25 +52,25 @@ class CupertinoSettingsSidebar extends StatelessWidget {
                       padding: const .symmetric(horizontal: 12, vertical: 10),
                       decoration: BoxDecoration(
                         color: isSelected ? kGlassBgColor : CupertinoColors.transparent,
-                        borderRadius: .circular(8)
+                        borderRadius: .circular(8),
                       ),
                       child: Text(
                         section,
                         style: isSelected
                             ? CupertinoTheme.of(context).textTheme.actionSmallTextStyle.copyWith(
                                 color: CupertinoTheme.of(context).selectionHandleColor,
-                                fontWeight: .bold
+                                fontWeight: .bold,
                               )
-                            : CupertinoTheme.of(context).textTheme.actionSmallTextStyle
-                      )
-                    )
-                  )
+                            : CupertinoTheme.of(context).textTheme.actionSmallTextStyle,
+                      ),
+                    ),
+                  ),
                 );
-              }
-            )
-          )
-        ]
-      )
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

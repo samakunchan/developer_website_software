@@ -1,5 +1,32 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.7.0+7 - 17/06/2026
+
+### Added
+- **Dynamic Window Resizing**: Added reactive window resizing based on active session status (`1280x1024` on login, `900x650` on logout).
+- **Toolbar Window Dragging**: Wrapped `AdminToolbar` in a `DragToMoveArea` from `window_manager` to allow dragging and moving the desktop window by grabbing any empty space on the toolbar.
+- **Grab Indicator**: Created a shared `GrabIndicator` component presenting a sleek, slate-colored drag handle and displaying a grab cursor on hover.
+- **Platform Toolbar Integration**: Added the `GrabIndicator` next to the search bars in Cupertino, Fluent, and Material admin toolbars.
+- **Modular Theme Selection Grid Components**: Extracted layout blocks inside platform components folders:
+  - Cupertino elements: `CupertinoThemeSelectorGrid`, `CupertinoThemeOptionCard`, `CupertinoThemeColorPreview`, and `CupertinoThemeCardLabel`.
+  - Fluent elements: `FluentThemeSelectorGrid`, `FluentThemeOptionCard`, `FluentThemeColorPreview`, and `FluentThemeCardLabel`.
+  - Material elements: `MaterialThemeSelectorGrid`, `MaterialThemeOptionCard`, `MaterialThemeColorPreview`, and `MaterialThemeCardLabel`.
+- **Platform Content & Policy Widgets**: Moved helper methods into stateless components:
+  - `CupertinoThemeContent` and `CupertinoPolicyContent` for macOS.
+  - `FluentThemeContent` and `FluentPolicyContent` for Windows.
+  - `MaterialThemeContent` and `MaterialPolicyContent` for other platforms.
+
+### Changed
+- **Theme Color Constants**: Extracted hardcoded `Color` instances in the `ThemeOption` list inside `SettingsAppSignals` and defined them as constants in `constantes.dart`.
+- **Scaffold Direct Binding**: Refactored settings scaffolds to remove double-adaptation wrappers (`SettingsSidebar`, `SettingsMainContentArea`, `ThemeSelectorGrid`), enabling direct bindings to native widgets.
+- **Presentation Layer Readme**: Updated `README.md` with the new modular structure and included reproduction guidelines.
+
+### Deleted
+- **Obsolete Files**: Removed `settings_sidebar.dart`, `settings_main_content_area.dart`, `theme_selector_grid.dart`, and `utils.dart`.
+
+### Fixed
+- **Tear-off Lints**: Fixed unnecessary lambda closure lints in the Fluent refresh button callback.
+
 ## 🚀 0.6.0+6 - 16/06/2026
 
 ### Added

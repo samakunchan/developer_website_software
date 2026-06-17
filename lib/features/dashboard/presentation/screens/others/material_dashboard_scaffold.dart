@@ -31,7 +31,7 @@ class MaterialDashboardScaffold extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 500),
           padding: const .all(24),
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+            color: isDark ? DarkThemeConstants.background : Colors.white,
             borderRadius: .circular(12),
             border: .all(color: isDark ? const Color(0xFF2D2D2D) : Colors.grey.shade300),
             boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4))],

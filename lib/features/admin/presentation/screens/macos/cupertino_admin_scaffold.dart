@@ -60,7 +60,7 @@ class _CupertinoAdminScaffoldState extends State<CupertinoAdminScaffold> {
             /// 3. Main Content Area
             Expanded(
               child: ColoredBox(
-                color: isDark ? const Color(0xFF121212) : CupertinoColors.systemBackground,
+                color: isDark ? kScaffoldBackgroundColor : CupertinoColors.systemBackground,
                 child: Column(
                   crossAxisAlignment: .stretch,
                   children: [
