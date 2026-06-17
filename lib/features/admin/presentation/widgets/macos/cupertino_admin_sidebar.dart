@@ -38,7 +38,7 @@ class CupertinoAdminSidebar extends StatelessWidget {
                       Text('PapangueSoft', style: CupertinoTheme.of(context).textTheme.navTitleTextStyle),
                     ],
                   ),
-                  Text('V ${packageInfo.version} - Dev', style: CupertinoTheme.of(context).textTheme.tabLabelTextStyle)
+                  Text('V ${packageInfo.version} - Dev', style: CupertinoTheme.of(context).textTheme.tabLabelTextStyle),
                 ],
               ),
             ),
@@ -95,7 +95,7 @@ class CupertinoAdminSidebar extends StatelessWidget {
             /// Footer (Logout)
             Padding(
               padding: const .all(16),
-              child: CupertinoAppButton(textButton: 'Logout', onPressed: kGetIt<AuthSignals>().signOut),
+              child: CupertinoAppButton(onPressed: kGetIt<AuthSignals>().signOut, child: const Text('Logout')),
             ),
           ],
         ),
