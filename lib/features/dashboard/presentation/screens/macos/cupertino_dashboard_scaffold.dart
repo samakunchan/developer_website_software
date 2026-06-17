@@ -1,5 +1,6 @@
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
+import 'package:developer_website_software/features/themes/presentation/dark_theme_constants.dart';
 import 'package:developer_website_software/features/themes/widgets/cupertino_app_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -26,7 +27,7 @@ class CupertinoDashboardScaffold extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 500),
           padding: const .all(24),
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF1E1E1E) : CupertinoColors.white,
+            color: isDark ? DarkThemeConstants.background : CupertinoColors.white,
             borderRadius: .circular(12),
             border: Border.all(color: isDark ? const Color(0xFF2D2D2D) : CupertinoColors.systemGrey5),
             boxShadow: [

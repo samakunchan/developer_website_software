@@ -8,14 +8,16 @@ class CupertinoThemeColorPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 100,
-      decoration: const BoxDecoration(borderRadius: .vertical(top: .circular(11))),
       child: Row(
         children: [
           Expanded(
-            child: ColoredBox(
-              color: primaryColor,
+            child: Container(
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: const .only(topLeft: .circular(8), bottomLeft: .circular(8)),
+              ),
               child: Center(
                 child: Text(
                   'Primary',
@@ -29,8 +31,11 @@ class CupertinoThemeColorPreview extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ColoredBox(
-              color: secondaryColor,
+            child: Container(
+              decoration: BoxDecoration(
+                color: secondaryColor,
+                borderRadius: const .only(topRight: .circular(8), bottomRight: .circular(8)),
+              ),
               child: Center(
                 child: Text(
                   'Secondary',

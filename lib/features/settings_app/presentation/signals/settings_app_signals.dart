@@ -5,6 +5,7 @@ import 'package:developer_website_software/core/errors/failures.dart';
 import 'package:developer_website_software/features/settings_app/domain/entities/theme_entity.dart';
 import 'package:developer_website_software/features/settings_app/domain/usecases/get_theme_use_case.dart';
 import 'package:developer_website_software/features/settings_app/domain/usecases/set_theme_use_case.dart';
+import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class ThemeOption {
@@ -24,62 +25,59 @@ class ThemeOption {
 }
 
 class SettingsAppSignals {
-  SettingsAppSignals({
-    required this.getThemeUseCase,
-    required this.setThemeUseCase,
-  });
+  SettingsAppSignals({required this.getThemeUseCase, required this.setThemeUseCase});
 
   final GetThemeUseCase getThemeUseCase;
   final SetThemeUseCase setThemeUseCase;
 
-  static const List<ThemeOption> themes = [
+  static const List<ThemeOption> themes = <ThemeOption>[
     ThemeOption(
       id: 'dark',
       name: 'Dark (Modern)',
-      primaryColor: Color(0xFF25F4F4),
-      secondaryColor: Color(0xFF102222),
+      primaryColor: kDarkPrimaryColor,
+      secondaryColor: kDarkSecondaryColor,
       category: 'Défaut',
     ),
     ThemeOption(
       id: 'light',
       name: 'Light (Blue)',
-      primaryColor: Color(0xFF0660F2),
-      secondaryColor: Color(0xFFFFFFFF),
+      primaryColor: kLightPrimaryColor,
+      secondaryColor: kLightSecondaryColor,
       category: 'Défaut',
     ),
     ThemeOption(
       id: 'forest',
       name: 'Forest',
-      primaryColor: Color(0xFF006D36),
-      secondaryColor: Color(0xFFF8F8F8),
+      primaryColor: kForestPrimaryColor,
+      secondaryColor: kForestSecondaryColor,
       category: 'Nature',
     ),
     ThemeOption(
       id: 'ocean',
       name: 'Ocean',
-      primaryColor: Color(0xFF0B1326),
-      secondaryColor: Color(0xFF8ED5FF),
+      primaryColor: kOceanPrimaryColor,
+      secondaryColor: kOceanSecondaryColor,
       category: 'Nature',
     ),
     ThemeOption(
       id: 'desert',
       name: 'Desert',
-      primaryColor: Color(0xFF974225),
-      secondaryColor: Color(0xFFFCF9F4),
+      primaryColor: kDesertPrimaryColor,
+      secondaryColor: kDesertSecondaryColor,
       category: 'Nature',
     ),
     ThemeOption(
       id: 'guardian',
       name: 'Guardian',
-      primaryColor: Color(0xFFE01A4F),
-      secondaryColor: Color(0xFF1D1E2C),
+      primaryColor: kGuardianPrimaryColor,
+      secondaryColor: kGuardianSecondaryColor,
       category: 'Vaisseaux',
     ),
     ThemeOption(
       id: 'aegis',
       name: 'Aegis',
-      primaryColor: Color(0xFFF15152),
-      secondaryColor: Color(0xFF3C3744),
+      primaryColor: kAegisPrimaryColor,
+      secondaryColor: kAegisSecondaryColor,
       category: 'Vaisseaux',
     ),
   ];

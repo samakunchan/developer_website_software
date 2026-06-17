@@ -31,26 +31,20 @@ class CupertinoThemeOptionCard extends StatelessWidget {
           borderRadius: .circular(12),
           border: .all(
             color: isActive
-                ? CupertinoTheme.of(context).primaryColor
+                ? CupertinoTheme.of(context).primaryColor.withValues(alpha: .3)
                 : (isDark ? CupertinoColors.systemGrey6 : CupertinoColors.systemGrey5),
-            width: isActive ? 2 : 1,
+            width: isActive ? 4 : 2,
           ),
-          boxShadow: isActive
-              ? [
-                  BoxShadow(
-                    color: CupertinoTheme.of(context).primaryColor.withValues(alpha: 0.3),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ]
-              : null,
         ),
-        child: Column(
-          crossAxisAlignment: .stretch,
-          children: [
-            CupertinoThemeColorPreview(primaryColor: option.primaryColor, secondaryColor: option.secondaryColor),
-            CupertinoThemeCardLabel(name: option.name, isActive: isActive),
-          ],
+        child: Padding(
+          padding: const .all(8),
+          child: Column(
+            crossAxisAlignment: .stretch,
+            children: [
+              CupertinoThemeColorPreview(primaryColor: option.primaryColor, secondaryColor: option.secondaryColor),
+              CupertinoThemeCardLabel(name: option.name, isActive: isActive),
+            ],
+          ),
         ),
       ),
     );

@@ -67,8 +67,8 @@ class AppTheme {
       brightness: brightness,
       primaryColor: kPrimaryColor,
       primaryContrastingColor: kTextContrastColor,
-      barBackgroundColor: isDark ? const Color(0xFF1E1E1E) : kSecondaryBackgroundColor,
-      scaffoldBackgroundColor: isDark ? const Color(0xFF121212) : kBackgroundColor,
+      barBackgroundColor: isDark ? DarkThemeConstants.background : kSecondaryBackgroundColor,
+      scaffoldBackgroundColor: isDark ? kScaffoldBackgroundColor : kBackgroundColor,
       selectionHandleColor: kPrimaryColor,
       textTheme: CupertinoTextThemeData(
         textStyle: TextStyle(
