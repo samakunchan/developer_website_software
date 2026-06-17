@@ -53,7 +53,7 @@ class CupertinoDashboardScaffold extends StatelessWidget {
                     return const Center(child: CupertinoActivityIndicator());
                   }
 
-                  return CupertinoAppButton(textButton: 'Check Session', onPressed: onPressed);
+                  return CupertinoAppButton(onPressed: onPressed, child: const Text('Check Session'));
                 },
               ),
 
