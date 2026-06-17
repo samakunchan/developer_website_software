@@ -7,6 +7,12 @@ import 'package:developer_website_software/features/authentication/domain/usecas
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_in_use_case.dart';
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_out_use_case.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
+import 'package:developer_website_software/features/settings_app/data/datasources/settings_app_remote_data_source.dart';
+import 'package:developer_website_software/features/settings_app/data/repositories/settings_app_repository_impl.dart';
+import 'package:developer_website_software/features/settings_app/domain/repositories/settings_app_repository.dart';
+import 'package:developer_website_software/features/settings_app/domain/usecases/get_theme_use_case.dart';
+import 'package:developer_website_software/features/settings_app/domain/usecases/set_theme_use_case.dart';
+import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -50,5 +56,20 @@ Future<void> initDependencyInjection() async {
     /// Core Settings
     ..registerSingleton<SettingsSoftSignals>(
       SettingsSoftSignals(kGetIt<SharedPreferences>()),
+    )
+    /// Features - Settings App - Data Layer
+    ..registerLazySingleton<SettingsAppRemoteDataSource>(() => SettingsAppRemoteDataSourceImpl(kGetIt<ApiService>()))
+    ..registerLazySingleton<SettingsAppRepository>(
+      () => SettingsAppRepositoryImpl(remoteDataSource: kGetIt<SettingsAppRemoteDataSource>()),
+    )
+    /// Features - Settings App - Domain Layer
+    ..registerLazySingleton<GetThemeUseCase>(() => GetThemeUseCase(kGetIt<SettingsAppRepository>()))
+    ..registerLazySingleton<SetThemeUseCase>(() => SetThemeUseCase(kGetIt<SettingsAppRepository>()))
+    /// Features - Settings App - Presentation Layer Signals
+    ..registerLazySingleton<SettingsAppSignals>(
+      () => SettingsAppSignals(
+        getThemeUseCase: kGetIt<GetThemeUseCase>(),
+        setThemeUseCase: kGetIt<SetThemeUseCase>(),
+      ),
     );
 }
