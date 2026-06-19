@@ -4,11 +4,13 @@ import 'dart:ui';
 import 'package:developer_website_software/core/cross_platform/platform_macos_menu_wrapper.dart';
 import 'package:developer_website_software/core/cross_platform/platform_widget.dart';
 import 'package:developer_website_software/core/di/injection_container.dart' as di;
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/auth_gate.dart';
 import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:developer_website_software/features/themes/presentation/theme.dart';
+import 'package:developer_website_software/l10n/app_localizations.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Colors;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -89,14 +91,16 @@ class MyApp extends PlatformWidget {
     final CupertinoThemeData dynamicTheme = AppTheme.getCupertinoTheme(
       brightness,
       fontFamily.value,
-      fontSize.multiplier,
+      fontSize.multiplier
     );
 
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
-      title: 'Developer Website Sofware',
+      onGenerateTitle: (BuildContext context) => context.localizations.mainTitle,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: dynamicTheme,
-      home: const PlatformMacosMenuWrapper(child: AuthGate()),
+      home: const PlatformMacosMenuWrapper(child: AuthGate())
     );
   }
 
@@ -114,9 +118,11 @@ class MyApp extends PlatformWidget {
 
     return FluentApp(
       debugShowCheckedModeBanner: false,
-      title: 'Developer Website Sofware',
+      onGenerateTitle: (BuildContext context) => context.localizations.mainTitle,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: fluentTheme,
-      home: const AuthGate(),
+      home: const AuthGate()
     );
   }
 
@@ -129,11 +135,13 @@ class MyApp extends PlatformWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Developer Website Sofware',
+      onGenerateTitle: (BuildContext context) => context.localizations.mainTitle,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: AppTheme.getMaterialTheme(.light, fontFamily.value, fontSize.multiplier),
       darkTheme: AppTheme.getMaterialTheme(.dark, fontFamily.value, fontSize.multiplier),
       themeMode: themeMode,
-      home: const AuthGate(),
+      home: const AuthGate()
     );
   }
 }
