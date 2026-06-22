@@ -23,7 +23,8 @@ class _CupertinoSettingsMainContentAreaState extends State<CupertinoSettingsMain
   void initState() {
     super.initState();
     _signals = kGetIt<SettingsAppSignals>();
-    // Pre-fetch theme when themes tab is selected and screen is active
+
+    /// Pre-fetch theme when themes tab is selected and screen is active
     if (widget.isActive && widget.selectedSectionIndex == 0) {
       unawaited(_signals.fetchTheme());
     }
@@ -51,23 +52,31 @@ class _CupertinoSettingsMainContentAreaState extends State<CupertinoSettingsMain
         return CupertinoThemeContent(signals: _signals);
       case 1:
         return const CupertinoPolicyContent(
-          title: 'Legal Mentions',
-          description: 'Legal Mentions outline the ownership, hosting, and contact details of our platform. Under local laws, we specify the publishing entity (PapangueSoft), registered address, hosting provider, and intellectual property rights details here.'
+          key: ValueKey<String>('legal-mentions'),
+          policyType: 'legal-mentions',
+          defaultTitle: 'Mentions légales',
+          sidebarTitle: 'Mentions légales',
         );
       case 2:
         return const CupertinoPolicyContent(
-          title: "Conditions Générales d'Utilisation (CGU)",
-          description: 'The CGU governs the access and usage terms of this developer website software. By using the system, users agree to comply with standards of acceptable conduct, intellectual property protection, account security responsibilities, and liability limitations.'
+          key: ValueKey<String>('cgu'),
+          policyType: 'cgu',
+          defaultTitle: "Conditions Générales d'Utilisation (CGU)",
+          sidebarTitle: "Conditions Générales d'Utilisation (CGU)",
         );
       case 3:
         return const CupertinoPolicyContent(
-          title: 'Privacy Policy',
-          description: 'The Privacy Policy details how we collect, process, store, and secure user data. We only gather essential metrics required to run developer features. We respect personal data rights under GDPR and CCPA, providing settings to export or erase history.'
+          key: ValueKey<String>('privacy-policy'),
+          policyType: 'privacy-policy',
+          defaultTitle: 'Privacy Policy',
+          sidebarTitle: 'Privacy Policy',
         );
       case 4:
         return const CupertinoPolicyContent(
-          title: 'Cookie Policy',
-          description: 'The Cookie Policy details how we utilize cookies and local storage tokens to persist user preferences (such as light/dark mode selection and session authorization). We only use functional and performance-essential cookies.'
+          key: ValueKey<String>('cookie-policy'),
+          policyType: 'cookie-policy',
+          defaultTitle: 'Politique des cookies',
+          sidebarTitle: 'Politique des cookies',
         );
       default:
         return const SizedBox.shrink();
