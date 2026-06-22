@@ -67,7 +67,7 @@ Contains all sub-widgets and layout panels, divided strictly by platform into `/
 > - **Standard Lifecycle**: Regular widget lifecycle events (`initState()`, `dispose()`) trigger normally, making analytics tracking and resource management simple.
 >
 > **Cons**:
-> - **State Loss**: Transient UI states (such as scroll positions or unsubmitted inputs) are lost when navigating away, unless persisted globally.
+> - **State Loss**: Transient layout states (such as scroll positions) are lost when navigating away. However, unsaved text changes and editor documents are persisted globally within `SettingsAppSignals` to prevent data loss during tab switches.
 
 ---
 
