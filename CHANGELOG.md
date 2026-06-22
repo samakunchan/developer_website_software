@@ -1,5 +1,25 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.8.0+8 - 22/06/2026
+
+### Added
+- **Rich Text Settings Editing**: Replaced Quill editor with `fleather: 1.27.0` and implemented dynamic settings editing for Legal Mentions, CGU, Privacy Policy, and Cookie Policy.
+- **Signals-Based State Management**: Migrated editor controllers, title text field controllers, focus nodes, change listeners, and state initialization logic into the `SettingsAppSignals` singleton, enabling stateless UI components and global state persistence.
+- **Cross-Platform Policy Content Widgets**: Implemented adaptive stateless widgets `CupertinoPolicyContent`, `MaterialPolicyContent`, and `FluentPolicyContent` to natively bind the Fleather editor and status indicators across macOS, Windows, and Web/Others.
+- **Interactive Save Status Indicators**: Introduced the modular `PolicySaveStatusIndicator` component next to the Save button on all platforms to replace SnackBar alerts with native state indicators (green checkmark for saved, orange dot for modified, red warning for validation/API errors).
+- **Bidirectional Lexical Parser**: Integrated `LexicalConverter` to bidirectional translate between Delta formats and Lexical JSON schema, ensuring perfect data alignment with the remote backend database.
+
+### Changed
+- **Settings Navigation Wiring**: Updated `CupertinoSettingsMainContentArea`, `MaterialSettingsMainContentArea`, and `FluentSettingsMainContentArea` to instantiate the new widgets with dynamic configuration parameters and `ValueKey` tags.
+- **Presentation Layer Readme**: Updated `README.md` to document the global state persistence within `SettingsAppSignals` during tab switches.
+
+### Deleted
+- **Obsolete Files**: Removed `cupertino_policy_content_beta.dart`.
+
+### Fixed
+
+- N/A
+
 ## 🚀 0.7.0+7 - 17/06/2026
 
 ### Added
