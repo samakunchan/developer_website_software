@@ -2,7 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:developer_website_software/core/errors/failures.dart';
 import 'package:developer_website_software/core/network/exception_model.dart';
 import 'package:developer_website_software/features/settings_app/data/datasources/settings_app_remote_data_source.dart';
+import 'package:developer_website_software/features/settings_app/data/models/policy_model.dart';
 import 'package:developer_website_software/features/settings_app/data/models/theme_model.dart';
+import 'package:developer_website_software/features/settings_app/domain/entities/policy_entity.dart';
 import 'package:developer_website_software/features/settings_app/domain/entities/theme_entity.dart';
 import 'package:developer_website_software/features/settings_app/domain/repositories/settings_app_repository.dart';
 
@@ -20,13 +22,7 @@ class SettingsAppRepositoryImpl implements SettingsAppRepository {
     } on ExceptionModel catch (e) {
       return Left(ServerFailure.fromException(e));
     } on Object catch (e) {
-      return Left(
-        ServerFailure(
-          message: e.toString(),
-          statusCode: 500,
-          exceptionName: 'UNKNOWN_ERROR',
-        ),
-      );
+      return Left(ServerFailure(message: e.toString(), statusCode: 500, exceptionName: 'UNKNOWN_ERROR'));
     }
   }
 
@@ -39,13 +35,33 @@ class SettingsAppRepositoryImpl implements SettingsAppRepository {
     } on ExceptionModel catch (e) {
       return Left(ServerFailure.fromException(e));
     } on Object catch (e) {
-      return Left(
-        ServerFailure(
-          message: e.toString(),
-          statusCode: 500,
-          exceptionName: 'UNKNOWN_ERROR',
-        ),
-      );
+      return Left(ServerFailure(message: e.toString(), statusCode: 500, exceptionName: 'UNKNOWN_ERROR'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PolicyEntity>> getPolicy(String type) async {
+    try {
+      final PolicyModel policyModel = await remoteDataSource.getPolicy(type);
+
+      return Right(policyModel.toEntity());
+    } on ExceptionModel catch (e) {
+      return Left(ServerFailure.fromException(e));
+    } on Object catch (e) {
+      return Left(ServerFailure(message: e.toString(), statusCode: 500, exceptionName: 'UNKNOWN_ERROR'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PolicyEntity>> updatePolicy(String type, String title, String content) async {
+    try {
+      final PolicyModel policyModel = await remoteDataSource.updatePolicy(type, title, content);
+
+      return Right(policyModel.toEntity());
+    } on ExceptionModel catch (e) {
+      return Left(ServerFailure.fromException(e));
+    } on Object catch (e) {
+      return Left(ServerFailure(message: e.toString(), statusCode: 500, exceptionName: 'UNKNOWN_ERROR'));
     }
   }
 }
