@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:developer_website_software/core/di/injection_container.dart';
 import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
 import 'package:developer_website_software/features/settings_app/presentation/widgets/others/components/material_policy_content.dart';
@@ -6,11 +7,7 @@ import 'package:developer_website_software/features/settings_app/presentation/wi
 import 'package:flutter/material.dart';
 
 class MaterialSettingsMainContentArea extends StatefulWidget {
-  const MaterialSettingsMainContentArea({
-    required this.selectedSectionIndex,
-    this.isActive = false,
-    super.key
-  });
+  const MaterialSettingsMainContentArea({required this.selectedSectionIndex, this.isActive = false, super.key});
 
   final int selectedSectionIndex;
   final bool isActive;
@@ -53,23 +50,31 @@ class _MaterialSettingsMainContentAreaState extends State<MaterialSettingsMainCo
         return MaterialThemeContent(signals: _signals);
       case 1:
         return const MaterialPolicyContent(
-          title: 'Legal Mentions',
-          description: 'Legal Mentions outline the ownership, hosting, and contact details of our platform. Under local laws, we specify the publishing entity (PapangueSoft), registered address, hosting provider, and intellectual property rights details here.'
+          key: ValueKey<String>('legal-mentions'),
+          policyType: 'legal-mentions',
+          defaultTitle: 'Mentions légales',
+          sidebarTitle: 'Mentions légales',
         );
       case 2:
         return const MaterialPolicyContent(
-          title: "Conditions Générales d'Utilisation (CGU)",
-          description: 'The CGU governs the access and usage terms of this developer website software. By using the system, users agree to comply with standards of acceptable conduct, intellectual property protection, account security responsibilities, and liability limitations.'
+          key: ValueKey<String>('cgu'),
+          policyType: 'cgu',
+          defaultTitle: "Conditions Générales d'Utilisation (CGU)",
+          sidebarTitle: "Conditions Générales d'Utilisation (CGU)",
         );
       case 3:
         return const MaterialPolicyContent(
-          title: 'Privacy Policy',
-          description: 'The Privacy Policy details how we collect, process, store, and secure user data. We only gather essential metrics required to run developer features. We respect personal data rights under GDPR and CCPA, providing settings to export or erase history.'
+          key: ValueKey<String>('privacy-policy'),
+          policyType: 'privacy-policy',
+          defaultTitle: 'Privacy Policy',
+          sidebarTitle: 'Privacy Policy',
         );
       case 4:
         return const MaterialPolicyContent(
-          title: 'Cookie Policy',
-          description: 'The Cookie Policy details how we utilize cookies and local storage tokens to persist user preferences (such as light/dark mode selection and session authorization). We only use functional and performance-essential cookies.'
+          key: ValueKey<String>('cookie-policy'),
+          policyType: 'cookie-policy',
+          defaultTitle: 'Politique des cookies',
+          sidebarTitle: 'Politique des cookies',
         );
       default:
         return const SizedBox.shrink();
