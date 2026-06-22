@@ -10,8 +10,10 @@ import 'package:developer_website_software/features/authentication/presentation/
 import 'package:developer_website_software/features/settings_app/data/datasources/settings_app_remote_data_source.dart';
 import 'package:developer_website_software/features/settings_app/data/repositories/settings_app_repository_impl.dart';
 import 'package:developer_website_software/features/settings_app/domain/repositories/settings_app_repository.dart';
+import 'package:developer_website_software/features/settings_app/domain/usecases/get_policy_use_case.dart';
 import 'package:developer_website_software/features/settings_app/domain/usecases/get_theme_use_case.dart';
 import 'package:developer_website_software/features/settings_app/domain/usecases/set_theme_use_case.dart';
+import 'package:developer_website_software/features/settings_app/domain/usecases/update_policy_use_case.dart';
 import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:get_it/get_it.dart';
@@ -65,11 +67,15 @@ Future<void> initDependencyInjection() async {
     /// Features - Settings App - Domain Layer
     ..registerLazySingleton<GetThemeUseCase>(() => GetThemeUseCase(kGetIt<SettingsAppRepository>()))
     ..registerLazySingleton<SetThemeUseCase>(() => SetThemeUseCase(kGetIt<SettingsAppRepository>()))
+    ..registerLazySingleton<GetPolicyUseCase>(() => GetPolicyUseCase(kGetIt<SettingsAppRepository>()))
+    ..registerLazySingleton<UpdatePolicyUseCase>(() => UpdatePolicyUseCase(kGetIt<SettingsAppRepository>()))
     /// Features - Settings App - Presentation Layer Signals
     ..registerLazySingleton<SettingsAppSignals>(
       () => SettingsAppSignals(
         getThemeUseCase: kGetIt<GetThemeUseCase>(),
         setThemeUseCase: kGetIt<SetThemeUseCase>(),
+        getPolicyUseCase: kGetIt<GetPolicyUseCase>(),
+        updatePolicyUseCase: kGetIt<UpdatePolicyUseCase>(),
       ),
     );
 }
