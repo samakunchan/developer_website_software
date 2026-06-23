@@ -17,6 +17,9 @@ presentation/
 │       └── fluent_login_scaffold.dart
 ├── signals/            # State management using signals
 │   └── auth_signals.dart # Reactive authentication signals
+├── viewmodels/         # Presentation View Models
+│   ├── session_view_model.dart
+│   └── user_view_model.dart
 └── widgets/            # UI components and platform wrappers
     ├── auth_gate.dart  # Authentication gate (non-adaptive logical router widget)
     ├── authentication_text_field.dart # Adaptive text field wrapper (PlatformWidget)
@@ -41,7 +44,12 @@ This folder contains files managing the reactive state of the login flow. Specif
 - `isLoading`: A boolean indicating if a background operation is active.
 - `authError`: A string containing login or password reset errors.
 
-### 3. `/widgets` (UI Components & Adaptability Wrappers)
+### 3. `/viewmodels` (Presentation View Models)
+This folder contains the view models that wrap the domain entities to expose them to the presentation layer:
+- `UserViewModel`: Wraps `UserEntity` and exposes fields (`name`, `email`, `role`) as reactive signals while preserving direct getter access.
+- `SessionViewModel`: Wraps `SessionEntity` and exposes token and user sub-view model.
+
+### 4. `/widgets` (UI Components & Adaptability Wrappers)
 This folder contains all sub-widgets and components (like fields, gates, and alerts) divided into:
 - **Root Wrappers**: Extend the custom `PlatformWidget` (or `StatelessWidget` for logical routing like `AuthGate`) to adaptively check the OS at runtime and render the correct platform implementation.
 - **Platform Implementations** (under `/macos`, `/windows`, `/others` subdirectories): The actual platform-specific layout implementations utilizing the respective native design frameworks (Cupertino, Fluent UI, and Material).

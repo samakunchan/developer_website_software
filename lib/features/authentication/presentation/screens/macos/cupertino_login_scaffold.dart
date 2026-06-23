@@ -1,5 +1,5 @@
-import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
+import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/authentication_notification_message.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/authentication_text_field.dart';
 import 'package:developer_website_software/features/themes/presentation/buttons_theme.dart';
@@ -33,16 +33,16 @@ class CupertinoLoginScaffold extends StatelessWidget {
           child: SizedBox(
             width: 380,
             child: SingleChildScrollView(
-              padding: const .all(24),
+              padding: const EdgeInsets.all(24),
               child: SignalBuilder(
                 builder: (BuildContext context) {
                   final bool loading = authSignals.isLoading.value;
                   final String? error = authSignals.authError.value;
-                  final UserEntity? user = authSignals.currentUser.value;
+                  final UserViewModel? user = authSignals.currentUser.value;
 
                   return Column(
-                    mainAxisAlignment: .center,
-                    crossAxisAlignment: .stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const Icon(CupertinoIcons.lock_shield, size: 64),
                       const SizedBox(height: 16),
