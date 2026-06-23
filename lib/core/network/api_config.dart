@@ -16,4 +16,7 @@ class ApiConfig {
 
   /// [End point] '/settings/theme'
   static const String putTheme = '/settings/theme';
+
+  /// [End point] '/projects'
+  static const String projects = '/projects';
 }
