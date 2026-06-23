@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -48,7 +49,7 @@ class SettingsSoftSignals {
   void _loadSettings() {
     final String? savedTheme = _prefs.getString(_themeKey);
     if (savedTheme != null) {
-      themeMode.value = ThemeMode.values.firstWhere((ThemeMode e) => e.name == savedTheme, orElse: () => ThemeMode.system);
+      themeMode.value = ThemeMode.values.firstWhere((ThemeMode e) => e.name == savedTheme, orElse: () => .system);
     }
 
     final String? savedFontSize = _prefs.getString(_fontSizeKey);

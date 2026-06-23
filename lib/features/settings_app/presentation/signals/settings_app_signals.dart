@@ -10,6 +10,8 @@ import 'package:developer_website_software/features/settings_app/domain/usecases
 import 'package:developer_website_software/features/settings_app/domain/usecases/set_theme_use_case.dart';
 import 'package:developer_website_software/features/settings_app/domain/usecases/update_policy_use_case.dart';
 import 'package:developer_website_software/features/settings_app/presentation/utils/lexical_converter.dart';
+import 'package:developer_website_software/features/settings_app/presentation/viewmodels/policy_view_model.dart';
+import 'package:developer_website_software/features/settings_app/presentation/viewmodels/theme_view_model.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/widgets.dart' show FocusNode, TextEditingController;
@@ -98,23 +100,23 @@ class SettingsAppSignals {
     ),
   ];
 
-  final Signal<String> currentTheme = signal<String>('light');
+  final Signal<ThemeViewModel> currentTheme = signal<ThemeViewModel>(ThemeViewModel(const ThemeEntity(theme: 'light')));
   final Signal<bool> isLoading = signal<bool>(false);
   final Signal<String?> errorMessage = signal<String?>(null);
 
-  final Signal<PolicyEntity?> privacyPolicy = signal<PolicyEntity?>(null);
+  final Signal<PolicyViewModel?> privacyPolicy = signal<PolicyViewModel?>(null);
   final Signal<bool> isLoadingPrivacyPolicy = signal<bool>(false);
   final Signal<String?> errorPrivacyPolicy = signal<String?>(null);
 
-  final Signal<PolicyEntity?> cgu = signal<PolicyEntity?>(null);
+  final Signal<PolicyViewModel?> cgu = signal<PolicyViewModel?>(null);
   final Signal<bool> isLoadingCGU = signal<bool>(false);
   final Signal<String?> errorCGU = signal<String?>(null);
 
-  final Signal<PolicyEntity?> legalMentions = signal<PolicyEntity?>(null);
+  final Signal<PolicyViewModel?> legalMentions = signal<PolicyViewModel?>(null);
   final Signal<bool> isLoadingLegalMentions = signal<bool>(false);
   final Signal<String?> errorLegalMentions = signal<String?>(null);
 
-  final Signal<PolicyEntity?> cookiePolicy = signal<PolicyEntity?>(null);
+  final Signal<PolicyViewModel?> cookiePolicy = signal<PolicyViewModel?>(null);
   final Signal<bool> isLoadingCookiePolicy = signal<bool>(false);
   final Signal<String?> errorCookiePolicy = signal<String?>(null);
 
@@ -180,7 +182,7 @@ class SettingsAppSignals {
     controllerSig.value = newController;
   }
 
-  Signal<PolicyEntity?> getPolicySignal(String type) {
+  Signal<PolicyViewModel?> getPolicySignal(String type) {
     switch (type) {
       case 'cgu':
         return cgu;
@@ -233,9 +235,9 @@ class SettingsAppSignals {
         errorMessage.value = failure.message;
       },
       (ThemeEntity entity) {
-        currentTheme.value = entity.theme;
+        currentTheme.value = ThemeViewModel(entity);
         errorMessage.value = null;
-      },
+      }
     );
 
     isLoading.value = false;
@@ -252,9 +254,9 @@ class SettingsAppSignals {
         errorMessage.value = failure.message;
       },
       (ThemeEntity entity) {
-        currentTheme.value = entity.theme;
+        currentTheme.value = ThemeViewModel(entity);
         errorMessage.value = null;
-      },
+      }
     );
 
     isLoading.value = false;
@@ -263,7 +265,7 @@ class SettingsAppSignals {
   Future<void> fetchPolicy(String type, String defaultTitle) async {
     final Signal<bool> loading = getPolicyLoadingSignal(type);
     final Signal<String?> error = getPolicyErrorSignal(type);
-    final Signal<PolicyEntity?> policySig = getPolicySignal(type);
+    final Signal<PolicyViewModel?> policySig = getPolicySignal(type);
 
     loading.value = true;
     error.value = null;
@@ -281,11 +283,11 @@ class SettingsAppSignals {
         _initEditor(type, null);
       },
       (PolicyEntity entity) {
-        policySig.value = entity;
+        policySig.value = PolicyViewModel(entity);
         error.value = null;
         titleController.text = entity.title;
         _initEditor(type, entity.content);
-      },
+      }
     );
 
     getPolicySaveStatusSignal(type).value = PolicySaveStatus.loaded;
@@ -296,7 +298,7 @@ class SettingsAppSignals {
   Future<bool> savePolicy(String type, String title, String content) async {
     final Signal<bool> loading = getPolicyLoadingSignal(type);
     final Signal<String?> error = getPolicyErrorSignal(type);
-    final Signal<PolicyEntity?> policySig = getPolicySignal(type);
+    final Signal<PolicyViewModel?> policySig = getPolicySignal(type);
 
     loading.value = true;
     error.value = null;
@@ -309,10 +311,10 @@ class SettingsAppSignals {
         return false;
       },
       (PolicyEntity entity) {
-        policySig.value = entity;
+        policySig.value = PolicyViewModel(entity);
         error.value = null;
         return true;
-      },
+      }
     );
 
     loading.value = false;
