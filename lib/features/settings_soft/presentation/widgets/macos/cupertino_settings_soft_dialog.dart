@@ -7,6 +7,10 @@ import 'package:developer_website_software/features/themes/presentation/constant
 import 'package:flutter/cupertino.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
+const double kVertical = 10;
+const double kHorizontal = 8;
+const double kPadding = 4;
+
 class CupertinoSettingsSoftDialog extends StatefulWidget {
   const CupertinoSettingsSoftDialog({super.key});
 
@@ -39,35 +43,36 @@ class _CupertinoSettingsSoftDialogState extends State<CupertinoSettingsSoftDialo
                 children: [
                   Text(
                     'Preferences',
-                    style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 18, fontWeight: .bold)
+                    style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 18, fontWeight: .bold),
                   ),
                   CupertinoButton(
                     padding: .zero,
                     minimumSize: .zero,
                     child: const Icon(CupertinoIcons.xmark_circle_fill, color: CupertinoColors.systemGrey),
-                    onPressed: () => Navigator.of(context).pop()
-                  )
-                ]
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
               ),
               CupertinoSlidingSegmentedControl<int>(
                 groupValue: _activeTab,
+                padding: const .all(kPadding),
                 children: const {
                   0: Padding(
-                    padding: .symmetric(horizontal: 16, vertical: 6),
+                    padding: .symmetric(horizontal: kHorizontal, vertical: kVertical),
                     child: Row(
                       mainAxisSize: .min,
                       spacing: 6,
-                      children: [Icon(CupertinoIcons.gear_alt, size: 16), Text('General')]
-                    )
+                      children: [Icon(CupertinoIcons.gear_alt, size: 16), Text('General')],
+                    ),
                   ),
                   1: Padding(
-                    padding: .symmetric(horizontal: 16, vertical: 6),
+                    padding: .symmetric(horizontal: kHorizontal, vertical: kVertical),
                     child: Row(
                       mainAxisSize: .min,
                       spacing: 6,
-                      children: [Icon(CupertinoIcons.person_crop_circle, size: 16), Text('Account Info')]
-                    )
-                  )
+                      children: [Icon(CupertinoIcons.person_crop_circle, size: 16), Text('Account Info')],
+                    ),
+                  ),
                 },
                 onValueChanged: (int? val) {
                   if (val != null) {
@@ -75,7 +80,7 @@ class _CupertinoSettingsSoftDialogState extends State<CupertinoSettingsSoftDialo
                       _activeTab = val;
                     });
                   }
-                }
+                },
               ),
               Expanded(
                 child: SignalBuilder(
@@ -85,13 +90,13 @@ class _CupertinoSettingsSoftDialogState extends State<CupertinoSettingsSoftDialo
                     } else {
                       return CupertinoAccountTab(authSignals: authSignals);
                     }
-                  }
-                )
-              )
-            ]
-          )
-        )
-      )
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
