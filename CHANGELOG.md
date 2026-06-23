@@ -1,5 +1,16 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.9.2+11 - 23/06/2026
+
+### Added
+- **Multi-Platform Settings Soft widgets**: Created folder-based native implementations (`macos/` for Cupertino, `windows/` for Fluent UI, `others/` for Material 3) under `lib/features/settings_soft/presentation/widgets/`.
+
+### Changed
+- **Adaptive Settings Soft Wrapper widgets**: Updated settings dialog, general settings tab, account info tab, setting row, info row, and divider to extend `PlatformWidget` or `PlatformStatefulWidget`, automatically routing to the platform-specific layouts.
+
+### Fixed
+- N/A
+
 ## 🚀 0.9.1+10 - 23/06/2026
 
 ### Added
