@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:developer_website_software/features/projects/domain/entities/project_entity.dart';
 import 'package:developer_website_software/features/projects/presentation/signals/projects_signals.dart';
+import 'package:developer_website_software/features/projects/presentation/viewmodels/project_view_model.dart';
 import 'package:developer_website_software/features/projects/presentation/widgets/others/components/material_projects_list.dart';
 import 'package:developer_website_software/features/projects/presentation/widgets/project_create_dialog.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
@@ -19,7 +19,7 @@ class MaterialProjectsMainContentArea extends StatelessWidget {
 
     return SignalBuilder(
       builder: (BuildContext context) {
-        final List<ProjectEntity> displayProjects = signals.filteredProjects.value;
+        final List<ProjectViewModel> displayProjects = signals.filteredProjects.value;
         final bool isLoading = signals.isLoading.value;
         final String? error = signals.errorMessage.value;
 

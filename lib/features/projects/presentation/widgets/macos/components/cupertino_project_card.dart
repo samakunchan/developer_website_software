@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:developer_website_software/features/projects/domain/entities/project_entity.dart';
 import 'package:developer_website_software/features/projects/presentation/signals/projects_signals.dart';
+import 'package:developer_website_software/features/projects/presentation/viewmodels/project_view_model.dart';
 import 'package:developer_website_software/features/projects/presentation/widgets/project_edit_dialog.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,19 +11,23 @@ import 'package:signals_flutter/signals_flutter.dart';
 class CupertinoProjectCard extends StatelessWidget {
   const CupertinoProjectCard({required this.project, required this.signals, super.key});
 
-  final ProjectEntity project;
+  final ProjectViewModel project;
   final ProjectsSignals signals;
 
   void _onToggleFeatured(BuildContext context) {
     unawaited(signals.toggleProjectFeatured(project.id));
   }
 
+  void _onToggleStatus(BuildContext context) {
+    unawaited(signals.toggleProjectStatus(project));
+  }
+
   void _onEdit(BuildContext context) {
     unawaited(
       showCupertinoDialog<void>(
         context: context,
-        builder: (BuildContext context) => ProjectEditDialog(project: project, signals: signals)
-      )
+        builder: (_) => ProjectEditDialog(project: project.project, signals: signals),
+      ),
     );
   }
 
@@ -75,7 +80,7 @@ class CupertinoProjectCard extends StatelessWidget {
               width: 80,
               height: 80,
               child: img != null && img.medium.url.isNotEmpty
-                  ? Image.network(img.medium.url, fit: .cover, errorBuilder: (context, error, stackTrace) => _buildPlaceholder())
+                  ? Image.network(img.medium.url, fit: .cover, errorBuilder: (_, _, _) => _buildPlaceholder())
                   : _buildPlaceholder(),
             ),
           ),
@@ -89,33 +94,43 @@ class CupertinoProjectCard extends StatelessWidget {
                   children: [
                     Text(
                       project.title,
-                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(fontWeight: .bold, fontSize: 16),
+                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
-                    if (project.isFeatured) ...[
-                      const SizedBox(width: 8),
-                      Container(
-                        padding: const .symmetric(horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: CupertinoColors.systemYellow.withValues(alpha: 0.15),
-                          borderRadius: .circular(4),
-                        ),
-                        child: Row(
-                          mainAxisSize: .min,
-                          spacing: 3,
-                          children: [
-                            const Icon(CupertinoIcons.star_fill, color: CupertinoColors.systemYellow, size: 10),
-                            Text(
-                              'Featured',
-                              style: CupertinoTheme.of(context).textTheme.actionSmallTextStyle.copyWith(
-                                color: CupertinoColors.systemYellow,
-                                fontSize: 9,
-                                fontWeight: .bold,
+                    SignalBuilder(
+                      builder: (BuildContext context) {
+                        if (project.isFeatured.value) {
+                          return Row(
+                            mainAxisSize: .min,
+                            children: [
+                              const SizedBox(width: 8),
+                              Container(
+                                padding: const .symmetric(horizontal: 6, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: CupertinoColors.systemYellow.withValues(alpha: 0.15),
+                                  borderRadius: .circular(4),
+                                ),
+                                child: Row(
+                                  mainAxisSize: .min,
+                                  spacing: 3,
+                                  children: [
+                                    const Icon(CupertinoIcons.star_fill, color: CupertinoColors.systemYellow, size: 10),
+                                    Text(
+                                      'Featured',
+                                      style: CupertinoTheme.of(context).textTheme.actionSmallTextStyle.copyWith(
+                                        color: CupertinoColors.systemYellow,
+                                        fontSize: 9,
+                                        fontWeight: .bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                            ],
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
                   ],
                 ),
                 const SizedBox(height: 4),
@@ -152,52 +167,59 @@ class CupertinoProjectCard extends StatelessWidget {
             ),
           ),
 
-          /// 3. Action Buttons
-          SignalBuilder(
-            builder: (BuildContext context) {
-              final bool togglingFeatured = signals.isFeaturedToggling.value[project.id] ?? false;
-              final bool deleting = signals.isDeleting.value[project.id] ?? false;
-
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  /// Toggle Featured Button
-                  if (togglingFeatured)
-                    const Padding(padding: EdgeInsets.symmetric(horizontal: 10), child: CupertinoActivityIndicator(radius: 8))
-                  else
-                    CupertinoButton(
-                      padding: const EdgeInsets.all(8),
-                      onPressed: () => _onToggleFeatured(context),
-                      child: Icon(
-                        project.isFeatured ? CupertinoIcons.star_fill : CupertinoIcons.star,
-                        color: project.isFeatured ? CupertinoColors.systemYellow : CupertinoColors.systemGrey,
-                        size: 20
-                      )
+          Row(
+            mainAxisSize: .min,
+            children: [
+              /// Toggle Featured Button
+              SignalBuilder(
+                builder: (BuildContext context) {
+                  final bool isFeatured = project.isFeatured.value;
+                  return CupertinoButton(
+                    padding: const .all(8),
+                    onPressed: () => _onToggleFeatured(context),
+                    child: Icon(
+                      isFeatured ? CupertinoIcons.star_fill : CupertinoIcons.star,
+                      color: isFeatured ? CupertinoColors.systemYellow : CupertinoColors.systemGrey,
+                      size: 20,
                     ),
+                  );
+                },
+              ),
 
-                  /// Edit Button
-                  CupertinoButton(
-                    padding: const EdgeInsets.all(8),
-                    onPressed: () => _onEdit(context),
-                    child: const Icon(
-                      CupertinoIcons.pencil,
-                      color: CupertinoColors.activeBlue,
-                      size: 20
-                    )
-                  ),
-
-                  /// Delete Button
-                  if (deleting)
-                    const Padding(padding: EdgeInsets.symmetric(horizontal: 10), child: CupertinoActivityIndicator(radius: 8))
-                  else
-                    CupertinoButton(
-                      padding: const EdgeInsets.all(8),
-                      onPressed: () => _onDelete(context),
-                      child: const Icon(CupertinoIcons.trash, color: kDangerColor, size: 20)
+              /// Toggle Status Button
+              SignalBuilder(
+                builder: (BuildContext context) {
+                  final String status = project.status.value;
+                  return CupertinoButton(
+                    padding: const .all(8),
+                    onPressed: () => _onToggleStatus(context),
+                    child: Icon(
+                      status == 'published' ? CupertinoIcons.eye_fill : CupertinoIcons.eye_slash_fill,
+                      color: status == 'published' ? CupertinoColors.activeGreen : CupertinoColors.systemGrey,
+                      size: 20,
                     ),
-                ],
-              );
-            },
+                  );
+                },
+              ),
+
+              /// Edit Button
+              CupertinoButton(
+                padding: const .all(8),
+                onPressed: () => _onEdit(context),
+                child: const Icon(CupertinoIcons.pencil, color: CupertinoColors.activeBlue, size: 20),
+              ),
+
+              /// Delete Button
+              SignalBuilder(
+                builder: (_) {
+                  return CupertinoButton(
+                    padding: const .all(8),
+                    onPressed: () => _onDelete(context),
+                    child: const Icon(CupertinoIcons.trash, color: kDangerColor, size: 20),
+                  );
+                },
+              ),
+            ],
           ),
         ],
       ),

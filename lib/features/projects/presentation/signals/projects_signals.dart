@@ -6,6 +6,7 @@ import 'package:developer_website_software/features/projects/domain/usecases/del
 import 'package:developer_website_software/features/projects/domain/usecases/get_projects_use_case.dart';
 import 'package:developer_website_software/features/projects/domain/usecases/toggle_project_featured_use_case.dart';
 import 'package:developer_website_software/features/projects/domain/usecases/update_project_use_case.dart';
+import 'package:developer_website_software/features/projects/presentation/viewmodels/project_view_model.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class ProjectsSignals {
@@ -23,23 +24,24 @@ class ProjectsSignals {
   final UpdateProjectUseCase updateProjectUseCase;
   final DeleteProjectUseCase deleteProjectUseCase;
 
-  final Signal<List<ProjectEntity>> projects = signal<List<ProjectEntity>>([]);
+  final Signal<List<ProjectViewModel>> projects = signal<List<ProjectViewModel>>([]);
   final Signal<bool> isLoading = signal<bool>(false);
   final Signal<String?> errorMessage = signal<String?>(null);
   final Signal<String> activeFilter = signal<String>('all');
 
   final Signal<Map<int, bool>> isFeaturedToggling = signal<Map<int, bool>>({});
+  final Signal<Map<int, bool>> isStatusToggling = signal<Map<int, bool>>({});
   final Signal<Map<int, bool>> isUpdating = signal<Map<int, bool>>({});
   final Signal<bool> isCreating = signal<bool>(false);
   final Signal<Map<int, bool>> isDeleting = signal<Map<int, bool>>({});
 
-  late final Computed<List<ProjectEntity>> filteredProjects = computed(() {
+  late final Computed<List<ProjectViewModel>> filteredProjects = computed(() {
     final filter = activeFilter.value;
     final allProjects = projects.value;
     if (filter == 'all') {
       return allProjects;
     }
-    return allProjects.where((p) => p.category == filter).toList();
+    return allProjects.where((ProjectViewModel p) => p.category == filter).toList();
   });
 
   Future<void> fetchProjects() async {
@@ -53,7 +55,7 @@ class ProjectsSignals {
         errorMessage.value = failure.message;
       },
       (List<ProjectEntity> list) {
-        projects.value = list;
+        projects.value = list.map(ProjectViewModel.new).toList().sortedByDateDesc();
         errorMessage.value = null;
       },
     );
@@ -72,12 +74,49 @@ class ProjectsSignals {
         errorMessage.value = failure.message;
       },
       (ProjectEntity updated) {
-        projects.value = projects.value.map((ProjectEntity p) => p.id == id ? updated : p).toList();
+        projects.value.firstWhere((ProjectViewModel p) => p.id == id).updateFromEntity(updated);
         errorMessage.value = null;
       },
     );
 
     isFeaturedToggling.value = {...isFeaturedToggling.value, id: false};
+  }
+
+  Future<void> toggleProjectStatus(ProjectViewModel vm) async {
+    final int id = vm.id;
+    isStatusToggling.value = {...isStatusToggling.value, id: true};
+    errorMessage.value = null;
+
+    final String nextStatus = vm.status.value == 'published' ? 'draft' : 'published';
+
+    final UpdateProjectParams params = UpdateProjectParams(
+      id: id,
+      slug: vm.slug,
+      title: vm.title,
+      description: vm.description,
+      category: vm.category,
+      categoryLabel: vm.categoryLabel,
+      caseStudyNumber: vm.caseStudyNumber,
+      status: nextStatus,
+      isFeatured: vm.isFeatured.value,
+      techIcons: vm.techIcons,
+      techStack: vm.techStack,
+      features: vm.features,
+    );
+
+    final Either<Failure, ProjectEntity> result = await updateProjectUseCase(params);
+
+    result.fold(
+      (Failure failure) {
+        errorMessage.value = failure.message;
+      },
+      (ProjectEntity updated) {
+        vm.updateFromEntity(updated);
+        errorMessage.value = null;
+      },
+    );
+
+    isStatusToggling.value = {...isStatusToggling.value, id: false};
   }
 
   Future<void> deleteProject(int id) async {
@@ -91,7 +130,7 @@ class ProjectsSignals {
         errorMessage.value = failure.message;
       },
       (_) {
-        projects.value = projects.value.where((p) => p.id != id).toList();
+        projects.value = projects.value.where((ProjectViewModel p) => p.id != id).toList();
         errorMessage.value = null;
       },
     );
@@ -111,9 +150,10 @@ class ProjectsSignals {
         errorMessage.value = failure.message;
       },
       (ProjectEntity updated) {
-        projects.value = projects.value.map((ProjectEntity p) => p.id == id ? updated : p).toList();
+        projects.value.firstWhere((ProjectViewModel p) => p.id == id).updateFromEntity(updated);
+        projects.value = List<ProjectViewModel>.from(projects.value).sortedByDateDesc();
         errorMessage.value = null;
-      }
+      },
     );
 
     isUpdating.value = {...isUpdating.value, id: false};
@@ -131,9 +171,9 @@ class ProjectsSignals {
         errorMessage.value = failure.message;
       },
       (ProjectEntity newProject) {
-        projects.value = [...projects.value, newProject];
+        projects.value = [ProjectViewModel(newProject), ...projects.value].sortedByDateDesc();
         errorMessage.value = null;
-      }
+      },
     );
 
     isCreating.value = false;

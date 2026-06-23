@@ -9,10 +9,10 @@ class CupertinoProjectsSidebar extends StatelessWidget {
   final ProjectsSignals signals;
 
   static const List<Map<String, String>> _categories = [
-    {'id': 'all', 'label': 'All Projects'},
-    {'id': 'web', 'label': 'Web Apps'},
-    {'id': 'mobile', 'label': 'Mobile UI'},
-    {'id': 'open_source', 'label': 'Open Source'},
+    <String, String>{'id': 'all', 'label': 'All Projects'},
+    <String, String>{'id': 'web', 'label': 'Web Apps'},
+    <String, String>{'id': 'mobile', 'label': 'Mobile UI'},
+    <String, String>{'id': 'open_source', 'label': 'Open Source'},
   ];
 
   @override
@@ -22,11 +22,11 @@ class CupertinoProjectsSidebar extends StatelessWidget {
     return SizedBox(
       width: 220,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: .stretch,
         children: [
           /// Sidebar Header
           Padding(
-            padding: const EdgeInsets.only(left: 20, top: 24, bottom: 12),
+            padding: const .only(left: 20, top: 24, bottom: 12),
             child: Text(
               'CATEGORIES',
               style: CupertinoTheme.of(context).textTheme.actionSmallTextStyle.copyWith(

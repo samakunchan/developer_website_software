@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:developer_website_software/features/projects/domain/entities/project_entity.dart';
 import 'package:developer_website_software/features/projects/presentation/signals/projects_signals.dart';
+import 'package:developer_website_software/features/projects/presentation/viewmodels/project_view_model.dart';
 import 'package:developer_website_software/features/projects/presentation/widgets/project_edit_dialog.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:fluent_ui/fluent_ui.dart';
@@ -10,7 +11,7 @@ import 'package:signals_flutter/signals_flutter.dart';
 class FluentProjectCard extends StatelessWidget {
   const FluentProjectCard({required this.project, required this.signals, super.key});
 
-  final ProjectEntity project;
+  final ProjectViewModel project;
   final ProjectsSignals signals;
 
   void _onToggleFeatured(BuildContext context) {
@@ -21,8 +22,8 @@ class FluentProjectCard extends StatelessWidget {
     unawaited(
       showDialog<void>(
         context: context,
-        builder: (BuildContext context) => ProjectEditDialog(project: project, signals: signals)
-      )
+        builder: (_) => ProjectEditDialog(project: project.project, signals: signals),
+      ),
     );
   }
 
@@ -95,27 +96,41 @@ class FluentProjectCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(project.title, style: theme.typography.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
-                    if (project.isFeatured) ...[
-                      const SizedBox(width: 8),
-                      Container(
-                        padding: const .symmetric(horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: Colors.orange.withValues(alpha: 0.15),
-                          borderRadius: .circular(4),
-                        ),
-                        child: Row(
-                          mainAxisSize: .min,
-                          spacing: 3,
-                          children: [
-                            Icon(FluentIcons.favorite_star_fill, color: Colors.orange, size: 10),
-                            Text(
-                              'Featured',
-                              style: theme.typography.caption?.copyWith(color: Colors.orange, fontSize: 9, fontWeight: .bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    SignalBuilder(
+                      builder: (BuildContext context) {
+                        if (project.isFeatured.value) {
+                          return Row(
+                            mainAxisSize: .min,
+                            children: [
+                              const SizedBox(width: 8),
+                              Container(
+                                padding: const .symmetric(horizontal: 6, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: Colors.orange.withValues(alpha: 0.15),
+                                  borderRadius: .circular(4),
+                                ),
+                                child: Row(
+                                  mainAxisSize: .min,
+                                  spacing: 3,
+                                  children: [
+                                    Icon(FluentIcons.favorite_star_fill, color: Colors.orange, size: 10),
+                                    Text(
+                                      'Featured',
+                                      style: theme.typography.caption?.copyWith(
+                                        color: Colors.orange,
+                                        fontSize: 9,
+                                        fontWeight: .bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
                   ],
                 ),
                 const SizedBox(height: 4),
@@ -157,38 +172,39 @@ class FluentProjectCard extends StatelessWidget {
               final bool deleting = signals.isDeleting.value[project.id] ?? false;
 
               return Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 children: [
                   /// Toggle Featured Star
                   if (togglingFeatured)
                     const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      padding: .symmetric(horizontal: 12),
                       child: SizedBox(width: 16, height: 16, child: ProgressRing(strokeWidth: 2)),
                     )
                   else
-                    IconButton(
-                      icon: Icon(
-                        project.isFeatured ? FluentIcons.favorite_star_fill : FluentIcons.favorite_star,
-                        color: project.isFeatured ? Colors.orange : theme.resources.textFillColorTertiary,
-                        size: 20,
-                      ),
-                      onPressed: () => _onToggleFeatured(context),
+                    SignalBuilder(
+                      builder: (BuildContext context) {
+                        final bool isFeatured = project.isFeatured.value;
+                        return IconButton(
+                          icon: Icon(
+                            isFeatured ? FluentIcons.favorite_star_fill : FluentIcons.favorite_star,
+                            color: isFeatured ? Colors.orange : theme.resources.textFillColorTertiary,
+                            size: 20,
+                          ),
+                          onPressed: () => _onToggleFeatured(context),
+                        );
+                      },
                     ),
 
                   /// Edit Button
                   IconButton(
-                    icon: Icon(
-                      FluentIcons.edit,
-                      color: theme.accentColor,
-                      size: 20
-                    ),
-                    onPressed: () => _onEdit(context)
+                    icon: Icon(FluentIcons.edit, color: theme.accentColor, size: 20),
+                    onPressed: () => _onEdit(context),
                   ),
 
                   /// Delete Button
                   if (deleting)
                     const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      padding: .symmetric(horizontal: 12),
                       child: SizedBox(width: 16, height: 16, child: ProgressRing(strokeWidth: 2)),
                     )
                   else
