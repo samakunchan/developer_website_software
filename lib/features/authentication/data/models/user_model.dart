@@ -7,8 +7,6 @@ part 'user_model.g.dart';
 @freezed
 abstract class UserModel with _$UserModel {
   @Assert('id > 0', 'ID must be a positive integer')
-  @Assert('email.contains("@")', 'Email address is invalid')
-  @Assert('role.contains("admin")', 'The role should be an admin.')
   const factory UserModel({
     required int id,
     required String name,
