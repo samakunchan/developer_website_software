@@ -1,5 +1,26 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.9.0+9 - 23/06/2026
+
+### Added
+- **Full Projects Feature Set**: Designed and implemented the complete domain, data, and presentation layers for project management.
+- **Domain Layer Entities & Use Cases**: Defined the `ProjectEntity`, `TechStackItem`, `ProjectFeatureItem`, and `ProjectImageEntity` models. Created core use cases for getting, creating, updating, toggling featured status, and deleting projects.
+- **Data Layer Models & Repositories**: Implemented `ProjectsRemoteDataSource` using the HTTP client, `ProjectModel` with full JSON deserialization/serialization, and `ProjectsRepositoryImpl` supporting robust error handling and failure mapping.
+- **Unified Project Form Controller**: Built `ProjectController` to manage the multi-step creation stepper and editing state across all platforms.
+- **Cross-Platform Responsive UI**: Implemented `ProjectsScreen` which adaptively renders native Cupertino (macOS), Fluent (Windows), and Material UI (Web/Android) scaffold views, sidebar configurations, list views, and action cards.
+- **Project Presentation View Model**: Created `ProjectViewModel` to wrap domain entities and expose featured (`isFeatured`) and publish (`status`) statuses as reactive signals, forwarding read-only fields.
+- **Granular List Updates**: Refactored `ProjectsSignals` and card widgets to use `ProjectViewModel` and scoped `SignalBuilder`s, mutating featured/publish state in-place to avoid full-list and full-card rebuilds.
+- **Real DateTime List Sorting**: Implemented `ProjectViewModelExtension` on lists to parse and compare actual `DateTime` values, sorting projects chronologically descending (newest first) during fetch, create, and update operations.
+- **Presentation Architecture Documentation**: Added a comprehensive `README.md` in the projects presentation folder detailing directory structure, ViewModel performance benefits, and platform isolation guidelines.
+- **String Extension**: Added `.slugify()` extension helper to generate clean, URL-friendly slugs from project titles automatically.
+- **Dependency Injection**: Wired up the new repositories, remote datasources, use cases, controller, and signals inside the global `injection_container.dart`.
+
+### Changed
+- **Platform Parity Updates**: Integrated `ProjectViewModel` across macOS, Windows, and Web/Others widgets to keep platform compatibility and performance optimizations synchronized.
+
+### Fixed
+- **Linter & Cascade Warnings**: Corrected various unnecessary lambda closure warnings (`unnecessary_lambdas`), single cascade usages (`avoid_single_cascade_in_expression_statements`), and import organization lints across the projects module.
+
 ## 🚀 0.8.0+8 - 22/06/2026
 
 ### Added
