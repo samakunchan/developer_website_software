@@ -91,7 +91,7 @@ class MyApp extends PlatformWidget {
     final CupertinoThemeData dynamicTheme = AppTheme.getCupertinoTheme(
       brightness,
       fontFamily.value,
-      fontSize.multiplier
+      fontSize.multiplier,
     );
 
     return CupertinoApp(
@@ -100,7 +100,7 @@ class MyApp extends PlatformWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: dynamicTheme,
-      home: const PlatformMacosMenuWrapper(child: AuthGate())
+      home: const PlatformMacosMenuWrapper(child: AuthGate()),
     );
   }
 
@@ -122,7 +122,7 @@ class MyApp extends PlatformWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: fluentTheme,
-      home: const AuthGate()
+      home: const AuthGate(),
     );
   }
 
@@ -141,7 +141,7 @@ class MyApp extends PlatformWidget {
       theme: AppTheme.getMaterialTheme(.light, fontFamily.value, fontSize.multiplier),
       darkTheme: AppTheme.getMaterialTheme(.dark, fontFamily.value, fontSize.multiplier),
       themeMode: themeMode,
-      home: const AuthGate()
+      home: const AuthGate(),
     );
   }
 }
