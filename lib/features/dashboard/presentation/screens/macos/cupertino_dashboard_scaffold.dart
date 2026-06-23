@@ -29,7 +29,7 @@ class CupertinoDashboardScaffold extends StatelessWidget {
           decoration: BoxDecoration(
             color: isDark ? DarkThemeConstants.background : CupertinoColors.white,
             borderRadius: .circular(12),
-            border: Border.all(color: isDark ? const Color(0xFF2D2D2D) : CupertinoColors.systemGrey5),
+            border: .all(color: isDark ? const Color(0xFF2D2D2D) : CupertinoColors.systemGrey5),
             boxShadow: [
               BoxShadow(color: CupertinoColors.black.withValues(alpha: 0.05), blurRadius: 10, offset: const Offset(0, 4)),
             ],
@@ -66,7 +66,7 @@ class CupertinoDashboardScaffold extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: const Color(0xFF4CAF50).withValues(alpha: 0.1),
                     borderRadius: .circular(8),
-                    border: Border.all(color: const Color(0xFF4CAF50).withValues(alpha: 0.3)),
+                    border: .all(color: const Color(0xFF4CAF50).withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     spacing: 8,

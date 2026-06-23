@@ -15,7 +15,7 @@ const Color kCardBorderColor = CupertinoDynamicColor.withBrightness(
 final BoxDecoration kCupertinoCardDecoration = BoxDecoration(
   color: kCardBgColor,
   border: Border.all(color: kCardBorderColor),
-  borderRadius: const BorderRadius.all(.circular(12)),
+  borderRadius: const .all(.circular(12)),
 );
 
 // Dynamic card and CTA gradients using CupertinoDynamicColor

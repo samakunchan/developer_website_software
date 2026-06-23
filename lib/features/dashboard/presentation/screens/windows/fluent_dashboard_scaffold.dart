@@ -24,7 +24,7 @@ class FluentDashboardScaffold extends StatelessWidget {
           decoration: BoxDecoration(
             color: isDark ? const Color(0xFF202020) : const Color(0xFFFAFAFA),
             borderRadius: .circular(8),
-            border: Border.all(color: isDark ? const Color(0xFF2D2D2D) : const Color(0xFFE5E5E5)),
+            border: .all(color: isDark ? const Color(0xFF2D2D2D) : const Color(0xFFE5E5E5)),
           ),
           child: Column(
             mainAxisSize: .min,
@@ -66,7 +66,7 @@ class FluentDashboardScaffold extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.green.withValues(alpha: 0.1),
                     borderRadius: .circular(4),
-                    border: Border.all(color: Colors.green.withValues(alpha: 0.3)),
+                    border: .all(color: Colors.green.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     children: [

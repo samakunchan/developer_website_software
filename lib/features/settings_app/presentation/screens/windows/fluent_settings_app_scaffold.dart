@@ -4,10 +4,7 @@ import 'package:developer_website_software/features/themes/presentation/light_th
 import 'package:fluent_ui/fluent_ui.dart';
 
 class FluentSettingsAppScaffold extends StatefulWidget {
-  const FluentSettingsAppScaffold({
-    this.isActive = false,
-    super.key
-  });
+  const FluentSettingsAppScaffold({this.isActive = false, super.key});
 
   final bool isActive;
 
@@ -23,7 +20,7 @@ class _FluentSettingsAppScaffoldState extends State<FluentSettingsAppScaffold> {
   @override
   Widget build(BuildContext context) {
     final FluentThemeData theme = FluentTheme.of(context);
-    final bool isDark = theme.brightness == Brightness.dark;
+    final bool isDark = theme.brightness == .dark;
     final Color sidebarBorder = isDark ? const Color(0xFF1E293B) : LightThemeConstants.glassBorder;
 
     return Row(
@@ -34,7 +31,7 @@ class _FluentSettingsAppScaffoldState extends State<FluentSettingsAppScaffold> {
           sections: _sections,
           onSelectSection: (int index) {
             setState(() => _selectedSectionIndex = index);
-          }
+          },
         ),
 
         /// Vertical Divider
@@ -43,14 +40,11 @@ class _FluentSettingsAppScaffoldState extends State<FluentSettingsAppScaffold> {
         /// 2. Content Pane
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: FluentSettingsMainContentArea(
-              selectedSectionIndex: _selectedSectionIndex,
-              isActive: widget.isActive
-            )
-          )
-        )
-      ]
+            padding: const .all(24),
+            child: FluentSettingsMainContentArea(selectedSectionIndex: _selectedSectionIndex, isActive: widget.isActive),
+          ),
+        ),
+      ],
     );
   }
 }

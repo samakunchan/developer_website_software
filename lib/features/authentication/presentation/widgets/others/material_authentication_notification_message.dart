@@ -2,11 +2,7 @@ import 'package:developer_website_software/features/authentication/presentation/
 import 'package:flutter/material.dart';
 
 class MaterialAuthenticationNotificationMessage extends StatelessWidget {
-  const MaterialAuthenticationNotificationMessage({
-    required this.message,
-    required this.status,
-    super.key
-  });
+  const MaterialAuthenticationNotificationMessage({required this.message, required this.status, super.key});
 
   final String message;
   final NotificationStatus status;
@@ -28,21 +24,17 @@ class MaterialAuthenticationNotificationMessage extends StatelessWidget {
             ? notificationColor.withValues(alpha: .5)
             : notificationColor.withValues(alpha: .1),
         borderRadius: .circular(8),
-        border: Border.all(color: notificationColor)
+        border: .all(color: notificationColor),
       ),
       child: Row(
         spacing: 10,
         children: [
-          if (status != NotificationStatus.success)
-            Icon(Icons.warning, color: notificationColor),
+          if (status != NotificationStatus.success) Icon(Icons.warning, color: notificationColor),
           Expanded(
-            child: Text(
-              message,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: notificationColor)
-            )
-          )
-        ]
-      )
+            child: Text(message, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: notificationColor)),
+          ),
+        ],
+      ),
     );
   }
 }

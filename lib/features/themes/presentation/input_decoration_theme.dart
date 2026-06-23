@@ -15,5 +15,5 @@ const Color kInputBorderColor = CupertinoDynamicColor.withBrightness(
 final BoxDecoration kCupertinoInputDecoration = BoxDecoration(
   color: kInputBgColor,
   border: Border.all(color: kInputBorderColor),
-  borderRadius: const BorderRadius.all(.circular(8)),
+  borderRadius: const .all(.circular(8)),
 );
