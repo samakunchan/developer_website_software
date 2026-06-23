@@ -17,6 +17,9 @@ presentation/
 │       └── fluent_settings_app_scaffold.dart # Direct binding to Fluent widgets
 ├── signals/            # State management via Signals
 │   └── settings_app_signals.dart
+├── viewmodels/         # Presentation View Models
+│   ├── policy_view_model.dart
+│   └── theme_view_model.dart
 └── widgets/            # UI components
     ├── macos/          # Cupertino (macOS/iOS) widgets
     │   ├── cupertino_settings_main_content_area.dart
@@ -57,6 +60,11 @@ This folder contains screen-level layout scaffolds. The root `settings_app_scree
 Contains all sub-widgets and layout panels, divided strictly by platform into `/macos`, `/windows`, and `/others`.
 - **Platform Main Components**: Direct layout entry points (such as `cupertino_settings_sidebar.dart` and `cupertino_settings_main_content_area.dart`) called by the platform scaffolds.
 - **`/components` Subfolder**: Contains modular, platform-specific leaf widgets (cards, preview blocks, specific page contents, grids) to avoid monolithic files.
+
+### 3. `/viewmodels` (Presentation View Models)
+Exposes reactive presentation-specific states for the domain entities:
+- `ThemeViewModel`: Wraps `ThemeEntity` and exposes the active theme as a reactive `Signal<String>`.
+- `PolicyViewModel`: Wraps `PolicyEntity` and exposes the active policy details (like `title` and `content`) as reactive signals.
 
 > [!NOTE]
 > **Conditional Rendering Choice**: Unlike the `admin` main content area which uses `IndexedStack` to persist sub-screen state, the Settings App main content area utilizes **Conditional Rendering** (via a `switch` statement on the section index).

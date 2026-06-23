@@ -5,6 +5,7 @@ import 'package:developer_website_software/features/authentication/domain/entiti
 import 'package:developer_website_software/features/authentication/domain/usecases/get_session_use_case.dart';
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_in_use_case.dart';
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_out_use_case.dart';
+import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class AuthSignals {
@@ -19,7 +20,7 @@ class AuthSignals {
   final GetSessionUseCase getSessionUseCase;
 
   /// Reactive State Signals
-  final Signal<UserEntity?> currentUser = signal<UserEntity?>(null);
+  final Signal<UserViewModel?> currentUser = signal<UserViewModel?>(null);
   final Signal<bool> isLoading = signal<bool>(false);
   final Signal<String?> authError = signal<String?>(null);
 
@@ -37,9 +38,9 @@ class AuthSignals {
         currentUser.value = null;
       },
       (SessionEntity session) {
-        currentUser.value = session.user;
+        currentUser.value = UserViewModel(session.user);
         authError.value = null;
-      },
+      }
     );
 
     isLoading.value = false;
@@ -59,7 +60,7 @@ class AuthSignals {
       (_) {
         currentUser.value = null;
         authError.value = null;
-      },
+      }
     );
 
     isLoading.value = false;
@@ -79,9 +80,9 @@ class AuthSignals {
         }
       },
       (UserEntity user) {
-        currentUser.value = user;
+        currentUser.value = UserViewModel(user);
         authError.value = null;
-      },
+      }
     );
 
     isLoading.value = false;

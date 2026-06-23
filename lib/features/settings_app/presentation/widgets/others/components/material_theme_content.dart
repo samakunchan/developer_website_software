@@ -16,7 +16,7 @@ class MaterialThemeContent extends StatelessWidget {
 
     return SignalBuilder(
       builder: (BuildContext context) {
-        final String currentTheme = signals.currentTheme.value;
+        final String currentTheme = signals.currentTheme.value.theme.value;
         final bool isLoading = signals.isLoading.value;
         final String? error = signals.errorMessage.value;
 
