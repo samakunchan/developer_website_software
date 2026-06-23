@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:signals_flutter/signals_flutter.dart';
@@ -13,11 +14,11 @@ enum AppFontSize {
 
   double get multiplier {
     switch (this) {
-      case AppFontSize.small:
+      case .small:
         return 0.85;
-      case AppFontSize.medium:
+      case .medium:
         return 1;
-      case AppFontSize.large:
+      case .large:
         return 1.25;
     }
   }
@@ -41,14 +42,14 @@ class SettingsSoftSignals {
   static const String _fontSizeKey = 'local_font_size';
   static const String _fontFamilyKey = 'local_font_family';
 
-  final Signal<ThemeMode> themeMode = signal<ThemeMode>(ThemeMode.system);
-  final Signal<AppFontSize> fontSize = signal<AppFontSize>(AppFontSize.medium);
-  final Signal<AppFontFamily> fontFamily = signal<AppFontFamily>(AppFontFamily.system);
+  final Signal<ThemeMode> themeMode = signal<ThemeMode>(.system);
+  final Signal<AppFontSize> fontSize = signal<AppFontSize>(.medium);
+  final Signal<AppFontFamily> fontFamily = signal<AppFontFamily>(.system);
 
   void _loadSettings() {
     final String? savedTheme = _prefs.getString(_themeKey);
     if (savedTheme != null) {
-      themeMode.value = ThemeMode.values.firstWhere((ThemeMode e) => e.name == savedTheme, orElse: () => ThemeMode.system);
+      themeMode.value = ThemeMode.values.firstWhere((ThemeMode e) => e.name == savedTheme, orElse: () => .system);
     }
 
     final String? savedFontSize = _prefs.getString(_fontSizeKey);

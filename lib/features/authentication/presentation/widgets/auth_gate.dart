@@ -1,8 +1,8 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
 import 'package:developer_website_software/features/admin/presentation/screens/admin_screen.dart';
-import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/presentation/screens/login_screen.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
+import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
@@ -15,7 +15,7 @@ class AuthGate extends StatelessWidget {
 
     return SignalBuilder(
       builder: (BuildContext context) {
-        final UserEntity? user = authSignals.currentUser.value;
+        final UserViewModel? user = authSignals.currentUser.value;
         if (user != null) {
           return const AdminScreen();
         }

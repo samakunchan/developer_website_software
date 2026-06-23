@@ -1,5 +1,5 @@
-import 'package:developer_website_software/features/authentication/domain/entities/user_entity.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
+import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/widgets/info_row.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/widgets/settings_soft_divider.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
@@ -11,7 +11,7 @@ class AccountTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserEntity? user = authSignals.currentUser.value;
+    final UserViewModel? user = authSignals.currentUser.value;
     final bool isDark = CupertinoTheme.brightnessOf(context) == .dark;
 
     if (user == null) {
@@ -23,9 +23,10 @@ class AccountTab extends StatelessWidget {
             const SizedBox(height: 12),
             Text(
               'Not Authenticated',
-              style: CupertinoTheme.of(
-                context,
-              ).textTheme.textStyle.copyWith(fontWeight: .bold, color: CupertinoColors.systemGrey),
+              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                fontWeight: .bold,
+                color: CupertinoColors.systemGrey,
+              ),
             ),
             const SizedBox(height: 6),
             Text(

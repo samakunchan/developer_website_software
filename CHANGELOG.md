@@ -1,5 +1,23 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.9.1+10 - 23/06/2026
+
+### Added
+- **Settings App ViewModels**: Introduced `ThemeViewModel` and `PolicyViewModel` to the `settings_app` presentation layer. Exposes fields (`theme`, `title`, `content`) as reactive signals.
+- **Authentication ViewModels**: Introduced `UserViewModel` and `SessionViewModel` to the `authentication` presentation layer. Wraps user profile information (`name`, `email`, `role`) as reactive signals while offering read-only getters for seamless integration.
+- **Settings Soft Documentation**: Added `README.md` for the `settings_soft` presentation layer detailing local preferences state and tab configurations.
+- **Settings App Layer Documentation**: Added `README.md` files for both the `data` layer (datasources, models, repositories) and `domain` layer (entities, repository contracts, use cases).
+- **Projects Layer Documentation**: Added `README.md` files for the `domain` layer and `data` layer detailing the codegen process, project model entities, and repositories.
+- **Dashboard Placeholder Documentation**: Added `README.md` for the `dashboard` feature indicating that development is in progress.
+
+### Changed
+- **State Management Integration**: Refactored `SettingsAppSignals` and `AuthSignals` to manage and propagate the new ViewModels rather than raw entities.
+- **UI Platform Parity**: Updated all platform-specific login scaffolds, admin toolbars, `AuthGate`, `AccountTab`, and theme content areas to consume the new ViewModel properties across macOS, Windows, and Web/Others.
+
+### Fixed
+
+- N/A
+
 ## 🚀 0.9.0+9 - 23/06/2026
 
 ### Added
