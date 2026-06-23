@@ -36,7 +36,9 @@ class CupertinoProjectsMainContentArea extends StatelessWidget {
                     children: [
                       Text(
                         'Projects',
-                        style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
+                        style: CupertinoTheme.of(
+                          context,
+                        ).textTheme.navTitleTextStyle.copyWith(fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         'Manage portfolio projects, categories, and featured selections.',
@@ -46,7 +48,7 @@ class CupertinoProjectsMainContentArea extends StatelessWidget {
                   ),
                 ),
                 Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   spacing: 8,
                   children: [
                     CupertinoAppButton(
@@ -54,21 +56,21 @@ class CupertinoProjectsMainContentArea extends StatelessWidget {
                         unawaited(
                           showCupertinoDialog<void>(
                             context: context,
-                            builder: (BuildContext context) => ProjectCreateDialog(signals: signals)
-                          )
+                            builder: (BuildContext context) => ProjectCreateDialog(signals: signals),
+                          ),
                         );
                       },
-                      child: const Icon(CupertinoIcons.add, size: 20)
+                      child: const Icon(CupertinoIcons.add, size: 20),
                     ),
                     if (isLoading)
                       const CupertinoActivityIndicator()
                     else
                       CupertinoAppButton(
                         onPressed: () => unawaited(signals.fetchProjects()),
-                        child: const Icon(CupertinoIcons.refresh, size: 20)
-                      )
+                        child: const Icon(CupertinoIcons.refresh, size: 20),
+                      ),
                   ],
-                )
+                ),
               ],
             ),
             const SizedBox(height: 20),
@@ -76,7 +78,7 @@ class CupertinoProjectsMainContentArea extends StatelessWidget {
             /// Error notification
             if (error != null) ...[
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const .all(12),
                 decoration: BoxDecoration(
                   color: kDangerColor.withValues(alpha: 0.1),
                   borderRadius: .circular(8),

@@ -24,18 +24,18 @@ class MaterialProjectsMainContentArea extends StatelessWidget {
         final String? error = signals.errorMessage.value;
 
         return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: [
             /// Header Row
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: .spaceBetween,
               children: [
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: .start,
                     spacing: 4,
                     children: [
-                      Text('Projects', style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold)),
+                      Text('Projects', style: theme.textTheme.headlineMedium?.copyWith(fontWeight: .bold)),
                       Text(
                         'Manage portfolio projects, categories, and featured selections.',
                         style: theme.textTheme.bodyMedium?.copyWith(
@@ -46,7 +46,7 @@ class MaterialProjectsMainContentArea extends StatelessWidget {
                   ),
                 ),
                 Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   spacing: 8,
                   children: [
                     IconButton(
@@ -55,20 +55,17 @@ class MaterialProjectsMainContentArea extends StatelessWidget {
                         unawaited(
                           showDialog<void>(
                             context: context,
-                            builder: (BuildContext context) => ProjectCreateDialog(signals: signals)
-                          )
+                            builder: (_) => ProjectCreateDialog(signals: signals),
+                          ),
                         );
-                      }
+                      },
                     ),
                     if (isLoading)
                       const CircularProgressIndicator()
                     else
-                      IconButton(
-                        icon: const Icon(Icons.refresh, size: 20),
-                        onPressed: () => unawaited(signals.fetchProjects())
-                      )
+                      IconButton(icon: const Icon(Icons.refresh, size: 20), onPressed: () => unawaited(signals.fetchProjects())),
                   ],
-                )
+                ),
               ],
             ),
             const SizedBox(height: 20),
@@ -76,7 +73,7 @@ class MaterialProjectsMainContentArea extends StatelessWidget {
             /// Error Box
             if (error != null) ...[
               Container(
-                padding: const EdgeInsets.all(12),
+                padding: const .all(12),
                 decoration: BoxDecoration(
                   color: kDangerColor.withValues(alpha: 0.1),
                   borderRadius: .circular(8),

@@ -101,7 +101,7 @@ class MaterialProjectCard extends StatelessWidget {
                         builder: (BuildContext context) {
                           if (project.isFeatured.value) {
                             return Row(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisSize: .min,
                               children: [
                                 const SizedBox(width: 8),
                                 Container(

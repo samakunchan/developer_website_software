@@ -81,7 +81,7 @@ class MaterialDashboardScaffold extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.green.withValues(alpha: 0.1),
                     borderRadius: .circular(8),
-                    border: Border.all(color: Colors.green.withValues(alpha: 0.3)),
+                    border: .all(color: Colors.green.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     spacing: 8,

@@ -35,7 +35,7 @@ class FluentProjectsSidebar extends StatelessWidget {
           children: [
             /// Title
             const Padding(
-              padding: EdgeInsets.only(left: 20, top: 24, bottom: 12),
+              padding: .only(left: 20, top: 24, bottom: 12),
               child: Text(
                 'CATEGORIES',
                 style: TextStyle(fontWeight: .bold, fontSize: 11, color: Color(0xFF94A3B8)),
@@ -59,11 +59,11 @@ class FluentProjectsSidebar extends StatelessWidget {
                       return GestureDetector(
                         onTap: () => signals.activeFilter.value = catId,
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          margin: const .symmetric(horizontal: 10, vertical: 3),
+                          padding: const .symmetric(horizontal: 12, vertical: 10),
                           decoration: BoxDecoration(
                             color: isSelected ? glassBg : Colors.transparent,
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: .circular(8),
                             border: isSelected ? Border(right: BorderSide(color: primaryColor, width: 2.5)) : null,
                           ),
                           child: Text(

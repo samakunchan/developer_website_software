@@ -43,7 +43,7 @@ class FluentProjectsMainContentArea extends StatelessWidget {
                   ),
                 ),
                 Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   spacing: 8,
                   children: [
                     IconButton(
@@ -52,20 +52,20 @@ class FluentProjectsMainContentArea extends StatelessWidget {
                         unawaited(
                           showDialog<void>(
                             context: context,
-                            builder: (BuildContext context) => ProjectCreateDialog(signals: signals)
-                          )
+                            builder: (BuildContext context) => ProjectCreateDialog(signals: signals),
+                          ),
                         );
-                      }
+                      },
                     ),
                     if (isLoading)
                       const SizedBox(width: 20, height: 20, child: ProgressRing(strokeWidth: 2))
                     else
                       IconButton(
                         icon: const Icon(FluentIcons.refresh, size: 20),
-                        onPressed: () => unawaited(signals.fetchProjects())
-                      )
+                        onPressed: () => unawaited(signals.fetchProjects()),
+                      ),
                   ],
-                )
+                ),
               ],
             ),
             const SizedBox(height: 20),

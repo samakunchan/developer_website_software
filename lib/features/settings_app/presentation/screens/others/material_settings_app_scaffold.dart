@@ -4,10 +4,7 @@ import 'package:developer_website_software/features/themes/presentation/light_th
 import 'package:flutter/material.dart';
 
 class MaterialSettingsAppScaffold extends StatefulWidget {
-  const MaterialSettingsAppScaffold({
-    this.isActive = false,
-    super.key
-  });
+  const MaterialSettingsAppScaffold({this.isActive = false, super.key});
 
   final bool isActive;
 
@@ -34,7 +31,7 @@ class _MaterialSettingsAppScaffoldState extends State<MaterialSettingsAppScaffol
           sections: _sections,
           onSelectSection: (int index) {
             setState(() => _selectedSectionIndex = index);
-          }
+          },
         ),
 
         /// Vertical Divider
@@ -43,14 +40,11 @@ class _MaterialSettingsAppScaffoldState extends State<MaterialSettingsAppScaffol
         /// 2. Content Pane
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: MaterialSettingsMainContentArea(
-              selectedSectionIndex: _selectedSectionIndex,
-              isActive: widget.isActive
-            )
-          )
-        )
-      ]
+            padding: const .all(24),
+            child: MaterialSettingsMainContentArea(selectedSectionIndex: _selectedSectionIndex, isActive: widget.isActive),
+          ),
+        ),
+      ],
     );
   }
 }

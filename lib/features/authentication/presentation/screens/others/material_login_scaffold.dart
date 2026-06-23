@@ -67,7 +67,7 @@ class MaterialLoginScaffold extends StatelessWidget {
                         controller: emailController,
                         placeholder: 'name@example.com',
                         keyboardType: .emailAddress,
-                        childForIcon: const Icon(FluentIcons.mail_options, size: 16)
+                        childForIcon: const Icon(FluentIcons.mail_options, size: 16),
                       ),
                       const SizedBox(height: 16),
 
@@ -77,7 +77,7 @@ class MaterialLoginScaffold extends StatelessWidget {
                         controller: passwordController,
                         placeholder: '••••••••',
                         obscureText: true,
-                        childForIcon: const Icon(FluentIcons.lock, size: 16)
+                        childForIcon: const Icon(FluentIcons.lock, size: 16),
                       ),
                       const SizedBox(height: 24),
 
@@ -112,7 +112,7 @@ class MaterialLoginScaffold extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: Colors.green.withValues(alpha: 0.15),
                             borderRadius: .circular(8),
-                            border: Border.all(color: Colors.green),
+                            border: .all(color: Colors.green),
                           ),
                           child: Text(
                             'Authenticated as: ${user.name} (${user.role})',

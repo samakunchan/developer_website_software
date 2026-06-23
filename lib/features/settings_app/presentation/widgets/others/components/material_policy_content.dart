@@ -43,7 +43,7 @@ class MaterialPolicyContent extends StatelessWidget {
               children: [
                 Text(sidebarTitle, style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold)),
                 Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   spacing: 8,
                   children: [
                     if (saveStatus != PolicySaveStatus.saving) PolicySaveStatusIndicator(status: saveStatus),
@@ -59,7 +59,7 @@ class MaterialPolicyContent extends StatelessWidget {
             ),
             if (error != null)
               Padding(
-                padding: const EdgeInsets.only(bottom: 16),
+                padding: const .only(bottom: 16),
                 child: Text(error, style: TextStyle(color: Theme.of(context).colorScheme.error)),
               ),
             Column(
@@ -69,7 +69,7 @@ class MaterialPolicyContent extends StatelessWidget {
                   controller: titleController,
                   decoration: const InputDecoration(
                     hintText: 'Enter document title...',
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    contentPadding: .symmetric(horizontal: 12, vertical: 10),
                     border: OutlineInputBorder(),
                   ),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500),
@@ -80,10 +80,10 @@ class MaterialPolicyContent extends StatelessWidget {
               child: fleatherController == null
                   ? const Center(child: CircularProgressIndicator(strokeWidth: 2))
                   : Container(
-                      padding: const EdgeInsets.all(8),
+                      padding: const .all(8),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Theme.of(context).dividerColor),
-                        borderRadius: BorderRadius.circular(8),
+                        border: .all(color: Theme.of(context).dividerColor),
+                        borderRadius: .circular(8),
                       ),
                       child: Column(
                         spacing: 8,
@@ -93,7 +93,7 @@ class MaterialPolicyContent extends StatelessWidget {
                             child: FleatherEditor(
                               controller: fleatherController,
                               focusNode: focusNode,
-                              padding: const EdgeInsets.all(8),
+                              padding: const .all(8),
                             ),
                           ),
                         ],
