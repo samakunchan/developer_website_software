@@ -31,7 +31,7 @@ class MaterialThemeOptionCard extends StatelessWidget {
           color: isActive ? theme.colorScheme.primary : theme.dividerColor.withValues(alpha: 0.2),
           width: isActive ? 2 : 1,
         ),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: .circular(12),
       ),
       child: InkWell(
         onTap: isLoading ? null : onTap,

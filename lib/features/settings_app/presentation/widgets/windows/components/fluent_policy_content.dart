@@ -45,7 +45,7 @@ class FluentPolicyContent extends StatelessWidget {
               children: [
                 Text(sidebarTitle, style: theme.typography.subtitle?.copyWith(fontWeight: FontWeight.bold)),
                 Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   spacing: 8,
                   children: [
                     if (saveStatus != PolicySaveStatus.saving) PolicySaveStatusIndicator(status: saveStatus),
@@ -61,7 +61,7 @@ class FluentPolicyContent extends StatelessWidget {
             ),
             if (error != null)
               Padding(
-                padding: const EdgeInsets.only(bottom: 16),
+                padding: const .only(bottom: 16),
                 child: Text(error, style: const TextStyle(color: Color(0xFFEF4444))),
               ),
             Column(
@@ -70,7 +70,7 @@ class FluentPolicyContent extends StatelessWidget {
                 TextBox(
                   controller: titleController,
                   placeholder: 'Enter document title...',
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  padding: const .symmetric(horizontal: 12, vertical: 10),
                 ),
               ],
             ),
@@ -79,12 +79,12 @@ class FluentPolicyContent extends StatelessWidget {
                   ? const Center(child: ProgressRing(strokeWidth: 2))
                   : Material(
                       color: theme.scaffoldBackgroundColor,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: .circular(8),
                       child: Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: const .all(8),
                         decoration: BoxDecoration(
-                          border: Border.all(color: theme.resources.dividerStrokeColorDefault),
-                          borderRadius: BorderRadius.circular(8),
+                          border: .all(color: theme.resources.dividerStrokeColorDefault),
+                          borderRadius: .circular(8),
                         ),
                         child: Column(
                           spacing: 8,
@@ -94,7 +94,7 @@ class FluentPolicyContent extends StatelessWidget {
                               child: FleatherEditor(
                                 controller: fleatherController,
                                 focusNode: focusNode,
-                                padding: const EdgeInsets.all(8),
+                                padding: const .all(8),
                               ),
                             ),
                           ],

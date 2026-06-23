@@ -7,6 +7,15 @@ import 'package:developer_website_software/features/authentication/domain/usecas
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_in_use_case.dart';
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_out_use_case.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
+import 'package:developer_website_software/features/projects/data/datasources/projects_remote_data_source.dart';
+import 'package:developer_website_software/features/projects/data/repositories/projects_repository_impl.dart';
+import 'package:developer_website_software/features/projects/domain/repositories/projects_repository.dart';
+import 'package:developer_website_software/features/projects/domain/usecases/create_project_use_case.dart';
+import 'package:developer_website_software/features/projects/domain/usecases/delete_project_use_case.dart';
+import 'package:developer_website_software/features/projects/domain/usecases/get_projects_use_case.dart';
+import 'package:developer_website_software/features/projects/domain/usecases/toggle_project_featured_use_case.dart';
+import 'package:developer_website_software/features/projects/domain/usecases/update_project_use_case.dart';
+import 'package:developer_website_software/features/projects/presentation/signals/projects_signals.dart';
 import 'package:developer_website_software/features/settings_app/data/datasources/settings_app_remote_data_source.dart';
 import 'package:developer_website_software/features/settings_app/data/repositories/settings_app_repository_impl.dart';
 import 'package:developer_website_software/features/settings_app/domain/repositories/settings_app_repository.dart';
@@ -75,7 +84,28 @@ Future<void> initDependencyInjection() async {
         getThemeUseCase: kGetIt<GetThemeUseCase>(),
         setThemeUseCase: kGetIt<SetThemeUseCase>(),
         getPolicyUseCase: kGetIt<GetPolicyUseCase>(),
-        updatePolicyUseCase: kGetIt<UpdatePolicyUseCase>(),
-      ),
+        updatePolicyUseCase: kGetIt<UpdatePolicyUseCase>()
+      )
+    )
+    /// Features - Projects - Data Layer
+    ..registerLazySingleton<ProjectsRemoteDataSource>(() => ProjectsRemoteDataSourceImpl(kGetIt<ApiService>()))
+    ..registerLazySingleton<ProjectsRepository>(
+      () => ProjectsRepositoryImpl(remoteDataSource: kGetIt<ProjectsRemoteDataSource>())
+    )
+    /// Features - Projects - Domain Layer
+    ..registerLazySingleton<GetProjectsUseCase>(() => GetProjectsUseCase(kGetIt<ProjectsRepository>()))
+    ..registerLazySingleton<ToggleProjectFeaturedUseCase>(() => ToggleProjectFeaturedUseCase(kGetIt<ProjectsRepository>()))
+    ..registerLazySingleton<CreateProjectUseCase>(() => CreateProjectUseCase(kGetIt<ProjectsRepository>()))
+    ..registerLazySingleton<UpdateProjectUseCase>(() => UpdateProjectUseCase(kGetIt<ProjectsRepository>()))
+    ..registerLazySingleton<DeleteProjectUseCase>(() => DeleteProjectUseCase(kGetIt<ProjectsRepository>()))
+    /// Features - Projects - Presentation Layer Signals
+    ..registerLazySingleton<ProjectsSignals>(
+      () => ProjectsSignals(
+        getProjectsUseCase: kGetIt<GetProjectsUseCase>(),
+        toggleProjectFeaturedUseCase: kGetIt<ToggleProjectFeaturedUseCase>(),
+        createProjectUseCase: kGetIt<CreateProjectUseCase>(),
+        updateProjectUseCase: kGetIt<UpdateProjectUseCase>(),
+        deleteProjectUseCase: kGetIt<DeleteProjectUseCase>()
+      )
     );
 }

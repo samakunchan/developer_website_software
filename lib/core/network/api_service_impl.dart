@@ -33,7 +33,15 @@ abstract interface class ApiService {
     Object? data,
     Map<String, dynamic>? queryParameters,
     Options? options,
-    CancelToken? cancelToken,
+    CancelToken? cancelToken
+  });
+
+  Future<Either<ExceptionModel, T>> patch<T>({
+    required String path,
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken
   });
 }
 
@@ -121,7 +129,7 @@ class ApiServiceImpl extends BaseService implements ApiService {
     Object? data,
     Map<String, dynamic>? queryParameters,
     Options? options,
-    CancelToken? cancelToken,
+    CancelToken? cancelToken
   }) {
     return apiCall<T>(() async {
       final Response<dynamic> response = await client.delete<dynamic>(
@@ -129,7 +137,28 @@ class ApiServiceImpl extends BaseService implements ApiService {
         data: data,
         queryParameters: queryParameters,
         options: options,
-        cancelToken: cancelToken,
+        cancelToken: cancelToken
+      );
+
+      return response.data as T;
+    });
+  }
+
+  @override
+  Future<Either<ExceptionModel, T>> patch<T>({
+    required String path,
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken
+  }) {
+    return apiCall<T>(() async {
+      final Response<dynamic> response = await client.patch<dynamic>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken
       );
 
       return response.data as T;
