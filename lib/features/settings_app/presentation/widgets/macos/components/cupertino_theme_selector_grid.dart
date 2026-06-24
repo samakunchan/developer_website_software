@@ -1,17 +1,19 @@
 import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
+import 'package:developer_website_software/features/settings_app/presentation/viewmodels/theme_view_model.dart';
 import 'package:developer_website_software/features/settings_app/presentation/widgets/macos/components/cupertino_theme_option_card.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:signals_flutter/signals_flutter.dart';
 
 class CupertinoThemeSelectorGrid extends StatelessWidget {
   const CupertinoThemeSelectorGrid({
-    required this.currentTheme,
-    required this.isLoading,
+    required this.currentThemeSignal,
+    required this.isLoadingSignal,
     required this.onThemeSelected,
     super.key,
   });
 
-  final String currentTheme;
-  final bool isLoading;
+  final Signal<ThemeViewModel> currentThemeSignal;
+  final Signal<bool> isLoadingSignal;
   final ValueChanged<String> onThemeSelected;
 
   @override
@@ -53,12 +55,11 @@ class CupertinoThemeSelectorGrid extends StatelessWidget {
                   runSpacing: 16,
                   children: List.generate(categoryThemes.length, (int index) {
                     final ThemeOption option = categoryThemes[index];
-                    final bool isActive = currentTheme == option.id;
 
                     return CupertinoThemeOptionCard(
                       option: option,
-                      isActive: isActive,
-                      isLoading: isLoading,
+                      currentThemeSignal: currentThemeSignal,
+                      isLoadingSignal: isLoadingSignal,
                       onTap: () => onThemeSelected(option.id),
                     );
                   }),

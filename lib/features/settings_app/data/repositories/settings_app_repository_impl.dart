@@ -22,6 +22,10 @@ class SettingsAppRepositoryImpl implements SettingsAppRepository {
     } on ExceptionModel catch (e) {
       return Left(ServerFailure.fromException(e));
     } on Object catch (e) {
+      if (e.toString().contains('This theme is not validated.')) {
+        await setTheme('light');
+        return const Left(ThemeFailure(message: 'We have an invalid theme loaded from database. Reload to default : "light"'));
+      }
       return Left(ServerFailure(message: e.toString(), statusCode: 500, exceptionName: 'UNKNOWN_ERROR'));
     }
   }
@@ -35,6 +39,10 @@ class SettingsAppRepositoryImpl implements SettingsAppRepository {
     } on ExceptionModel catch (e) {
       return Left(ServerFailure.fromException(e));
     } on Object catch (e) {
+      if (e.toString().contains('This theme is not validated.')) {
+        await setTheme('light');
+        return const Left(ThemeFailure(message: 'This theme is not ready for the moment. Reload to default : "light"'));
+      }
       return Left(ServerFailure(message: e.toString(), statusCode: 500, exceptionName: 'UNKNOWN_ERROR'));
     }
   }
