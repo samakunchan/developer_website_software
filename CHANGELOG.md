@@ -1,5 +1,33 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.11.0+13 - 24/06/2026
+
+### Added
+- **macOS (Cupertino) Detail Pane Extraction**: Extracted inline widgets from `cupertino_messages_scaffold.dart` into clean, modularized components under `lib/features/messages/presentation/widgets/macos/components/`:
+  - `CupertinoMessageSenderProfileCard`: Renders initials avatar, name, email, and localized timestamp.
+  - `CupertinoMessageMetadataTags`: Renders service types and price range tags.
+  - `CupertinoMessageProjectBrief`: Displays selection-enabled project brief text.
+  - `CupertinoMessageDetailBody`: Composes detail sub-elements inside a scrollable layout.
+- **Windows (Fluent UI) Componentization**: Refactored the Windows scaffolding layout by extracting all elements under `lib/features/messages/presentation/widgets/windows/components/`:
+  - `FluentMessageSearchBox`: Search box text field wrapper.
+  - `FluentMessageFiltersSegment`: Segmented list filters.
+  - `FluentMessageList`: Interactive messages list view.
+  - `FluentMessagePaginationFooter`: Page sizes ComboBox and page navigation.
+  - `FluentMessageDetailHeader`: Detail view navigation header toolbar.
+  - `FluentMessageSenderProfileCard`, `FluentMessageMetadataTags`, `FluentMessageProjectBrief`, and `FluentMessageDetailBody`.
+- **Other Platforms (Material 3) Componentization**: Modularized all components of `material_messages_scaffold.dart` under `lib/features/messages/presentation/widgets/others/components/`:
+  - `MaterialMessageSearchBox`, `MaterialMessageFiltersSegment`, `MaterialMessageList`, `MaterialMessagePaginationFooter`, `MaterialMessageDetailHeader`.
+  - `MaterialMessageSenderProfileCard`, `MaterialMessageMetadataTags`, `MaterialMessageProjectBrief`, and `MaterialMessageDetailBody`.
+- **Cross-Platform Badge Counts**: Created and integrated `CupertinoMessageBadgeCount`, `FluentMessageBadgeCount`, and `MaterialMessageBadgeCount` to display unread badge counts within segmented sliding tab selectors, adapting colors dynamically based on selection state.
+
+### Changed
+- **Shorthand Syntax Overhaul**: Cleaned all newly created and updated `messages` components to use Dart dot-shorthand member and constructor notation (`.symmetric`, `.circular`, `.bold`, `.normal`, `.min`, `.center`, `.stretch`, and `.dark`) where types are statically known.
+- **Formatting Standards Compliance**: Formatted all codebase files under `lib/features/messages/` to remove trailing commas from argument lists, parameter lists, constructor calls, and list/map literals to prevent vertical line splitting and maximize horizontal code space.
+- **Cleaned Scaffolding Code**: Refactored the core Cupertino, Fluent, and Material message scaffolds to use the extracted sub-widgets, reducing file sizes and improving maintainability.
+
+### Fixed
+- N/A
+
 ## 🚀 0.10.0+12 - 24/06/2026
 
 ### Added
