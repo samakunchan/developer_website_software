@@ -7,6 +7,13 @@ import 'package:developer_website_software/features/authentication/domain/usecas
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_in_use_case.dart';
 import 'package:developer_website_software/features/authentication/domain/usecases/sign_out_use_case.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
+import 'package:developer_website_software/features/messages/data/datasources/messages_remote_data_source.dart';
+import 'package:developer_website_software/features/messages/data/repositories/messages_repository_impl.dart';
+import 'package:developer_website_software/features/messages/domain/repositories/messages_repository.dart';
+import 'package:developer_website_software/features/messages/domain/usecases/get_messages_use_case.dart';
+import 'package:developer_website_software/features/messages/domain/usecases/get_unread_messages_count_use_case.dart';
+import 'package:developer_website_software/features/messages/domain/usecases/toggle_message_read_use_case.dart';
+import 'package:developer_website_software/features/messages/presentation/signals/messages_signals.dart';
 import 'package:developer_website_software/features/projects/data/datasources/projects_remote_data_source.dart';
 import 'package:developer_website_software/features/projects/data/repositories/projects_repository_impl.dart';
 import 'package:developer_website_software/features/projects/domain/repositories/projects_repository.dart';
@@ -84,13 +91,13 @@ Future<void> initDependencyInjection() async {
         getThemeUseCase: kGetIt<GetThemeUseCase>(),
         setThemeUseCase: kGetIt<SetThemeUseCase>(),
         getPolicyUseCase: kGetIt<GetPolicyUseCase>(),
-        updatePolicyUseCase: kGetIt<UpdatePolicyUseCase>()
-      )
+        updatePolicyUseCase: kGetIt<UpdatePolicyUseCase>(),
+      ),
     )
     /// Features - Projects - Data Layer
     ..registerLazySingleton<ProjectsRemoteDataSource>(() => ProjectsRemoteDataSourceImpl(kGetIt<ApiService>()))
     ..registerLazySingleton<ProjectsRepository>(
-      () => ProjectsRepositoryImpl(remoteDataSource: kGetIt<ProjectsRemoteDataSource>())
+      () => ProjectsRepositoryImpl(remoteDataSource: kGetIt<ProjectsRemoteDataSource>()),
     )
     /// Features - Projects - Domain Layer
     ..registerLazySingleton<GetProjectsUseCase>(() => GetProjectsUseCase(kGetIt<ProjectsRepository>()))
@@ -105,7 +112,24 @@ Future<void> initDependencyInjection() async {
         toggleProjectFeaturedUseCase: kGetIt<ToggleProjectFeaturedUseCase>(),
         createProjectUseCase: kGetIt<CreateProjectUseCase>(),
         updateProjectUseCase: kGetIt<UpdateProjectUseCase>(),
-        deleteProjectUseCase: kGetIt<DeleteProjectUseCase>()
-      )
+        deleteProjectUseCase: kGetIt<DeleteProjectUseCase>(),
+      ),
+    )
+    /// Features - Messages - Data Layer
+    ..registerLazySingleton<MessagesRemoteDataSource>(() => MessagesRemoteDataSourceImpl(kGetIt<ApiService>()))
+    ..registerLazySingleton<MessagesRepository>(
+      () => MessagesRepositoryImpl(remoteDataSource: kGetIt<MessagesRemoteDataSource>()),
+    )
+    /// Features - Messages - Domain Layer
+    ..registerLazySingleton<GetMessagesUseCase>(() => GetMessagesUseCase(kGetIt<MessagesRepository>()))
+    ..registerLazySingleton<GetUnreadMessagesCountUseCase>(() => GetUnreadMessagesCountUseCase(kGetIt<MessagesRepository>()))
+    ..registerLazySingleton<ToggleMessageReadUseCase>(() => ToggleMessageReadUseCase(kGetIt<MessagesRepository>()))
+    /// Features - Messages - Presentation Layer Signals
+    ..registerLazySingleton<MessagesSignals>(
+      () => MessagesSignals(
+        getMessagesUseCase: kGetIt<GetMessagesUseCase>(),
+        getUnreadMessagesCountUseCase: kGetIt<GetUnreadMessagesCountUseCase>(),
+        toggleMessageReadUseCase: kGetIt<ToggleMessageReadUseCase>(),
+      ),
     );
 }

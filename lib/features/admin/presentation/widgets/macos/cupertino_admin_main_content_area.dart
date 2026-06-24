@@ -18,8 +18,8 @@ class CupertinoAdminMainContentArea extends StatelessWidget {
         const Placeholder(), // Profiles
         ProjectsScreen(isActive: selectedNavIndex == 3),
         const Placeholder(), // Analytics
-        SettingsAppScreen(isActive: selectedNavIndex == 5)
-      ]
+        SettingsAppScreen(isActive: selectedNavIndex == 5),
+      ],
     );
   }
 }

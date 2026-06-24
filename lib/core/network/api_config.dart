@@ -19,4 +19,10 @@ class ApiConfig {
 
   /// [End point] '/projects'
   static const String projects = '/projects';
+
+  /// [End point] '/messages'
+  static const String messages = '/messages';
+
+  /// [End point] '/messages/unread-count'
+  static const String unreadMessagesCount = '/messages/unread-count';
 }
