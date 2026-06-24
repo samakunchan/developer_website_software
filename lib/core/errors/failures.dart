@@ -35,3 +35,7 @@ class CacheFailure extends Failure {
 class ConnectionFailure extends Failure {
   const ConnectionFailure([super.message = 'No Internet Connection']);
 }
+
+class ThemeFailure extends Failure {
+  const ThemeFailure({required String message}) : super(message);
+}

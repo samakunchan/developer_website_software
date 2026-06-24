@@ -102,6 +102,7 @@ class SettingsAppSignals {
 
   final Signal<ThemeViewModel> currentTheme = signal<ThemeViewModel>(ThemeViewModel(const ThemeEntity(theme: 'light')));
   final Signal<bool> isLoading = signal<bool>(false);
+  final Signal<bool> isFetchingTheme = signal<bool>(false);
   final Signal<String?> errorMessage = signal<String?>(null);
 
   final Signal<PolicyViewModel?> privacyPolicy = signal<PolicyViewModel?>(null);
@@ -225,6 +226,7 @@ class SettingsAppSignals {
   }
 
   Future<void> fetchTheme() async {
+    isFetchingTheme.value = true;
     isLoading.value = true;
     errorMessage.value = null;
 
@@ -241,11 +243,11 @@ class SettingsAppSignals {
     );
 
     isLoading.value = false;
+    isFetchingTheme.value = false;
   }
 
   Future<void> updateTheme(String theme) async {
     isLoading.value = true;
-    errorMessage.value = null;
 
     final Either<Failure, ThemeEntity> result = await setThemeUseCase(theme);
 

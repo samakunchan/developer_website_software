@@ -1,17 +1,19 @@
 import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
+import 'package:developer_website_software/features/settings_app/presentation/viewmodels/theme_view_model.dart';
 import 'package:developer_website_software/features/settings_app/presentation/widgets/others/components/material_theme_option_card.dart';
 import 'package:flutter/material.dart';
+import 'package:signals_flutter/signals_flutter.dart';
 
 class MaterialThemeSelectorGrid extends StatelessWidget {
   const MaterialThemeSelectorGrid({
-    required this.currentTheme,
-    required this.isLoading,
+    required this.currentThemeSignal,
+    required this.isLoadingSignal,
     required this.onThemeSelected,
-    super.key,
+    super.key
   });
 
-  final String currentTheme;
-  final bool isLoading;
+  final Signal<ThemeViewModel> currentThemeSignal;
+  final Signal<bool> isLoadingSignal;
   final ValueChanged<String> onThemeSelected;
 
   @override
@@ -51,13 +53,12 @@ class MaterialThemeSelectorGrid extends StatelessWidget {
                   runSpacing: 16,
                   children: List.generate(categoryThemes.length, (int index) {
                     final ThemeOption option = categoryThemes[index];
-                    final bool isActive = currentTheme == option.id;
 
                     return MaterialThemeOptionCard(
                       option: option,
-                      isActive: isActive,
-                      isLoading: isLoading,
-                      onTap: () => onThemeSelected(option.id),
+                      currentThemeSignal: currentThemeSignal,
+                      isLoadingSignal: isLoadingSignal,
+                      onTap: () => onThemeSelected(option.id)
                     );
                   }),
                 ),

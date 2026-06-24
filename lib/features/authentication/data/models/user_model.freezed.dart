@@ -212,7 +212,7 @@ return $default(_that.id,_that.name,_that.email,_that.role);case _:
 @JsonSerializable()
 
 class _UserModel extends UserModel {
-  const _UserModel({required this.id, required this.name, required this.email, required this.role}): assert(id > 0, 'ID must be a positive integer'),super._();
+   _UserModel({required this.id, required this.name, required this.email, required this.role}): assert(id > 0, 'ID must be a positive integer'),assert(email.contains("@"), 'Email address is invalid'),assert(role.contains("admin"), 'The role should be an admin.'),super._();
   factory _UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
 @override final  int id;

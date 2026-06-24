@@ -219,7 +219,7 @@ return $default(_that.token,_that.user);case _:
 @JsonSerializable()
 
 class _SessionModel extends SessionModel {
-  const _SessionModel({required this.token, required this.user}): super._();
+   _SessionModel({required this.token, required this.user}): assert(token.isNotEmpty, 'The token should not be empty.'),super._();
   factory _SessionModel.fromJson(Map<String, dynamic> json) => _$SessionModelFromJson(json);
 
 @override final  String token;
