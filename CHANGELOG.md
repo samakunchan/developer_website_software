@@ -1,5 +1,18 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.10.0+12 - 24/06/2026
+
+### Added
+- N/A
+
+### Changed
+- **Freezed Settings App Models**: Refactored `PolicyModel` and `ThemeModel` under `lib/features/settings_app/data/models/` to use the `freezed` package for code generation, immutability, and JSON serialization.
+- **Granular Signal Rebuilds**: Optimized theme selection content widgets across macOS (Cupertino), Windows (Fluent), and Web/others (Material) to prevent full-page/full-grid rebuilds when changing themes or encountering validation errors.
+- **Dampen Theme Selection Blinking**: Separated refresh button loading state into `isFetchingTheme` and prevented clearing the `errorMessage` immediately at the start of theme updates, eliminating UI layout blinking.
+
+### Fixed
+- N/A
+
 ## 🚀 0.9.2+11 - 23/06/2026
 
 ### Added
