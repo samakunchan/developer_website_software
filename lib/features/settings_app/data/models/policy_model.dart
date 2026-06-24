@@ -1,29 +1,22 @@
 import 'package:developer_website_software/features/settings_app/domain/entities/policy_entity.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class PolicyModel extends PolicyEntity {
-  const PolicyModel({
-    required super.id,
-    required super.title,
-    required super.content,
-    required super.createdAt,
-    required super.updatedAt,
-  });
+part 'policy_model.freezed.dart';
+part 'policy_model.g.dart';
 
-  factory PolicyModel.fromJson(Map<String, dynamic> json) {
-    return PolicyModel(
-      id: json['id'] as int,
-      title: json['title'] as String,
-      content: json['content'] as String,
-      createdAt: json['createdAt'] as String,
-      updatedAt: json['updatedAt'] as String,
-    );
-  }
+@freezed
+abstract class PolicyModel with _$PolicyModel {
+  const factory PolicyModel({
+    required int id,
+    required String title,
+    required String content,
+    required String createdAt,
+    required String updatedAt,
+  }) = _PolicyModel;
 
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{'id': id, 'title': title, 'content': content, 'createdAt': createdAt, 'updatedAt': updatedAt};
-  }
+  const PolicyModel._();
 
-  PolicyEntity toEntity() {
-    return PolicyEntity(id: id, title: title, content: content, createdAt: createdAt, updatedAt: updatedAt);
-  }
+  factory PolicyModel.fromJson(Map<String, dynamic> json) => _$PolicyModelFromJson(json);
+
+  PolicyEntity toEntity() => PolicyEntity(id: id, title: title, content: content, createdAt: createdAt, updatedAt: updatedAt);
 }

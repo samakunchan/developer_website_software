@@ -1,12 +1,19 @@
 import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
+import 'package:developer_website_software/features/settings_app/presentation/viewmodels/theme_view_model.dart';
 import 'package:developer_website_software/features/settings_app/presentation/widgets/windows/components/fluent_theme_option_card.dart';
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:signals_flutter/signals_flutter.dart';
 
 class FluentThemeSelectorGrid extends StatelessWidget {
-  const FluentThemeSelectorGrid({required this.currentTheme, required this.isLoading, required this.onThemeSelected, super.key});
+  const FluentThemeSelectorGrid({
+    required this.currentThemeSignal,
+    required this.isLoadingSignal,
+    required this.onThemeSelected,
+    super.key
+  });
 
-  final String currentTheme;
-  final bool isLoading;
+  final Signal<ThemeViewModel> currentThemeSignal;
+  final Signal<bool> isLoadingSignal;
   final ValueChanged<String> onThemeSelected;
 
   @override
@@ -46,13 +53,12 @@ class FluentThemeSelectorGrid extends StatelessWidget {
                   runSpacing: 16,
                   children: List.generate(categoryThemes.length, (int index) {
                     final ThemeOption option = categoryThemes[index];
-                    final bool isActive = currentTheme == option.id;
 
                     return FluentThemeOptionCard(
                       option: option,
-                      isActive: isActive,
-                      isLoading: isLoading,
-                      onTap: () => onThemeSelected(option.id),
+                      currentThemeSignal: currentThemeSignal,
+                      isLoadingSignal: isLoadingSignal,
+                      onTap: () => onThemeSelected(option.id)
                     );
                   }),
                 ),

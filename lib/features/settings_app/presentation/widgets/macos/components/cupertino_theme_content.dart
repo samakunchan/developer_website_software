@@ -14,49 +14,51 @@ class CupertinoThemeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SignalBuilder(
-      builder: (BuildContext context) {
-        final String currentTheme = signals.currentTheme.value.theme.value;
-        final bool isLoading = signals.isLoading.value;
-        final String? error = signals.errorMessage.value;
-
-        return Column(
-          crossAxisAlignment: .start,
-          spacing: 20,
+    return Column(
+      crossAxisAlignment: .start,
+      spacing: 20,
+      children: [
+        Row(
+          mainAxisAlignment: .spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: .spaceBetween,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    spacing: 4,
-                    children: [
-                      Text(
-                        'Themes & Appearance',
-                        style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 24, fontWeight: .bold),
-                      ),
-                      SizedBox(
-                        width: 500,
-                        child: Text(
-                          'Choose the interface appearance for your live portfolio website.',
-                          style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(color: CupertinoColors.secondaryLabel),
-                          overflow: .ellipsis,
-                        ),
-                      ),
-                    ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: .start,
+                spacing: 4,
+                children: [
+                  Text(
+                    'Themes & Appearance',
+                    style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 24, fontWeight: .bold),
                   ),
-                ),
-                if (isLoading)
-                  const CupertinoActivityIndicator()
-                else
-                  CupertinoAppButton(onPressed: signals.fetchTheme, child: const Icon(CupertinoIcons.refresh, size: 20)),
-              ],
+                  SizedBox(
+                    width: 500,
+                    child: Text(
+                      'Choose the interface appearance for your live portfolio website.',
+                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(color: CupertinoColors.secondaryLabel),
+                      overflow: .ellipsis,
+                    ),
+                  ),
+                ],
+              ),
             ),
+            SignalBuilder(
+              builder: (_) {
+                final bool isFetching = signals.isFetchingTheme.value;
+                if (isFetching) {
+                  return const CupertinoActivityIndicator();
+                }
+                return CupertinoAppButton(onPressed: signals.fetchTheme, child: const Icon(CupertinoIcons.refresh, size: 20));
+              }
+            ),
+          ],
+        ),
 
-            /// Error notification
-            if (error != null)
-              Container(
+        /// Error notification
+        SignalBuilder(
+          builder: (_) {
+            final String? error = signals.errorMessage.value;
+            if (error != null) {
+              return Container(
                 padding: const .all(12),
                 decoration: BoxDecoration(
                   color: kDangerColor.withValues(alpha: 0.1),
@@ -75,17 +77,19 @@ class CupertinoThemeContent extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              );
+            }
+            return const SizedBox();
+          },
+        ),
 
-            /// Themes list
-            CupertinoThemeSelectorGrid(
-              currentTheme: currentTheme,
-              isLoading: isLoading,
-              onThemeSelected: (String id) => unawaited(signals.updateTheme(id)),
-            ),
-          ],
-        );
-      },
+        /// Themes list
+        CupertinoThemeSelectorGrid(
+          currentThemeSignal: signals.currentTheme,
+          isLoadingSignal: signals.isLoading,
+          onThemeSelected: (String id) => unawaited(signals.updateTheme(id))
+        ),
+      ],
     );
   }
 }

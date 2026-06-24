@@ -7,7 +7,8 @@ part 'session_model.g.dart';
 
 @freezed
 abstract class SessionModel with _$SessionModel {
-  const factory SessionModel({
+  @Assert('token.isNotEmpty', 'The token should not be empty.')
+  factory SessionModel({
     required String token,
     required UserModel user,
   }) = _SessionModel;
