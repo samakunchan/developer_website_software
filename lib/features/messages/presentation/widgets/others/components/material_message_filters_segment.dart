@@ -33,8 +33,14 @@ class MaterialMessageFiltersSegment extends StatelessWidget {
               ),
               Expanded(
                 child: ChoiceChip(
-                  label: MaterialMessageBadgeCount(
-                    isSelected: activeFilter == 'unread',
+                  label: Row(
+                    mainAxisSize: .min,
+                    mainAxisAlignment: .center,
+                    spacing: 4,
+                    children: [
+                      const Text('Unread', style: TextStyle(fontSize: 12)),
+                      MaterialMessageBadgeCount(isSelected: activeFilter == 'unread'),
+                    ],
                   ),
                   selected: activeFilter == 'unread',
                   onSelected: (_) => unawaited(signals.setFilter('unread')),

@@ -1,5 +1,20 @@
 # CHANGELOG developer_website_software
 
+## 🚀 0.12.0+14 - 25/06/2026
+
+### Added
+- **Workspace Agent Rules**: Added a workspace-level rules file (`.agents/AGENTS.md`) and updated the global `mobile-init` skill template to copy the agent rules automatically to new projects.
+- **Multi-Language Translations**: Added translation keys and full support for English, French, and Spanish.
+- **Login Page Localization**: Localized the login screens across macOS, Windows, and Material platforms.
+- **Preferences Language Selector**: Integrated a language settings picker row under the Settings Soft dialog with "Auto." system locale support.
+- **Dialog & Tab Localization**: Localized all settings preferences dialog tab headers, labels, and text.
+
+### Changed
+- **Shorthand & Formatting Cleanup**: Cleaned up code to use Dart dot-shorthands and horizontal formatting without trailing commas.
+
+### Fixed
+- **Fluent Admin Toolbar Warnings**: Fixed const constructor warnings.
+
 ## 🚀 0.11.0+13 - 24/06/2026
 
 ### Added

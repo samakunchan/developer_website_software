@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:developer_website_software/features/themes/presentation/light_theme_constants.dart';
@@ -26,11 +27,11 @@ class FluentAdminToolbar extends StatelessWidget {
         mainAxisAlignment: .spaceBetween,
         children: [
           /// Search Box
-          const SizedBox(
+          SizedBox(
             width: 240,
             child: TextBox(
-              placeholder: 'Search...',
-              prefix: Padding(padding: .only(left: 8), child: Icon(FluentIcons.search, size: 14)),
+              placeholder: context.localizations.searchPlaceholder,
+              prefix: const Padding(padding: .only(left: 8), child: Icon(FluentIcons.search, size: 14)),
             ),
           ),
 

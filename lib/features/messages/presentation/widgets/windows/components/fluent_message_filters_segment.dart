@@ -54,7 +54,26 @@ class FluentMessageFiltersSegment extends StatelessWidget {
                       color: activeFilter == 'unread' ? theme.accentColor : Colors.transparent,
                       borderRadius: .circular(4),
                     ),
-                    child: FluentMessageBadgeCount(isSelected: activeFilter == 'unread'),
+                    // child: FluentMessageBadgeCount(isSelected: activeFilter == 'unread'),
+                    child: Padding(
+                      padding: const .symmetric(vertical: 4),
+                      child: Row(
+                        mainAxisSize: .min,
+                        mainAxisAlignment: .center,
+                        spacing: 4,
+                        children: [
+                          Text(
+                            'Unread',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: activeFilter == 'unread' ? .bold : .normal,
+                              color: activeFilter == 'unread' ? Colors.white : (isDark ? Colors.white : Colors.black),
+                            ),
+                          ),
+                          FluentMessageBadgeCount(isSelected: activeFilter == 'unread'),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -13,32 +13,24 @@ class MaterialMessageBadgeCount extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final bool isDark = theme.brightness == .dark;
 
-    return Row(
-      mainAxisSize: .min,
-      mainAxisAlignment: .center,
-      spacing: 4,
-      children: [
-        const Text('Unread', style: TextStyle(fontSize: 12)),
-        SignalBuilder(
-          builder: (BuildContext context) {
-            final count = kGetIt<MessagesSignals>().unreadCount.value;
-            if (count <= 0) return const SizedBox.shrink();
-            return Container(
-              padding: const .symmetric(horizontal: 6, vertical: 1),
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? (isDark ? Colors.black.withValues(alpha: 0.3) : Colors.white.withValues(alpha: 0.3))
-                    : theme.primaryColor,
-                borderRadius: .circular(10),
-              ),
-              child: Text(
-                '$count',
-                style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: .bold),
-              ),
-            );
-          },
-        ),
-      ],
+    return SignalBuilder(
+      builder: (BuildContext context) {
+        final count = kGetIt<MessagesSignals>().unreadCount.value;
+        if (count <= 0) return const SizedBox.shrink();
+        return Container(
+          padding: const .symmetric(horizontal: 6, vertical: 1),
+          decoration: BoxDecoration(
+            color: isSelected
+                ? (isDark ? Colors.black.withValues(alpha: 0.3) : Colors.white.withValues(alpha: 0.3))
+                : theme.primaryColor,
+            borderRadius: .circular(10),
+          ),
+          child: Text(
+            '$count',
+            style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: .bold),
+          ),
+        );
+      },
     );
   }
 }

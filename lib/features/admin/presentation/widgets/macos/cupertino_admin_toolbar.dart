@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
@@ -21,7 +22,7 @@ class CupertinoAdminToolbar extends StatelessWidget {
         mainAxisAlignment: .spaceBetween,
         children: [
           /// Search bar
-          const Expanded(flex: 2, child: CupertinoSearchTextField(placeholder: 'Search...')),
+          Expanded(flex: 2, child: CupertinoSearchTextField(placeholder: context.localizations.searchPlaceholder)),
 
           /// Actions
           Expanded(

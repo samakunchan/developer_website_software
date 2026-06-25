@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/widgets/macos/cupertino_account_tab.dart';
@@ -30,7 +31,7 @@ class _CupertinoSettingsSoftDialogState extends State<CupertinoSettingsSoftDialo
     return Center(
       child: CupertinoPopupSurface(
         child: Container(
-          width: 450,
+          width: 500,
           height: 380,
           padding: const .all(20),
           color: isDark ? kCardDarkBgColor : CupertinoColors.systemBackground,
@@ -42,8 +43,8 @@ class _CupertinoSettingsSoftDialogState extends State<CupertinoSettingsSoftDialo
                 mainAxisAlignment: .spaceBetween,
                 children: [
                   Text(
-                    'Preferences',
-                    style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 18, fontWeight: .bold),
+                    context.localizations.preferencesTitle,
+                    style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.bold)
                   ),
                   CupertinoButton(
                     padding: .zero,
@@ -56,23 +57,23 @@ class _CupertinoSettingsSoftDialogState extends State<CupertinoSettingsSoftDialo
               CupertinoSlidingSegmentedControl<int>(
                 groupValue: _activeTab,
                 padding: const .all(kPadding),
-                children: const {
+                children: {
                   0: Padding(
-                    padding: .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
                     child: Row(
                       mainAxisSize: .min,
                       spacing: 6,
-                      children: [Icon(CupertinoIcons.gear_alt, size: 16), Text('General')],
-                    ),
+                      children: [const Icon(CupertinoIcons.gear_alt, size: 16), Text(context.localizations.generalTab)]
+                    )
                   ),
                   1: Padding(
-                    padding: .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
                     child: Row(
                       mainAxisSize: .min,
                       spacing: 6,
-                      children: [Icon(CupertinoIcons.person_crop_circle, size: 16), Text('Account Info')],
-                    ),
-                  ),
+                      children: [const Icon(CupertinoIcons.person_crop_circle, size: 16), Text(context.localizations.accountInfoTab)]
+                    )
+                  )
                 },
                 onValueChanged: (int? val) {
                   if (val != null) {

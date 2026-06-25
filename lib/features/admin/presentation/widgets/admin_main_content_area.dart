@@ -5,22 +5,20 @@ import 'package:developer_website_software/features/admin/presentation/widgets/w
 import 'package:flutter/widgets.dart';
 
 class AdminMainContentArea extends PlatformWidget {
-  const AdminMainContentArea({required this.selectedNavIndex, super.key});
-
-  final int selectedNavIndex;
+  const AdminMainContentArea({super.key});
 
   @override
   Widget buildCupertino(BuildContext context) {
-    return CupertinoAdminMainContentArea(selectedNavIndex: selectedNavIndex);
+    return const CupertinoAdminMainContentArea();
   }
 
   @override
   Widget buildFluent(BuildContext context) {
-    return FluentAdminMainContentArea(selectedNavIndex: selectedNavIndex);
+    return const FluentAdminMainContentArea();
   }
 
   @override
   Widget buildMaterial(BuildContext context) {
-    return MaterialAdminMainContentArea(selectedNavIndex: selectedNavIndex);
+    return const MaterialAdminMainContentArea();
   }
 }

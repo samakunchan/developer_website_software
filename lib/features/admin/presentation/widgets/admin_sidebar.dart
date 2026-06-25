@@ -5,30 +5,22 @@ import 'package:developer_website_software/features/admin/presentation/widgets/w
 import 'package:flutter/widgets.dart';
 
 class AdminSidebar extends PlatformWidget {
-  const AdminSidebar({required this.selectedNavIndex, required this.navItems, this.width, super.key, this.onSelectMenu});
+  const AdminSidebar({this.width, super.key});
 
   final double? width;
-  final int selectedNavIndex;
-  final List<Map<String, dynamic>> navItems;
-  final ValueChanged<int>? onSelectMenu;
 
   @override
   Widget buildCupertino(BuildContext context) {
-    return CupertinoAdminSidebar(
-      selectedNavIndex: selectedNavIndex,
-      navItems: navItems,
-      width: width,
-      onSelectMenu: onSelectMenu,
-    );
+    return CupertinoAdminSidebar(width: width);
   }
 
   @override
   Widget buildFluent(BuildContext context) {
-    return FluentAdminSidebar(selectedNavIndex: selectedNavIndex, navItems: navItems, width: width, onSelectMenu: onSelectMenu);
+    return FluentAdminSidebar(width: width);
   }
 
   @override
   Widget buildMaterial(BuildContext context) {
-    return MaterialAdminSidebar(selectedNavIndex: selectedNavIndex, navItems: navItems, width: width, onSelectMenu: onSelectMenu);
+    return MaterialAdminSidebar(width: width);
   }
 }

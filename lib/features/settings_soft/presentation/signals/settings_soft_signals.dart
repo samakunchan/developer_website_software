@@ -14,11 +14,11 @@ enum AppFontSize {
 
   double get multiplier {
     switch (this) {
-      case .small:
+      case AppFontSize.small:
         return 0.85;
-      case .medium:
+      case AppFontSize.medium:
         return 1;
-      case .large:
+      case AppFontSize.large:
         return 1.25;
     }
   }
@@ -41,22 +41,24 @@ class SettingsSoftSignals {
   static const String _themeKey = 'local_theme_mode';
   static const String _fontSizeKey = 'local_font_size';
   static const String _fontFamilyKey = 'local_font_family';
+  static const String _languageKey = 'local_language';
 
-  final Signal<ThemeMode> themeMode = signal<ThemeMode>(.system);
-  final Signal<AppFontSize> fontSize = signal<AppFontSize>(.medium);
-  final Signal<AppFontFamily> fontFamily = signal<AppFontFamily>(.system);
+  final Signal<ThemeMode> themeMode = signal<ThemeMode>(ThemeMode.system);
+  final Signal<AppFontSize> fontSize = signal<AppFontSize>(AppFontSize.medium);
+  final Signal<AppFontFamily> fontFamily = signal<AppFontFamily>(AppFontFamily.system);
+  final Signal<String> localeCode = signal<String>('system');
 
   void _loadSettings() {
     final String? savedTheme = _prefs.getString(_themeKey);
     if (savedTheme != null) {
-      themeMode.value = ThemeMode.values.firstWhere((ThemeMode e) => e.name == savedTheme, orElse: () => .system);
+      themeMode.value = ThemeMode.values.firstWhere((ThemeMode e) => e.name == savedTheme, orElse: () => ThemeMode.system);
     }
 
     final String? savedFontSize = _prefs.getString(_fontSizeKey);
     if (savedFontSize != null) {
       fontSize.value = AppFontSize.values.firstWhere(
         (AppFontSize e) => e.name == savedFontSize,
-        orElse: () => AppFontSize.medium,
+        orElse: () => AppFontSize.medium
       );
     }
 
@@ -64,8 +66,13 @@ class SettingsSoftSignals {
     if (savedFontFamily != null) {
       fontFamily.value = AppFontFamily.values.firstWhere(
         (AppFontFamily e) => e.name == savedFontFamily,
-        orElse: () => AppFontFamily.system,
+        orElse: () => AppFontFamily.system
       );
+    }
+
+    final String? savedLanguage = _prefs.getString(_languageKey);
+    if (savedLanguage != null) {
+      localeCode.value = savedLanguage;
     }
   }
 
@@ -82,5 +89,10 @@ class SettingsSoftSignals {
   void setFontFamily(AppFontFamily family) {
     fontFamily.value = family;
     unawaited(_prefs.setString(_fontFamilyKey, family.name));
+  }
+
+  void setLocaleCode(String code) {
+    localeCode.value = code;
+    unawaited(_prefs.setString(_languageKey, code));
   }
 }
