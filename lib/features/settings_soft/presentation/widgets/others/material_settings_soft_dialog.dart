@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/widgets/others/material_account_tab.dart';
@@ -25,12 +26,9 @@ class _MaterialSettingsSoftDialogState extends State<MaterialSettingsSoftDialog>
       title: Row(
         mainAxisAlignment: .spaceBetween,
         children: [
-          const Text('Preferences'),
-          IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () => Navigator.of(context).pop()
-          )
-        ]
+          Text(context.localizations.preferencesTitle),
+          IconButton(icon: const Icon(Icons.close), onPressed: Navigator.of(context).pop),
+        ],
       ),
       content: SizedBox(
         width: 480,
@@ -41,24 +39,24 @@ class _MaterialSettingsSoftDialogState extends State<MaterialSettingsSoftDialog>
           children: [
             SegmentedButton<int>(
               showSelectedIcon: false,
-              segments: const [
+              segments: [
                 ButtonSegment(
                   value: 0,
-                  icon: Icon(Icons.settings, size: 18),
-                  label: Text('General')
+                  icon: const Icon(Icons.settings, size: 18),
+                  label: Text(context.localizations.generalTab),
                 ),
                 ButtonSegment(
                   value: 1,
-                  icon: Icon(Icons.person, size: 18),
-                  label: Text('Account Info')
-                )
+                  icon: const Icon(Icons.person, size: 18),
+                  label: Text(context.localizations.accountInfoTab),
+                ),
               ],
               selected: {_activeTab},
               onSelectionChanged: (Set<int> selection) {
                 setState(() {
                   _activeTab = selection.first;
                 });
-              }
+              },
             ),
             Expanded(
               child: Padding(
@@ -70,13 +68,13 @@ class _MaterialSettingsSoftDialogState extends State<MaterialSettingsSoftDialog>
                     } else {
                       return MaterialAccountTab(authSignals: authSignals);
                     }
-                  }
-                )
-              )
-            )
-          ]
-        )
-      )
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

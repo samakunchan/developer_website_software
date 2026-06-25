@@ -1,3 +1,4 @@
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/widgets/macos/cupertino_info_row.dart';
@@ -22,20 +23,19 @@ class CupertinoAccountTab extends StatelessWidget {
             const Icon(CupertinoIcons.lock_shield, size: 48, color: CupertinoColors.systemGrey),
             const SizedBox(height: 12),
             Text(
-              'Not Authenticated',
-              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                fontWeight: .bold,
-                color: CupertinoColors.systemGrey
-              )
+              context.localizations.notAuthenticated,
+              style: CupertinoTheme.of(
+                context,
+              ).textTheme.textStyle.copyWith(fontWeight: .bold, color: CupertinoColors.systemGrey),
             ),
             const SizedBox(height: 6),
             Text(
-              'Please sign in to the application to view your developer account details.',
+              context.localizations.authHelpText,
               textAlign: .center,
-              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(color: CupertinoColors.systemGrey, fontSize: 13)
-            )
-          ]
-        )
+              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(color: CupertinoColors.systemGrey, fontSize: 13),
+            ),
+          ],
+        ),
       );
     }
 
@@ -52,7 +52,7 @@ class CupertinoAccountTab extends StatelessWidget {
               Container(
                 padding: const .all(12),
                 decoration: const BoxDecoration(color: CupertinoColors.activeBlue, shape: .circle),
-                child: const Icon(CupertinoIcons.person, color: CupertinoColors.white, size: 28)
+                child: const Icon(CupertinoIcons.person, color: CupertinoColors.white, size: 28),
               ),
               const SizedBox(width: 14),
               Expanded(
@@ -62,27 +62,29 @@ class CupertinoAccountTab extends StatelessWidget {
                   children: [
                     Text(
                       user.name,
-                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(fontWeight: .bold, fontSize: 18)
+                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(fontWeight: .bold, fontSize: 18),
                     ),
                     Text(
                       user.role.toUpperCase(),
-                      style: CupertinoTheme.of(
-                        context
-                      ).textTheme.textStyle.copyWith(fontSize: 11, color: CupertinoColors.activeBlue, fontWeight: .w600)
-                    )
-                  ]
-                )
-              )
-            ]
+                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                        fontSize: 11,
+                        color: CupertinoColors.activeBlue,
+                        fontWeight: .w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 20),
           const CupertinoSettingsSoftDivider(color: CupertinoColors.separator),
           const SizedBox(height: 16),
-          CupertinoInfoRow(label: 'Account ID', value: '#${user.id}'),
+          CupertinoInfoRow(label: context.localizations.accountIdLabel, value: '#${user.id}'),
           const SizedBox(height: 12),
-          CupertinoInfoRow(label: 'Email Address', value: user.email)
-        ]
-      )
+          CupertinoInfoRow(label: context.localizations.emailAddressLabel, value: user.email),
+        ],
+      ),
     );
   }
 }

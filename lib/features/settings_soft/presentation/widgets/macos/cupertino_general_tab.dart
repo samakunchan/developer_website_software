@@ -1,3 +1,4 @@
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/widgets/macos/cupertino_setting_row.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/widgets/macos/cupertino_settings_soft_dialog.dart';
@@ -16,27 +17,28 @@ class CupertinoGeneralTab extends StatelessWidget {
         final ThemeMode currentTheme = settings.themeMode.value;
         final AppFontSize currentSize = settings.fontSize.value;
         final AppFontFamily currentFont = settings.fontFamily.value;
+        final String currentLocale = settings.localeCode.value;
 
         return ListView(
           physics: const NeverScrollableScrollPhysics(),
           children: [
             CupertinoSettingRow(
-              label: 'Appearance',
+              label: context.localizations.appearanceLabel,
               child: CupertinoSlidingSegmentedControl<ThemeMode>(
                 groupValue: currentTheme,
                 padding: const .all(4),
-                children: const {
+                children: {
                   ThemeMode.system: Padding(
-                    padding: .symmetric(horizontal: kHorizontal, vertical: kVertical),
-                    child: Text('System')
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    child: Text(context.localizations.themeSystem)
                   ),
                   ThemeMode.light: Padding(
-                    padding: .symmetric(horizontal: kHorizontal, vertical: kVertical),
-                    child: Text('Light')
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    child: Text(context.localizations.themeLight)
                   ),
                   ThemeMode.dark: Padding(
-                    padding: .symmetric(horizontal: kHorizontal, vertical: kVertical),
-                    child: Text('Dark')
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    child: Text(context.localizations.themeDark)
                   )
                 },
                 onValueChanged: (ThemeMode? val) {
@@ -48,22 +50,22 @@ class CupertinoGeneralTab extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             CupertinoSettingRow(
-              label: 'Font Size',
+              label: context.localizations.fontSizeLabel,
               child: CupertinoSlidingSegmentedControl<AppFontSize>(
                 groupValue: currentSize,
                 padding: const .all(4),
                 children: {
                   AppFontSize.small: Padding(
                     padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
-                    child: Text(AppFontSize.small.value)
+                    child: Text(context.localizations.fontSizeSmall)
                   ),
                   AppFontSize.medium: Padding(
                     padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
-                    child: Text(AppFontSize.medium.value)
+                    child: Text(context.localizations.fontSizeMedium)
                   ),
                   AppFontSize.large: Padding(
                     padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
-                    child: Text(AppFontSize.large.value)
+                    child: Text(context.localizations.fontSizeLarge)
                   )
                 },
                 onValueChanged: (AppFontSize? val) {
@@ -75,16 +77,16 @@ class CupertinoGeneralTab extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             CupertinoSettingRow(
-              label: 'Font Family',
+              label: context.localizations.fontFamilyLabel,
               child: CupertinoSlidingSegmentedControl<AppFontFamily>(
                 groupValue: currentFont,
                 padding: const .all(4),
-                children: const {
+                children: {
                   AppFontFamily.system: Padding(
-                    padding: .symmetric(horizontal: kHorizontal, vertical: kVertical),
-                    child: Text('System')
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    child: Text(context.localizations.themeSystem)
                   ),
-                  AppFontFamily.inter: Padding(
+                  AppFontFamily.inter: const Padding(
                     padding: .symmetric(horizontal: kHorizontal, vertical: kVertical),
                     child: Text('Inter')
                   )
@@ -92,6 +94,37 @@ class CupertinoGeneralTab extends StatelessWidget {
                 onValueChanged: (AppFontFamily? val) {
                   if (val != null) {
                     settings.setFontFamily(val);
+                  }
+                }
+              )
+            ),
+            const SizedBox(height: 16),
+            CupertinoSettingRow(
+              label: context.localizations.languageLabel,
+              child: CupertinoSlidingSegmentedControl<String>(
+                groupValue: currentLocale,
+                padding: const .all(4),
+                children: {
+                  'system': Padding(
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    child: Text(context.localizations.systemLanguageOption)
+                  ),
+                  'en': Padding(
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    child: Text(context.localizations.englishOption)
+                  ),
+                  'fr': Padding(
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    child: Text(context.localizations.frenchOption)
+                  ),
+                  'es': Padding(
+                    padding: const .symmetric(horizontal: kHorizontal, vertical: kVertical),
+                    child: Text(context.localizations.spanishOption)
+                  )
+                },
+                onValueChanged: (String? val) {
+                  if (val != null) {
+                    settings.setLocaleCode(val);
                   }
                 }
               )
