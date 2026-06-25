@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/admin/presentation/signals/admin_signals.dart';
 import 'package:developer_website_software/features/admin/presentation/viewmodels/admin_nav_item.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
@@ -27,6 +28,23 @@ class MaterialAdminSidebar extends StatelessWidget {
     const Color sidebarLinkColor = Color(0xFF94A3B8);
     final Color glassBg = isDark ? DarkThemeConstants.glassBg : LightThemeConstants.glassBg;
     final Color textContrastColor = isDark ? LightThemeConstants.text : DarkThemeConstants.text;
+
+    String getLabel(AdminPage page) {
+      switch (page) {
+        case AdminPage.dashboard:
+          return context.localizations.dashboard;
+        case AdminPage.messages:
+          return context.localizations.messages;
+        case AdminPage.profiles:
+          return context.localizations.profiles;
+        case AdminPage.projects:
+          return context.localizations.projects;
+        case AdminPage.analytics:
+          return context.localizations.analytics;
+        case AdminPage.settings:
+          return context.localizations.settings;
+      }
+    }
 
     return SizedBox(
       width: width,
@@ -91,7 +109,7 @@ class MaterialAdminSidebar extends StatelessWidget {
                                   spacing: 10,
                                   children: [
                                     Text(
-                                      item.label,
+                                      getLabel(page),
                                       style: TextStyle(
                                         fontWeight: isSelected ? .bold : .w500,
                                         color: isSelected ? primaryColor : sidebarLinkColor,
@@ -102,7 +120,7 @@ class MaterialAdminSidebar extends StatelessWidget {
                                 )
                               else
                                 Text(
-                                  item.label,
+                                  getLabel(page),
                                   style: TextStyle(
                                     fontWeight: isSelected ? .bold : .w500,
                                     color: isSelected ? primaryColor : sidebarLinkColor,
@@ -129,7 +147,7 @@ class MaterialAdminSidebar extends StatelessWidget {
                   elevation: 0,
                   shape: RoundedRectangleBorder(borderRadius: .circular(8)),
                 ),
-                child: const Text('Logout', style: TextStyle(fontWeight: .bold)),
+                child: Text(context.localizations.logout, style: const TextStyle(fontWeight: .bold)),
               ),
             ),
           ],

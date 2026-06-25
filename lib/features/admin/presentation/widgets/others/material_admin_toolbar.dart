@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:developer_website_software/features/themes/presentation/light_theme_constants.dart';
@@ -31,7 +32,7 @@ class MaterialAdminToolbar extends StatelessWidget {
             height: 40,
             child: TextField(
               decoration: InputDecoration(
-                hintText: 'Search...',
+                hintText: context.localizations.searchPlaceholder,
                 prefixIcon: const Icon(Icons.search, size: 20),
                 border: OutlineInputBorder(borderRadius: .circular(8)),
                 contentPadding: .zero,

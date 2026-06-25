@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/admin/presentation/signals/admin_signals.dart';
 import 'package:developer_website_software/features/admin/presentation/viewmodels/admin_nav_item.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
@@ -18,6 +19,23 @@ class CupertinoAdminSidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     final PackageInfo packageInfo = kGetIt<PackageInfo>();
     final AdminSignals signals = kGetIt<AdminSignals>();
+
+    String getLabel(AdminPage page) {
+      switch (page) {
+        case AdminPage.dashboard:
+          return context.localizations.dashboard;
+        case AdminPage.messages:
+          return context.localizations.messages;
+        case AdminPage.profiles:
+          return context.localizations.profiles;
+        case AdminPage.projects:
+          return context.localizations.projects;
+        case AdminPage.analytics:
+          return context.localizations.analytics;
+        case AdminPage.settings:
+          return context.localizations.settings;
+      }
+    }
 
     return SizedBox(
       width: width,
@@ -87,7 +105,7 @@ class CupertinoAdminSidebar extends StatelessWidget {
                                     spacing: 10,
                                     children: [
                                       Text(
-                                        item.label,
+                                        getLabel(page),
                                         style: isSelected
                                             ? CupertinoTheme.of(context).textTheme.actionTextStyle.copyWith(
                                                 color: CupertinoTheme.of(context).selectionHandleColor,
@@ -99,7 +117,7 @@ class CupertinoAdminSidebar extends StatelessWidget {
                                   )
                                 else
                                   Text(
-                                    item.label,
+                                    getLabel(page),
                                     style: isSelected
                                         ? CupertinoTheme.of(context).textTheme.actionTextStyle.copyWith(
                                             color: CupertinoTheme.of(context).selectionHandleColor,
@@ -120,7 +138,7 @@ class CupertinoAdminSidebar extends StatelessWidget {
             /// Footer (Logout)
             Padding(
               padding: const .all(16),
-              child: CupertinoAppButton(onPressed: kGetIt<AuthSignals>().signOut, child: const Text('Logout')),
+              child: CupertinoAppButton(onPressed: kGetIt<AuthSignals>().signOut, child: Text(context.localizations.logout)),
             ),
           ],
         ),
