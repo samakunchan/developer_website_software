@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:developer_website_software/core/cross_platform/platform_macos_menu_wrapper.dart';
-import 'package:developer_website_software/core/cross_platform/platform_widget.dart';
+import 'package:developer_website_software/core/cross_platform/platform_stateful_widget.dart';
 import 'package:developer_website_software/core/di/injection_container.dart' as di;
 import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
@@ -68,15 +68,37 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends PlatformWidget {
+class MyApp extends PlatformStatefulWidget {
   const MyApp({super.key});
+
+  @override
+  PlatformState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends PlatformState<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangePlatformBrightness() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return SignalBuilder(
       builder: (BuildContext context) {
         return super.build(context);
-      },
+      }
     );
   }
 
@@ -89,12 +111,12 @@ class MyApp extends PlatformWidget {
 
     final Brightness brightness = themeMode == ThemeMode.system
         ? PlatformDispatcher.instance.platformBrightness
-        : (themeMode == ThemeMode.dark ? .dark : .light);
+        : (themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light);
 
     final CupertinoThemeData dynamicTheme = AppTheme.getCupertinoTheme(
       brightness,
       fontFamily.value,
-      fontSize.multiplier,
+      fontSize.multiplier
     );
 
     return CupertinoApp(
@@ -103,7 +125,7 @@ class MyApp extends PlatformWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: dynamicTheme,
-      home: const PlatformMacosMenuWrapper(child: AuthGate()),
+      home: const PlatformMacosMenuWrapper(child: AuthGate())
     );
   }
 
@@ -114,10 +136,9 @@ class MyApp extends PlatformWidget {
 
     final Brightness brightness = themeMode == ThemeMode.system
         ? PlatformDispatcher.instance.platformBrightness
-        : (themeMode == ThemeMode.dark ? .dark : .light);
+        : (themeMode == ThemeMode.dark ? Brightness.dark : Brightness.light);
 
-    // Dynamic Fluent theme or simple toggle
-    final fluentTheme = brightness == .dark ? AppTheme.fluentDarkTheme : AppTheme.fluentLightTheme;
+    final FluentThemeData fluentTheme = brightness == Brightness.dark ? AppTheme.fluentDarkTheme : AppTheme.fluentLightTheme;
 
     return FluentApp(
       debugShowCheckedModeBanner: false,
@@ -125,7 +146,7 @@ class MyApp extends PlatformWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: fluentTheme,
-      home: const AuthGate(),
+      home: const AuthGate()
     );
   }
 
@@ -141,10 +162,10 @@ class MyApp extends PlatformWidget {
       onGenerateTitle: (BuildContext context) => context.localizations.mainTitle,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      theme: AppTheme.getMaterialTheme(.light, fontFamily.value, fontSize.multiplier),
-      darkTheme: AppTheme.getMaterialTheme(.dark, fontFamily.value, fontSize.multiplier),
+      theme: AppTheme.getMaterialTheme(Brightness.light, fontFamily.value, fontSize.multiplier),
+      darkTheme: AppTheme.getMaterialTheme(Brightness.dark, fontFamily.value, fontSize.multiplier),
       themeMode: themeMode,
-      home: const AuthGate(),
+      home: const AuthGate()
     );
   }
 }
