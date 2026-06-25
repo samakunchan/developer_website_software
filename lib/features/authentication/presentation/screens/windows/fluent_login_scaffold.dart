@@ -1,3 +1,4 @@
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/authentication_notification_message.dart';
@@ -12,8 +13,9 @@ class FluentLoginScaffold extends StatelessWidget {
     required this.authSignals,
     this.onLoginPressed,
     this.onLogoutPressed,
-    super.key,
+    super.key
   });
+
   final AuthSignals authSignals;
   final TextEditingController emailController;
   final TextEditingController passwordController;
@@ -23,8 +25,8 @@ class FluentLoginScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldPage(
-      header: const PageHeader(
-        title: Text('Developer Website Software'),
+      header: PageHeader(
+        title: Text(context.localizations.mainTitle)
       ),
       content: Center(
         child: SizedBox(
@@ -44,22 +46,22 @@ class FluentLoginScaffold extends StatelessWidget {
                     const Icon(FluentIcons.lock, size: 64),
                     const SizedBox(height: 16),
                     Text(
-                      'Welcome Back',
+                      context.localizations.welcomeBack,
                       textAlign: .center,
-                      style: FluentTheme.of(context).typography.title,
+                      style: FluentTheme.of(context).typography.title
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      'Authenticate to manage your developer portfolio',
-                      textAlign: .center,
+                    Text(
+                      context.localizations.authSubtitle,
+                      textAlign: .center
                     ),
                     const SizedBox(height: 32),
 
                     /// Email Field
                     AuthenticationTextField(
-                      title: 'Email Address',
+                      title: context.localizations.emailAddressLabel,
                       controller: emailController,
-                      placeholder: 'name@example.com',
+                      placeholder: context.localizations.emailPlaceholder,
                       keyboardType: .emailAddress,
                       childForIcon: const Icon(FluentIcons.mail_options, size: 16)
                     ),
@@ -67,7 +69,7 @@ class FluentLoginScaffold extends StatelessWidget {
 
                     /// Password Field
                     AuthenticationTextField(
-                      title: 'Password',
+                      title: context.localizations.passwordLabel,
                       controller: passwordController,
                       placeholder: '••••••••',
                       obscureText: true,
@@ -84,10 +86,9 @@ class FluentLoginScaffold extends StatelessWidget {
                     /// Success User Information
                     if (user != null) ...[
                       AuthenticationNotificationMessage(
-                        message: 'Authenticated as: ${user.name} (${user.role})',
-                        status: NotificationStatus.success
+                        message: context.localizations.authenticatedAs(user.name, user.role),
+                        status: .success
                       ),
-
                       const SizedBox(height: 16)
                     ],
 
@@ -97,20 +98,20 @@ class FluentLoginScaffold extends StatelessWidget {
                     else if (user != null)
                       Button(
                         onPressed: onLogoutPressed,
-                        child: const Text('Sign Out'),
+                        child: Text(context.localizations.signOutButton)
                       )
                     else
                       FilledButton(
                         onPressed: onLoginPressed,
-                        child: const Text('Sign In'),
-                      ),
-                  ],
+                        child: Text(context.localizations.signInButton)
+                      )
+                  ]
                 );
-              },
-            ),
-          ),
-        ),
-      ),
+              }
+            )
+          )
+        )
+      )
     );
   }
 }
