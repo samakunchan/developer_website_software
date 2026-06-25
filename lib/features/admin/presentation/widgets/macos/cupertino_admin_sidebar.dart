@@ -1,21 +1,23 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/features/admin/presentation/signals/admin_signals.dart';
+import 'package:developer_website_software/features/admin/presentation/viewmodels/admin_nav_item.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
+import 'package:developer_website_software/features/messages/presentation/widgets/macos/components/cupertino_message_badge_count.dart';
 import 'package:developer_website_software/features/themes/presentation/constantes.dart';
 import 'package:developer_website_software/features/themes/widgets/cupertino_app_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:signals_flutter/signals_flutter.dart';
 
 class CupertinoAdminSidebar extends StatelessWidget {
-  const CupertinoAdminSidebar({required this.selectedNavIndex, required this.navItems, this.width, super.key, this.onSelectMenu});
+  const CupertinoAdminSidebar({this.width, super.key});
 
   final double? width;
-  final int selectedNavIndex;
-  final List<Map<String, dynamic>> navItems;
-  final ValueChanged<int>? onSelectMenu;
 
   @override
   Widget build(BuildContext context) {
     final PackageInfo packageInfo = kGetIt<PackageInfo>();
+    final AdminSignals signals = kGetIt<AdminSignals>();
 
     return SizedBox(
       width: width,
@@ -45,48 +47,71 @@ class CupertinoAdminSidebar extends StatelessWidget {
 
             /// Navigation Items
             Expanded(
-              child: ListView.builder(
-                itemCount: navItems.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final Map<String, dynamic> item = navItems[index];
-                  final bool isSelected = selectedNavIndex == index;
+              child: SignalBuilder(
+                builder: (BuildContext context) {
+                  final AdminPage currentPage = signals.currentPage.value;
 
-                  return MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: onSelectMenu != null ? () => onSelectMenu!(index) : null,
-                      child: Container(
-                        margin: const .symmetric(horizontal: 10, vertical: 4),
-                        padding: const .symmetric(horizontal: 12, vertical: 12),
-                        decoration: BoxDecoration(
-                          color: isSelected ? kGlassBgColor : CupertinoColors.transparent,
-                          borderRadius: isSelected
-                              ? const .only(topRight: .circular(8), bottomRight: .circular(8))
-                              : .circular(0),
-                          border: isSelected
-                              ? Border(right: BorderSide(color: CupertinoTheme.of(context).selectionHandleColor, width: 2.5))
-                              : null,
-                        ),
-                        child: Row(
-                          spacing: 10,
-                          children: [
-                            Icon(
-                              item['icon'] as IconData,
-                              size: 18,
-                              color: isSelected ? null : CupertinoTheme.of(context).textTheme.actionTextStyle.color,
+                  return ListView.builder(
+                    itemCount: AdminNavItem.macosNavItems.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final AdminNavItem item = AdminNavItem.macosNavItems[index];
+                      final AdminPage page = item.page;
+                      final bool isSelected = currentPage == page;
+
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => signals.selectPage(page),
+                          child: Container(
+                            margin: const .symmetric(horizontal: 10, vertical: 4),
+                            padding: const .symmetric(horizontal: 12, vertical: 12),
+                            decoration: BoxDecoration(
+                              color: isSelected ? kGlassBgColor : CupertinoColors.transparent,
+                              borderRadius: isSelected
+                                  ? const .only(topRight: .circular(8), bottomRight: .circular(8))
+                                  : .circular(0),
+                              border: isSelected
+                                  ? Border(right: BorderSide(color: CupertinoTheme.of(context).selectionHandleColor, width: 2.5))
+                                  : null,
                             ),
-                            Text(
-                              item['label'] as String,
-                              style: isSelected
-                                  ? CupertinoTheme.of(
-                                      context,
-                                    ).textTheme.actionTextStyle.copyWith(color: CupertinoTheme.of(context).selectionHandleColor)
-                                  : CupertinoTheme.of(context).textTheme.actionTextStyle,
+                            child: Row(
+                              spacing: 10,
+                              children: [
+                                Icon(
+                                  item.icon,
+                                  size: 18,
+                                  color: isSelected ? null : CupertinoTheme.of(context).textTheme.actionTextStyle.color,
+                                ),
+                                if (index == AdminNavItem.macosNavItems.indexOf(AdminNavItem.macosMessages))
+                                  Row(
+                                    spacing: 10,
+                                    children: [
+                                      Text(
+                                        item.label,
+                                        style: isSelected
+                                            ? CupertinoTheme.of(context).textTheme.actionTextStyle.copyWith(
+                                                color: CupertinoTheme.of(context).selectionHandleColor,
+                                              )
+                                            : CupertinoTheme.of(context).textTheme.actionTextStyle,
+                                      ),
+                                      const CupertinoMessageBadgeCount(),
+                                    ],
+                                  )
+                                else
+                                  Text(
+                                    item.label,
+                                    style: isSelected
+                                        ? CupertinoTheme.of(context).textTheme.actionTextStyle.copyWith(
+                                            color: CupertinoTheme.of(context).selectionHandleColor,
+                                          )
+                                        : CupertinoTheme.of(context).textTheme.actionTextStyle,
+                                  ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   );
                 },
               ),

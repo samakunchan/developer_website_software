@@ -1,39 +1,45 @@
-import 'package:developer_website_software/core/cross_platform/platform_stateful_widget.dart';
+import 'package:developer_website_software/core/cross_platform/platform_widget.dart';
+import 'package:developer_website_software/core/di/injection_container.dart';
 import 'package:developer_website_software/features/admin/presentation/screens/macos/cupertino_admin_scaffold.dart';
 import 'package:developer_website_software/features/admin/presentation/screens/others/material_admin_scaffold.dart';
 import 'package:developer_website_software/features/admin/presentation/screens/windows/fluent_admin_scaffold.dart';
+import 'package:developer_website_software/features/admin/presentation/signals/admin_signals.dart';
 import 'package:flutter/widgets.dart';
+import 'package:signals_flutter/signals_flutter.dart';
 
-class AdminScreen extends PlatformStatefulWidget {
+class AdminScreen extends PlatformWidget {
   const AdminScreen({super.key});
 
   @override
-  PlatformState<AdminScreen> createState() => _AdminScreenState();
-}
-
-class _AdminScreenState extends PlatformState<AdminScreen> {
-  double _sidebarWidth = 220;
-  static const double minSidebarWidth = 160;
-  static const double maxSidebarWidth = 320;
-
-  void _onSidebarResized(double delta) {
-    setState(() {
-      _sidebarWidth = (_sidebarWidth + delta).clamp(minSidebarWidth, maxSidebarWidth);
-    });
-  }
-
-  @override
   Widget buildCupertino(BuildContext context) {
-    return CupertinoAdminScaffold(sidebarWidth: _sidebarWidth, onSidebarResized: _onSidebarResized);
+    final AdminSignals signals = kGetIt<AdminSignals>();
+    return SignalBuilder(
+      builder: (BuildContext context) => CupertinoAdminScaffold(
+        sidebarWidth: signals.sidebarWidth.value,
+        onSidebarResized: signals.resizeSidebar
+      )
+    );
   }
 
   @override
   Widget buildFluent(BuildContext context) {
-    return FluentAdminScaffold(sidebarWidth: _sidebarWidth, onSidebarResized: _onSidebarResized);
+    final AdminSignals signals = kGetIt<AdminSignals>();
+    return SignalBuilder(
+      builder: (BuildContext context) => FluentAdminScaffold(
+        sidebarWidth: signals.sidebarWidth.value,
+        onSidebarResized: signals.resizeSidebar
+      )
+    );
   }
 
   @override
   Widget buildMaterial(BuildContext context) {
-    return MaterialAdminScaffold(sidebarWidth: _sidebarWidth, onSidebarResized: _onSidebarResized);
+    final AdminSignals signals = kGetIt<AdminSignals>();
+    return SignalBuilder(
+      builder: (BuildContext context) => MaterialAdminScaffold(
+        sidebarWidth: signals.sidebarWidth.value,
+        onSidebarResized: signals.resizeSidebar
+      )
+    );
   }
 }
