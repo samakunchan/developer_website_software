@@ -108,6 +108,8 @@ class _MyAppState extends PlatformState<MyApp> with WidgetsBindingObserver {
     final ThemeMode themeMode = settings.themeMode.value;
     final AppFontSize fontSize = settings.fontSize.value;
     final AppFontFamily fontFamily = settings.fontFamily.value;
+    final String localeCode = settings.localeCode.value;
+    final Locale? locale = localeCode == 'system' ? null : Locale(localeCode);
 
     final Brightness brightness = themeMode == ThemeMode.system
         ? PlatformDispatcher.instance.platformBrightness
@@ -124,6 +126,7 @@ class _MyAppState extends PlatformState<MyApp> with WidgetsBindingObserver {
       onGenerateTitle: (BuildContext context) => context.localizations.mainTitle,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      locale: locale,
       theme: dynamicTheme,
       home: const PlatformMacosMenuWrapper(child: AuthGate())
     );
@@ -133,6 +136,8 @@ class _MyAppState extends PlatformState<MyApp> with WidgetsBindingObserver {
   Widget buildFluent(BuildContext context) {
     final SettingsSoftSignals settings = di.kGetIt<SettingsSoftSignals>();
     final ThemeMode themeMode = settings.themeMode.value;
+    final String localeCode = settings.localeCode.value;
+    final Locale? locale = localeCode == 'system' ? null : Locale(localeCode);
 
     final Brightness brightness = themeMode == ThemeMode.system
         ? PlatformDispatcher.instance.platformBrightness
@@ -145,6 +150,7 @@ class _MyAppState extends PlatformState<MyApp> with WidgetsBindingObserver {
       onGenerateTitle: (BuildContext context) => context.localizations.mainTitle,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      locale: locale,
       theme: fluentTheme,
       home: const AuthGate()
     );
@@ -156,12 +162,15 @@ class _MyAppState extends PlatformState<MyApp> with WidgetsBindingObserver {
     final ThemeMode themeMode = settings.themeMode.value;
     final AppFontSize fontSize = settings.fontSize.value;
     final AppFontFamily fontFamily = settings.fontFamily.value;
+    final String localeCode = settings.localeCode.value;
+    final Locale? locale = localeCode == 'system' ? null : Locale(localeCode);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateTitle: (BuildContext context) => context.localizations.mainTitle,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      locale: locale,
       theme: AppTheme.getMaterialTheme(Brightness.light, fontFamily.value, fontSize.multiplier),
       darkTheme: AppTheme.getMaterialTheme(Brightness.dark, fontFamily.value, fontSize.multiplier),
       themeMode: themeMode,

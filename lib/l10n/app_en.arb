@@ -2,5 +2,52 @@
   "mainTitle": "Developer Website Software",
   "@mainTitle": {
     "description": "Title of the application"
-  }
+  },
+  "dashboard": "Dashboard",
+  "messages": "Messages",
+  "profiles": "Profiles",
+  "projects": "Projects",
+  "analytics": "Analytics",
+  "settings": "Settings",
+  "logout": "Logout",
+  "searchPlaceholder": "Search...",
+  "languageLabel": "Language",
+  "systemLanguageOption": "Auto.",
+  "englishOption": "English",
+  "frenchOption": "Français",
+  "spanishOption": "Español",
+  "preferencesTitle": "Preferences",
+  "generalTab": "General",
+  "accountInfoTab": "Account Info",
+  "closeButton": "Close",
+  "appearanceLabel": "Appearance",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "fontSizeLabel": "Font Size",
+  "fontSizeSmall": "Small",
+  "fontSizeMedium": "Medium",
+  "fontSizeLarge": "Large",
+  "fontFamilyLabel": "Font Family",
+  "notAuthenticated": "Not Authenticated",
+  "authHelpText": "Please sign in to the application to view your developer account details.",
+  "accountIdLabel": "Account ID",
+  "emailAddressLabel": "Email Address",
+  "welcomeBack": "Welcome Back",
+  "authSubtitle": "Authenticate to manage your developer portfolio",
+  "emailPlaceholder": "name@example.com",
+  "passwordLabel": "Password",
+  "authenticatedAs": "Authenticated as: {name} ({role})",
+  "@authenticatedAs": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "signInButton": "Sign In",
+  "signOutButton": "Sign Out"
 }
