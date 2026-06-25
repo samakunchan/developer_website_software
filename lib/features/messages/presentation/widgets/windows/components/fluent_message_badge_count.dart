@@ -13,42 +13,24 @@ class FluentMessageBadgeCount extends StatelessWidget {
     final FluentThemeData theme = FluentTheme.of(context);
     final bool isDark = theme.brightness == .dark;
 
-    return Padding(
-      padding: const .symmetric(vertical: 4),
-      child: Row(
-        mainAxisSize: .min,
-        mainAxisAlignment: .center,
-        spacing: 4,
-        children: [
-          Text(
-            'Unread',
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: isSelected ? .bold : .normal,
-              color: isSelected ? Colors.white : (isDark ? Colors.white : Colors.black),
-            ),
+    return SignalBuilder(
+      builder: (BuildContext context) {
+        final count = kGetIt<MessagesSignals>().unreadCount.value;
+        if (count <= 0) return const SizedBox.shrink();
+        return Container(
+          padding: const .symmetric(horizontal: 6, vertical: 1),
+          decoration: BoxDecoration(
+            color: isSelected
+                ? (isDark ? Colors.black.withValues(alpha: 0.3) : Colors.white.withValues(alpha: 0.3))
+                : theme.accentColor,
+            borderRadius: .circular(10),
           ),
-          SignalBuilder(
-            builder: (BuildContext context) {
-              final count = kGetIt<MessagesSignals>().unreadCount.value;
-              if (count <= 0) return const SizedBox.shrink();
-              return Container(
-                padding: const .symmetric(horizontal: 6, vertical: 1),
-                decoration: BoxDecoration(
-                  color: isSelected
-                      ? (isDark ? Colors.black.withValues(alpha: 0.3) : Colors.white.withValues(alpha: 0.3))
-                      : theme.accentColor,
-                  borderRadius: .circular(10),
-                ),
-                child: Text(
-                  '$count',
-                  style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: .bold),
-                ),
-              );
-            },
+          child: Text(
+            '$count',
+            style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: .bold),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

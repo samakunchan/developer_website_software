@@ -1,3 +1,4 @@
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/authentication_notification_message.dart';
@@ -16,6 +17,7 @@ class CupertinoLoginScaffold extends StatelessWidget {
     this.onLogoutPressed,
     super.key,
   });
+
   final AuthSignals authSignals;
   final TextEditingController emailController;
   final TextEditingController passwordController;
@@ -25,15 +27,13 @@ class CupertinoLoginScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('Developer Website Software'),
-      ),
+      navigationBar: CupertinoNavigationBar(middle: Text(context.localizations.mainTitle)),
       child: SafeArea(
         child: Center(
           child: SizedBox(
             width: 380,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: const .all(24),
               child: SignalBuilder(
                 builder: (BuildContext context) {
                   final bool loading = authSignals.isLoading.value;
@@ -41,19 +41,19 @@ class CupertinoLoginScaffold extends StatelessWidget {
                   final UserViewModel? user = authSignals.currentUser.value;
 
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: .center,
+                    crossAxisAlignment: .stretch,
                     children: [
                       const Icon(CupertinoIcons.lock_shield, size: 64),
                       const SizedBox(height: 16),
                       Text(
-                        'Welcome Back',
+                        context.localizations.welcomeBack,
                         textAlign: .center,
                         style: CupertinoTheme.of(context).textTheme.navTitleTextStyle.copyWith(fontSize: 28, fontWeight: .bold),
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Authenticate to manage your developer portfolio',
+                        context.localizations.authSubtitle,
                         textAlign: .center,
                         style: CupertinoTheme.of(context).textTheme.textStyle,
                       ),
@@ -61,38 +61,34 @@ class CupertinoLoginScaffold extends StatelessWidget {
 
                       /// Email Field
                       AuthenticationTextField(
-                        title: 'Email Address',
+                        title: context.localizations.emailAddressLabel,
                         controller: emailController,
-                        placeholder: 'name@example.com',
+                        placeholder: context.localizations.emailPlaceholder,
                         keyboardType: .emailAddress,
-                        childForIcon: const Icon(CupertinoIcons.mail, size: 16)
+                        childForIcon: const Icon(CupertinoIcons.mail, size: 16),
                       ),
                       const SizedBox(height: 16),
 
                       /// Password Field
                       AuthenticationTextField(
-                        title: 'Password',
+                        title: context.localizations.passwordLabel,
                         controller: passwordController,
                         placeholder: '••••••••',
                         obscureText: true,
-                        childForIcon: const Icon(CupertinoIcons.lock, size: 16)
+                        childForIcon: const Icon(CupertinoIcons.lock, size: 16),
                       ),
                       const SizedBox(height: 24),
 
                       /// Error message if any
-                      if (error != null) ...[
-                        AuthenticationNotificationMessage(message: error),
-                        const SizedBox(height: 16)
-                      ],
+                      if (error != null) ...[AuthenticationNotificationMessage(message: error), const SizedBox(height: 16)],
 
                       /// Success User Information
                       if (user != null) ...[
                         AuthenticationNotificationMessage(
-                          message: 'Authenticated as: ${user.name} (${user.role})',
-                          status: NotificationStatus.success
+                          message: context.localizations.authenticatedAs(user.name, user.role),
+                          status: .success,
                         ),
-
-                        const SizedBox(height: 16)
+                        const SizedBox(height: 16),
                       ],
 
                       /// Actions
@@ -103,7 +99,7 @@ class CupertinoLoginScaffold extends StatelessWidget {
                           color: kButtonPrimaryColor,
                           borderRadius: .circular(kButtonBorderRadius),
                           onPressed: onLogoutPressed,
-                          child: const Text('Sign Out', style: TextStyle(color: kTextContrastColor)),
+                          child: Text(context.localizations.signOutButton, style: const TextStyle(color: kTextContrastColor)),
                         )
                       else
                         Container(
@@ -112,8 +108,8 @@ class CupertinoLoginScaffold extends StatelessWidget {
                             boxShadow: [
                               BoxShadow(
                                 color: CupertinoTheme.of(context).brightness == .dark
-                                    ? kPrimaryColor.withValues(alpha: .8)
-                                    : kShadowColor.withValues(alpha: .8),
+                                    ? kPrimaryColor.withValues(alpha: 0.8)
+                                    : kShadowColor.withValues(alpha: 0.8),
                                 blurRadius: 5,
                                 spreadRadius: 1,
                                 offset: const Offset(0, 2),
@@ -124,7 +120,7 @@ class CupertinoLoginScaffold extends StatelessWidget {
                             color: kButtonPrimaryColor,
                             borderRadius: .circular(kButtonBorderRadius),
                             onPressed: onLoginPressed,
-                            child: const Text('Sign In', style: TextStyle(color: kTextContrastColor)),
+                            child: Text(context.localizations.signInButton, style: const TextStyle(color: kTextContrastColor)),
                           ),
                         ),
                     ],

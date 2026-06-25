@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/network/api_service_impl.dart';
+import 'package:developer_website_software/features/admin/presentation/signals/admin_signals.dart';
 import 'package:developer_website_software/features/authentication/data/datasources/auth_cache_data_source.dart';
 import 'package:developer_website_software/features/authentication/data/datasources/auth_remote_data_source.dart';
 import 'package:developer_website_software/features/authentication/data/repositories/auth_repository_impl.dart';
@@ -131,5 +132,7 @@ Future<void> initDependencyInjection() async {
         getUnreadMessagesCountUseCase: kGetIt<GetUnreadMessagesCountUseCase>(),
         toggleMessageReadUseCase: kGetIt<ToggleMessageReadUseCase>(),
       ),
-    );
+    )
+    /// Features - Admin - Presentation Layer Signals
+    ..registerLazySingleton<AdminSignals>(AdminSignals.new);
 }

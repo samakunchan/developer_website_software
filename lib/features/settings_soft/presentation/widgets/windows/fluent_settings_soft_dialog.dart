@@ -1,4 +1,5 @@
 import 'package:developer_website_software/core/di/injection_container.dart';
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/widgets/windows/fluent_account_tab.dart';
@@ -25,10 +26,10 @@ class _FluentSettingsSoftDialogState extends State<FluentSettingsSoftDialog> {
     final bool isAccount = _activeTab == 1;
 
     return ContentDialog(
-      title: const Text('Preferences'),
+      title: Text(context.localizations.preferencesTitle),
       constraints: const BoxConstraints(maxWidth: 480, maxHeight: 420),
       content: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         crossAxisAlignment: .stretch,
         spacing: 16,
         children: [
@@ -36,42 +37,42 @@ class _FluentSettingsSoftDialogState extends State<FluentSettingsSoftDialog> {
             spacing: 8,
             children: [
               if (isGeneral)
-                const FilledButton(
+                FilledButton(
                   onPressed: null,
                   child: Row(
                     mainAxisSize: .min,
                     spacing: 6,
-                    children: [Icon(FluentIcons.settings, size: 14), Text('General')]
-                  )
+                    children: [const Icon(FluentIcons.settings, size: 14), Text(context.localizations.generalTab)],
+                  ),
                 )
               else
                 Button(
                   onPressed: () => setState(() => _activeTab = 0),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: .min,
                     spacing: 6,
-                    children: [Icon(FluentIcons.settings, size: 14), Text('General')]
-                  )
+                    children: [const Icon(FluentIcons.settings, size: 14), Text(context.localizations.generalTab)],
+                  ),
                 ),
               if (isAccount)
-                const FilledButton(
+                FilledButton(
                   onPressed: null,
                   child: Row(
                     mainAxisSize: .min,
                     spacing: 6,
-                    children: [Icon(FluentIcons.contact, size: 14), Text('Account Info')]
-                  )
+                    children: [const Icon(FluentIcons.contact, size: 14), Text(context.localizations.accountInfoTab)],
+                  ),
                 )
               else
                 Button(
                   onPressed: () => setState(() => _activeTab = 1),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: .min,
                     spacing: 6,
-                    children: [Icon(FluentIcons.contact, size: 14), Text('Account Info')]
-                  )
-                )
-            ]
+                    children: [const Icon(FluentIcons.contact, size: 14), Text(context.localizations.accountInfoTab)],
+                  ),
+                ),
+            ],
           ),
           Expanded(
             child: Padding(
@@ -83,18 +84,13 @@ class _FluentSettingsSoftDialogState extends State<FluentSettingsSoftDialog> {
                   } else {
                     return FluentAccountTab(authSignals: authSignals);
                   }
-                }
-              )
-            )
-          )
-        ]
+                },
+              ),
+            ),
+          ),
+        ],
       ),
-      actions: [
-        Button(
-          child: const Text('Close'),
-          onPressed: () => Navigator.of(context).pop()
-        )
-      ]
+      actions: [Button(child: Text(context.localizations.closeButton), onPressed: () => Navigator.of(context).pop())],
     );
   }
 }

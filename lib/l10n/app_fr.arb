@@ -2,5 +2,52 @@
   "mainTitle": "Logiciel de site de développeur",
   "@mainTitle": {
     "description": "Title of the application"
-  }
+  },
+  "dashboard": "Tableau de bord",
+  "messages": "Messages",
+  "profiles": "Profils",
+  "projects": "Projets",
+  "analytics": "Analytiques",
+  "settings": "Paramètres",
+  "logout": "Déconnexion",
+  "searchPlaceholder": "Rechercher...",
+  "languageLabel": "Langue",
+  "systemLanguageOption": "Auto.",
+  "englishOption": "English",
+  "frenchOption": "Français",
+  "spanishOption": "Español",
+  "preferencesTitle": "Préférences",
+  "generalTab": "Général",
+  "accountInfoTab": "Informations du compte",
+  "closeButton": "Fermer",
+  "appearanceLabel": "Apparence",
+  "themeSystem": "Système",
+  "themeLight": "Clair",
+  "themeDark": "Sombre",
+  "fontSizeLabel": "Taille de police",
+  "fontSizeSmall": "Petit",
+  "fontSizeMedium": "Moyen",
+  "fontSizeLarge": "Grand",
+  "fontFamilyLabel": "Famille de polices",
+  "notAuthenticated": "Non authentifié",
+  "authHelpText": "Veuillez vous connecter à l'application pour voir les détails de votre compte développeur.",
+  "accountIdLabel": "Identifiant du compte",
+  "emailAddressLabel": "Adresse e-mail",
+  "welcomeBack": "Bon retour",
+  "authSubtitle": "Authentifiez-vous pour gérer votre portfolio de développeur",
+  "emailPlaceholder": "nom@exemple.com",
+  "passwordLabel": "Mot de passe",
+  "authenticatedAs": "Authentifié en tant que : {name} ({role})",
+  "@authenticatedAs": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "signInButton": "Se connecter",
+  "signOutButton": "Se déconnecter"
 }

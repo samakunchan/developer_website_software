@@ -1,3 +1,4 @@
+import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/viewmodels/user_view_model.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/authentication_text_field.dart';
@@ -14,6 +15,7 @@ class MaterialLoginScaffold extends StatelessWidget {
     this.onLogoutPressed,
     super.key,
   });
+
   final AuthSignals authSignals;
   final TextEditingController emailController;
   final TextEditingController passwordController;
@@ -23,15 +25,13 @@ class MaterialLoginScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Developer Website Software'),
-      ),
+      appBar: AppBar(title: Text(context.localizations.mainTitle)),
       body: SafeArea(
         child: Center(
           child: SizedBox(
             width: 380,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
+              padding: const .all(24),
               child: SignalBuilder(
                 builder: (BuildContext context) {
                   final bool loading = authSignals.isLoading.value;
@@ -39,33 +39,29 @@ class MaterialLoginScaffold extends StatelessWidget {
                   final UserViewModel? user = authSignals.currentUser.value;
 
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: .center,
+                    crossAxisAlignment: .stretch,
                     children: [
                       const Icon(Icons.lock, size: 64),
                       const SizedBox(height: 16),
                       Text(
-                        'Welcome Back',
+                        context.localizations.welcomeBack,
                         textAlign: .center,
-                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          fontWeight: .bold,
-                        ),
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: .bold),
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Authenticate to manage your developer portfolio',
+                        context.localizations.authSubtitle,
                         textAlign: .center,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
+                        style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
                       ),
                       const SizedBox(height: 32),
 
                       /// Email Field
                       AuthenticationTextField(
-                        title: 'Email Address',
+                        title: context.localizations.emailAddressLabel,
                         controller: emailController,
-                        placeholder: 'name@example.com',
+                        placeholder: context.localizations.emailPlaceholder,
                         keyboardType: .emailAddress,
                         childForIcon: const Icon(FluentIcons.mail_options, size: 16),
                       ),
@@ -73,7 +69,7 @@ class MaterialLoginScaffold extends StatelessWidget {
 
                       /// Password Field
                       AuthenticationTextField(
-                        title: 'Password',
+                        title: context.localizations.passwordLabel,
                         controller: passwordController,
                         placeholder: '••••••••',
                         obscureText: true,
@@ -94,10 +90,7 @@ class MaterialLoginScaffold extends StatelessWidget {
                               Icon(Icons.error, color: Theme.of(context).colorScheme.error),
                               const SizedBox(width: 10),
                               Expanded(
-                                child: Text(
-                                  error,
-                                  style: TextStyle(color: Theme.of(context).colorScheme.onErrorContainer),
-                                ),
+                                child: Text(error, style: TextStyle(color: Theme.of(context).colorScheme.onErrorContainer)),
                               ),
                             ],
                           ),
@@ -115,7 +108,7 @@ class MaterialLoginScaffold extends StatelessWidget {
                             border: .all(color: Colors.green),
                           ),
                           child: Text(
-                            'Authenticated as: ${user.name} (${user.role})',
+                            context.localizations.authenticatedAs(user.name, user.role),
                             textAlign: .center,
                             style: const TextStyle(color: Colors.green),
                           ),
@@ -127,15 +120,9 @@ class MaterialLoginScaffold extends StatelessWidget {
                       if (loading)
                         const Center(child: CircularProgressIndicator())
                       else if (user != null)
-                        ElevatedButton(
-                          onPressed: onLogoutPressed,
-                          child: const Text('Sign Out'),
-                        )
+                        ElevatedButton(onPressed: onLogoutPressed, child: Text(context.localizations.signOutButton))
                       else
-                        ElevatedButton(
-                          onPressed: onLoginPressed,
-                          child: const Text('Sign In'),
-                        ),
+                        ElevatedButton(onPressed: onLoginPressed, child: Text(context.localizations.signInButton)),
                     ],
                   );
                 },

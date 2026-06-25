@@ -25,7 +25,18 @@ class CupertinoMessageFiltersSegment extends StatelessWidget {
               padding: .symmetric(vertical: 4),
               child: Text('All', style: TextStyle(fontSize: 13)),
             ),
-            'unread': const CupertinoMessageBadgeCount(),
+            'unread': const Padding(
+              padding: .symmetric(vertical: 4),
+              child: Row(
+                mainAxisSize: .min,
+                mainAxisAlignment: .center,
+                spacing: 4,
+                children: [
+                  Text('Unread', style: TextStyle(fontSize: 13)),
+                  CupertinoMessageBadgeCount(),
+                ],
+              ),
+            ),
             'read': const Padding(
               padding: .symmetric(vertical: 4),
               child: Text('Read', style: TextStyle(fontSize: 13)),

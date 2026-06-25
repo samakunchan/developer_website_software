@@ -20,22 +20,17 @@ class MessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
 
   @override
   Future<PaginatedMessagesModel> getMessages(GetMessagesParams params) async {
-    final Either<ExceptionModel, Map<String, dynamic>> result =
-        await apiService.get<Map<String, dynamic>>(
+    final Either<ExceptionModel, Map<String, dynamic>> result = await apiService.get<Map<String, dynamic>>(
       path: ApiConfig.messages,
       queryParameters: params.toJson(),
     );
 
-    return result.fold(
-      (ExceptionModel exception) => throw exception,
-      PaginatedMessagesModel.fromJson,
-    );
+    return result.fold((ExceptionModel exception) => throw exception, PaginatedMessagesModel.fromJson);
   }
 
   @override
   Future<int> getUnreadMessagesCount() async {
-    final Either<ExceptionModel, Map<String, dynamic>> result =
-        await apiService.get<Map<String, dynamic>>(
+    final Either<ExceptionModel, Map<String, dynamic>> result = await apiService.get<Map<String, dynamic>>(
       path: ApiConfig.unreadMessagesCount,
     );
 
@@ -55,8 +50,7 @@ class MessagesRemoteDataSourceImpl implements MessagesRemoteDataSource {
 
   @override
   Future<MessageModel> toggleMessageRead(int id, {required bool isRead}) async {
-    final Either<ExceptionModel, Map<String, dynamic>> result =
-        await apiService.patch<Map<String, dynamic>>(
+    final Either<ExceptionModel, Map<String, dynamic>> result = await apiService.patch<Map<String, dynamic>>(
       path: '${ApiConfig.messages}/$id/read',
       data: <String, dynamic>{'isRead': isRead},
     );

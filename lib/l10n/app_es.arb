@@ -2,5 +2,52 @@
   "mainTitle": "Software de sitio web de desarrollador",
   "@mainTitle": {
     "description": "Title of the application"
-  }
+  },
+  "dashboard": "Tablero",
+  "messages": "Mensajes",
+  "profiles": "Perfiles",
+  "projects": "Proyectos",
+  "analytics": "Analítica",
+  "settings": "Configuración",
+  "logout": "Cerrar sesión",
+  "searchPlaceholder": "Buscar...",
+  "languageLabel": "Idioma",
+  "systemLanguageOption": "Auto.",
+  "englishOption": "English",
+  "frenchOption": "Français",
+  "spanishOption": "Español",
+  "preferencesTitle": "Preferencias",
+  "generalTab": "General",
+  "accountInfoTab": "Información de la cuenta",
+  "closeButton": "Cerrar",
+  "appearanceLabel": "Apariencia",
+  "themeSystem": "Sistema",
+  "themeLight": "Claro",
+  "themeDark": "Oscuro",
+  "fontSizeLabel": "Tamaño de fuente",
+  "fontSizeSmall": "Pequeño",
+  "fontSizeMedium": "Mediano",
+  "fontSizeLarge": "Grande",
+  "fontFamilyLabel": "Familia de fuentes",
+  "notAuthenticated": "No autenticado",
+  "authHelpText": "Inicie sesión en la aplicación para ver los detalles de su cuenta de desarrollador.",
+  "accountIdLabel": "ID de la cuenta",
+  "emailAddressLabel": "Dirección de correo electrónico",
+  "welcomeBack": "Bienvenido de nuevo",
+  "authSubtitle": "Autentíquese para administrar su portafolio de desarrollador",
+  "emailPlaceholder": "nombre@ejemplo.com",
+  "passwordLabel": "Contraseña",
+  "authenticatedAs": "Autenticado como: {name} ({role})",
+  "@authenticatedAs": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "signInButton": "Iniciar sesión",
+  "signOutButton": "Cerrar sesión"
 }

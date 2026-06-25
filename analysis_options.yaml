@@ -51,6 +51,8 @@ linter:
     sort_pub_dependencies: false
     avoid_annotating_with_dynamic: true
     avoid_types_on_closure_parameters: false # Pour avoir le typage
+    require_trailing_commas: false
+
 formatter:
   page_width: 130
   trailing_commas: preserve
