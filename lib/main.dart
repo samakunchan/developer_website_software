@@ -7,6 +7,7 @@ import 'package:developer_website_software/core/di/injection_container.dart' as 
 import 'package:developer_website_software/core/extensions/build_context_extension.dart';
 import 'package:developer_website_software/features/authentication/presentation/signals/auth_signals.dart';
 import 'package:developer_website_software/features/authentication/presentation/widgets/auth_gate.dart';
+import 'package:developer_website_software/features/messages/presentation/signals/messages_signals.dart';
 import 'package:developer_website_software/features/settings_app/presentation/signals/settings_app_signals.dart';
 import 'package:developer_website_software/features/settings_soft/presentation/signals/settings_soft_signals.dart';
 import 'package:developer_website_software/features/themes/presentation/theme.dart';
@@ -36,6 +37,8 @@ void main() async {
   /// Initialize Window Manager for desktop integration
   await windowManager.ensureInitialized();
   final bool isLoggedIn = di.kGetIt<AuthSignals>().currentUser.value != null;
+  await di.kGetIt<MessagesSignals>().fetchMessages();
+  await di.kGetIt<MessagesSignals>().fetchUnreadCount();
   final Size initialSize = isLoggedIn ? const Size(1280, 1024) : const Size(900, 650);
 
   final WindowOptions windowOptions = WindowOptions(

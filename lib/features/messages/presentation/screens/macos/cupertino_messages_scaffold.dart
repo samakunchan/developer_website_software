@@ -67,16 +67,13 @@ class _CupertinoMessagesScaffoldState extends State<CupertinoMessagesScaffold> {
               CupertinoMessageSearchBox(controller: _searchController, signals: _signals),
               CupertinoMessageFiltersSegment(signals: _signals),
               CupertinoMessageList(signals: _signals),
-              CupertinoMessagePaginationFooter(signals: _signals)
-            ]
-          )
+              CupertinoMessagePaginationFooter(signals: _signals),
+            ],
+          ),
         ),
 
         /// Vertical divider
-        Container(
-          width: 1,
-          color: isDark ? const Color(0xFF2D2D2D) : CupertinoColors.systemGrey5
-        ),
+        Container(width: 1, color: isDark ? const Color(0xFF2D2D2D) : CupertinoColors.systemGrey5),
 
         /// 2. Messages Detail Pane
         Expanded(
@@ -94,7 +91,7 @@ class _CupertinoMessagesScaffoldState extends State<CupertinoMessagesScaffold> {
                         Icon(
                           CupertinoIcons.tray_arrow_down,
                           size: 64,
-                          color: isDark ? CupertinoColors.systemGrey2 : CupertinoColors.systemGrey3
+                          color: isDark ? CupertinoColors.systemGrey2 : CupertinoColors.systemGrey3,
                         ),
                         const SizedBox(height: 16),
                         Text(
@@ -102,11 +99,11 @@ class _CupertinoMessagesScaffoldState extends State<CupertinoMessagesScaffold> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: .bold,
-                            color: isDark ? CupertinoColors.systemGrey : CupertinoColors.systemGrey
-                          )
-                        )
-                      ]
-                    )
+                            color: isDark ? CupertinoColors.systemGrey : CupertinoColors.systemGrey,
+                          ),
+                        ),
+                      ],
+                    ),
                   );
                 }
 
@@ -114,14 +111,14 @@ class _CupertinoMessagesScaffoldState extends State<CupertinoMessagesScaffold> {
                   crossAxisAlignment: .stretch,
                   children: [
                     CupertinoMessageDetailHeader(selected: selected, signals: _signals),
-                    CupertinoMessageDetailBody(selected: selected)
-                  ]
+                    CupertinoMessageDetailBody(selected: selected),
+                  ],
                 );
-              }
-            )
-          )
-        )
-      ]
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
